@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 600px;
+            height: 600px;
+            border: 2px solid grey;
+        }
+        .box div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            border: 1px solid black;
+        }
+        .box div:nth-child(1){
+            /* 平移 */
+            transform: translateX(400px);
+        }
+        .box div:nth-child(2){
+            /* 平移+旋转 */
+            transform: translateX(400px) rotate(45deg);
+            /* 先位移，再旋转 */
+        }
+        .box div:nth-child(3){
+            /* 旋转+平移，和第二个相反，对比效果 */
+            transform: rotate(45deg) translateX(400px);
+            /* 先旋转45deg，但是把X轴也旋转了，导致位移方向变了 */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

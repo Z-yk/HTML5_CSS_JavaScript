@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        header,footer{
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: orange;
+        }
+        section{
+            height: calc(100% - 100px);
+            background: #ccc;
+        }
+        nav,aside{
+            height: 100%;
+            width: 100px;
+        
+            float: left;
+        }
+        main{
+            float: left;
+            height: 100%;
+            width: calc(100% - 200px);
+            background: white;
+        }
+        aside p{
+            font-size: 12px;
+            color: white;
+        }
+       
+        main .article1{
+            height: 60%;
+        }
+        main .article2{
+            height: 40%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 这是头部 -->
+    <header>header</header>
+
+    <section>
+        <nav>
+            <figure>nav</figure>
+            <ul>
+                <li>link1</li>
+                <li>link2</li>
+                <li>link3</li>
+            </ul>
+        </nav>
+        <main>
+            <article class="article1">
+                <header>article-header</header>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni mollitia assumenda incidunt consequatur quis deserunt dignissimos neque odit? Et beatae accusantium reiciendis laboriosam exercitationem officiis quis perspiciatis voluptates autem aut.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, libero. Omnis quas a fugiat voluptates sed, quis praesentium laborum nobis amet vel provident recusandae libero similique laudantium, nisi impedit quae!
+                <footer>article-footer</footer>
+            </article>
+            <article class="article2">
+                <header>article-header</header>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, libero. Omnis quas a fugiat voluptates sed, quis praesentium laborum nobis amet vel provident recusandae libero similique laudantium, nisi impedit quae!
+                <footer>article-footer</footer>
+            </article>
+        </main>
+        <aside>
+            <figure>aside</figure>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque vitae soluta labore dicta exercitationem recusandae aspernatur a eum sit voluptate, officiis fuga nesciunt facilis consequuntur suscipit ratione maiores! Facilis, tempora.</p>
+        </aside>
+    </section>
+    
+    <footer>footer</footer>
+</html>

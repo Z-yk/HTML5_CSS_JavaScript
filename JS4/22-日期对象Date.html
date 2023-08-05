@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Date()日期对象是一个构造函数，必须用new来调用创建日期对象
+        var arr = new Array(); //创建了一个空的数组对象
+        var obj = new Object(); //创建了一个对象实例
+        //使用Date
+        //参数个数：
+        //1.没有参数
+        var date  = new Date();
+        console.log(date); //没参数，返回的是系统的当前时间
+        
+        //2.参数的常用写法 数字型：2019, 10, 01  
+        //3.或者是字符串型： '2019-10-1 8:8:8'
+        var date1 = new Date(2023, 3, 21);
+        console.log(date1); //返回的是4月不是3月（月份多一个月）
+        var date2 = new Date('2019-10-1 08:08:08');
+        console.log(date2);
+
+        //4.分别提供日期与时间的每一个成员,格式化日期
+        var date3 = new Date();
+        console.log(date3.getFullYear());//本地时间返回指定日期的年份
+        console.log(date3.getMonth()+1); //返回0-11月份，小一个月 ，记得月份+1
+        console.log(date3.getDate()); //返回几号
+        console.log(date3.getDay()); //返回周几，周日是0
+        
+        //写一个2022年 10月 26日 周三
+        var year = date3.getFullYear();
+        var month = date3.getMonth() + 1;
+        var dates = date3.getDate();
+        var arr = ['星期日', '星期一','星期二','星期三','星期四','星期五','星期六']
+        var day = arr[date3.getDay()];
+        console.log('今天是'+year+'年'+month+'月'+dates+'日 '+day);
+        //时分秒
+        console.log(date3.getHours()); //时
+        console.log(date3.getMinutes()); //分
+        console.log(date3.getSeconds()); //秒
+
+        //要求封装一个函数，返回当前的时分秒,格式08:08:08
+        function getTimer(){
+            var time = new Date(); //new调用Date()构造函数，创建对象
+            var h = time.getHours();
+            h = h < 10 ? '0'+h : h;
+            var m = time.getMinutes();
+            m = m < 10 ? '0'+m : m;
+            var s = time.getSeconds();
+            s = s < 10 ? '0'+s : s;
+            return  h+':'+m+':'+s;
+        }
+        console.log(getTimer());//调用
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

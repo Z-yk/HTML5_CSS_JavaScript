@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1.E[att]*/
+        div[class]{
+            background: yellow;
+        }
+        /* 2.E[att="value"] */
+        div[class="box1"]{
+            border: 1px solid blue;
+        }
+
+        input[type]{
+            background: yellow;
+        }
+        input[name="email"]{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">div-11111</div>
+    <div class="box2">div-22222</div>
+    <div>div-33333</div>
+    <div class="box1">div-4444</div>
+    <p class="p1">p-11111</p>
+    <p class="p2">p-22222</p>
+    <p>p-33333</p>
+    
+    <div>
+        <h1>注册页面</h1>
+        用户名：<input type="text" name="username"><br>
+        密码：<input type="password" name="password"><br>
+        年龄：<input type="number" name="age"><br>
+        邮箱：<input type="email" name="email"><br>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 三角形：设置边框（粗一点），取消高度和宽度，
+        1.想要哪一个方向的三角形，就把其他三个方向的颜色搞透明
+        2.可以把四个边都透明，再单独设置一个边颜色    */
+           /* top没透明，所以是向下三角形 */
+        .box1{
+            width: 0px;
+            height: 0px;
+            border-top: 20px solid red;
+            border-left: 20px solid rgba(0, 0, 0,0);
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+        }
+        .box2{
+            width: 0px;
+            height: 0px;
+            border: 20px solid transparent;
+            border-bottom: 20px solid red;
+        }
+        body{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

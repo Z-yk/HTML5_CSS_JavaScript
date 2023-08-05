@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 之前都是这样，写好正则，调用用法
+    // 正则.test(字符串)
+    // 正则.exec(字符串)
+
+    // 字符串.replace search match
+    const str = 'adearfa'
+
+    // 1 .replace
+    // const newstr = str.replace('a','*') // *dearfa 只替换第一次出现的字符
+    const newstr = str.replace(/a/g, '*') // 匹配所有结果，都进行替换
+    console.log(newstr); // *de*rf*
+
+    // 2 .search
+    console.log(str.search('fa')) // 5 返回查找到的第一个a的索引号
+    console.log(str.search(/a/)) // 0
+
+    // 3 .match 捕获内容
+    // const str1 = 'adearfa';
+    // console.log(str1.match('ad')); //伪数组 ad
+    const datestr = 'time is from 2029-01-01 to 2029-01-02'
+    console.log(datestr.match(/\d{4}-\d{1,2}-\d{1,2}/g)); //返回伪数组，两个元素2029-01-01和2029-01-02
+  </script>
+</body>
+
+</html>

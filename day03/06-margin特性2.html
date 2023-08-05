@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 特性问题：
+        1. 兄弟关系, 两个盒子垂直外边距与水平外边距问题
+                - 垂直方向,外边距取最大值.(并不是两个距离之和)
+                - 水平方向,外边距会进行合并处理.(距离之和)
+        2. 父子关系, 给子加外边距, 但作用于父身上了,怎么解决?
+         */
+        /* 父盒子 */
+        .box1{
+            width: 500px;
+            height: 500px;
+            background-color: yellow;
+            /* padding-top:100px ;解决1，会使得高度加100px */
+            /* border: 1px solid transparent; */
+            /* float: left; */
+            overflow: hidden;
+        }   
+        /* 子盒子 */
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-top: 100px; /*不行，作用与父盒子上了 */
+        }
+
+        /* 1.子margin-top——>父的padding-top，注意高度计算
+            2.给父盒子设置边框,
+            子盒子设置margin-top;这样就会作用在子盒子自身了
+            3.给子盒子或者父盒子加一个浮动，漂浮起来，此时子盒子设置
+            margin-top会有效果
+            4.给父盒子加上 overflow:hidden. BFC,
+        */
+    </style>
+</head>
+<body>
+    <!-- 父子盒子关系 -->
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

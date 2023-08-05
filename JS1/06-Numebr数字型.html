@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var num = 10;
+        var PI = 3.14;
+
+        //八进制， 0~7，程序中，数字前面加0或0o，表示该数字为八进制
+        var num1 = 0o10;
+        console.log(num1); //010 = 8
+        //十六进制，0~9 a~f 数字前面加0x
+        var num2 = 0xf;
+        console.log(num2);//0xf = 15
+        //二进制，0和1，前面数字加0b
+        var num3 = 0b110;
+        console.log(num3);//0b110 = 6
+        
+        //Number数字型最大和最小值
+        console.log(Number.MAX_VALUE);
+        console.log(Number.MIN_VALUE);
+        //Number数字型无穷大和无穷小
+        console.log(Number.MAX_VALUE*2); //Infinity
+        console.log(-Number.MAX_VALUE*2); //-Infinity
+
+        //非数字
+        console.log('pink'-100); //NaN
+
+        //isNaN() 判断非数字，true or false
+        var a = 12;
+        console.log(isNaN(a)); //false
+        var b = 'pink'
+        console.log(isNaN(b)); //true
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

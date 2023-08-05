@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        html,body{
+            height: 100%;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+        header{
+            height: 44px;
+            background: #0cc440;
+            /* 弹性盒子，子元素默认水平排列 */
+            display: flex;
+            /* 实现水平垂直居中 */
+            /* 让项目在主轴上居中对齐 */
+            justify-content: center;
+            /* 让项目在侧轴上居中对齐 */
+            align-items: center;
+        }
+        header div{
+            width: 60px;
+            height: 25px;
+            /* 让单行文本水平垂直居中 */
+            text-align: center;
+            line-height: 25px;
+            font-size: 12px;
+        }
+        
+        /* 热点这个div */
+        header div:nth-child(1){
+            border-radius: 12px 0 0 12px;
+            background-color: #63d985;
+            color: white;
+        }
+        /* 关注这个div */
+        header div:nth-child(2){
+            border-radius: 0 12px 12px 0;
+            background-color: #3dd066;
+            color: #a9e4b4;
+        }
+
+        section{
+            flex: 1;
+        }
+        footer{
+            height: 44px;
+            background: grey;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div>热点</div>
+        <div>关注</div>
+    </header>
+    <section></section>
+    <footer></footer>
+</body>
+</html>

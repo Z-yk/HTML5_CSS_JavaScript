@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            background-color: red;
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        .box2{
+            background-color: green;
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        /* 高度塌陷：上面这两个浮动，则下面box会上来 */
+        .box{
+            background-color: blue;
+            width: 300px;
+            height: 300px;
+            /* clear: left; */
+        }
+        /* 解决方法：
+           1、固定高度：将包含他们的div设置固定的高度，这个div和box同级别 */
+        .container{
+            /* height: 200px; */
+            overflow: hidden;
+            /* bfc 让浮动元素计算高度 */
+        } 
+        /* 2、清浮动：不允许box的div向左浮动，默认会补上去（不好用） */
+        /* 3、在两个小div里面再设置一个div，该div不允许左浮动 */
+        /* 4、在父元素中overflow:hidden; bfc 让浮动元素也计算高度，占据一定位置*/
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <!-- <div style="clear: left;"></div> -->
+    </div>
+    <div class="box"></div>
+</body>
+</html>

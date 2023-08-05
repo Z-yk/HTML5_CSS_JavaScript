@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 300px;
+            background: yellow;
+
+            /* 设置将元素分成几列 */
+            column-count: 5;
+            /* 设置列与列之间的间距 */
+            column-gap: 30px;
+            /* 设置列与列之间的边框 */
+            column-rule: 2px solid red;
+            /* 设置如何填充每个列 
+            balance每列填充一部分，使得列的高度平衡
+            auto按顺序每一列都填充占满 */
+            column-fill: balance;
+            /* column-fill: auto; */
+            /* 设置每个列的宽度 */
+            /* column-width: 500px; */
+        }
+        div>h1{
+            /* 设置元素横跨的列数（所有列，或者默认不横跨） */
+            /* column-span: none; */
+            column-span: all;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Good Morning!</h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellat ut minus provident aliquid aspernatur nam deserunt non soluta corrupti nobis natus obcaecati dolore doloremque, libero incidunt nostrum tempora vero.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit unde quaerat voluptate consequuntur. Placeat, maxime quidem! Eaque inventore illum vel! Atque corporis cupiditate quidem perspiciatis veniam quibusdam. Optio, dolores blanditiis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci eveniet iusto beatae porro voluptas dolores vero odit dicta consequuntur eum illum amet maiores molestias quae corrupti asperiores, veritatis doloribus.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consequuntur expedita sit repellendus saepe doloremque non inventore laudantium atque itaque eaque quasi, error nisi nostrum vero reprehenderit aut architecto amet!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo vel tenetur quod magnam blanditiis dolorum minima eum dicta, maiores sapiente, modi exercitationem vitae cupiditate totam similique fugit maxime eveniet doloremque.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, fugit saepe! Deserunt vel dolores obcaecati ex quo? Ea nobis cumque obcaecati omnis harum laboriosam possimus! Enim autem velit nostrum pariatur.
+
+    </div>
+</body>
+</html>

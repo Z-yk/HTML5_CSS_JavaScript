@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            margin-bottom: 100px;
+            /* overflow: visible;  */
+            /*visible默认值，溢出内容显示在元素之外 */
+            /* overflow:hidden; */
+            /* 溢出内容会隐藏，不显示 */
+            /* overflow: scroll; */
+             /*滚动，溢出内容以滚动方式显示，没有溢出的内容，也会出现滚动的东西，但不能滚动 */
+            /* 常用 */
+             /* overflow: auto; */
+            /* 区别scroll，如果有溢出会添加滚动条，没有溢出正常显示 */
+            /* overflow: inherit; */
+            /* 规定会遵从父元素继承overflow属性的值 */
+            
+        }
+        .box{
+            /* overflow-x: auto;
+            overflow-y: hidden; */
+
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut porro deserunt ea repellendus neque quam inventore adipisci vero placeat dolore. Molestiae, eveniet veniam beatae debitis similique laboriosam velit aliquam enim.
+        My name is bob. Nice to meet you. I am 22 years old. I come from China. 
+    </div>
+    <div>
+        My name is bob. Nice to meet you. I am 22 years old. I come from China. 
+    </div>
+    <div class="box">
+        <img src="image/5.png" alt="">
+    </div>
+</body>
+</html>

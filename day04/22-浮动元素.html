@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .left,.right{
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+        .left{
+            background: yellow;
+        }
+        .right{
+            background: red;
+        }
+        .content{
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+
+        /* 1.给父元素设置固定高度 */
+        /* .box{
+            height: 100px;
+        } */
+        /* 3.在父元素中overflow:hidden; bfc 让浮动元素也计算高度，占据一定位置 */
+        .box{
+            overflow: hidden;
+        } 
+    </style>
+</head>
+<body>
+    <!-- 当子元素设置浮动之后，子元素会完全脱离文档流，
+        此时将会导致子元素无法撑起父元素的高度，导致父元素的高度塌陷 -->
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+        <!--2.额外标签法：加一个空div标签清除浮动clear:both; 该div不允许浮动-->
+        <!-- <div style="clear: both;"></div> -->
+    </div>
+
+    <div class="content"></div>
+</body>
+</html>

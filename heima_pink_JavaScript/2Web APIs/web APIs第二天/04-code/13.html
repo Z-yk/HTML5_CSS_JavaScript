@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      position: relative;
+      width: 1000px;
+      height: 200px;
+      margin: 100px auto;
+    }
+
+    input {
+      padding: 10px;
+      width: 800px;
+      /* height: 50px; */
+    }
+
+    .input1 {
+      height: 50px;
+    }
+
+    button {
+      display: block;
+      float: right;
+      width: 80px;
+      height: 50px;
+      background-color: rgb(197, 197, 216);
+    }
+
+    .box1 {
+      display: none;
+      position: absolute;
+      right: 150px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <input type="text">
+    <button>发布</button>
+    <div class="box1">
+      0/200
+    </div>
+  </div>
+
+  <script>
+    const btn = document.querySelector('button')
+    const ipt = document.querySelector('input')
+    const box1 = document.querySelector('.box1')
+    console.log(box1);
+    // 输入框获得焦点，
+    ipt.addEventListener('focus',function() {
+      ipt.classList.add('input1')
+      box1.style.display = 'block'
+    })
+    // 失去焦点
+    ipt.addEventListener('blur',function() {
+      ipt.classList.remove('input1')
+      box1.style.display = 'none'
+    })
+    // 表单输入触发
+    ipt.addEventListener('input',function() {
+      // console.log(ipt.value.length) // 输入的值的长度
+      box1.innerHTML = `${ipt.value.length}/200`
+    })
+  </script>
+</body>
+
+</html>

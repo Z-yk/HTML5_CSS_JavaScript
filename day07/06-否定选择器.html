@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li:not(:nth-child(even)){
+            background: yellow;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+        }
+        div:not(:empty){
+            background: red;
+        }
+    /* 给表单中所有的input添加一个边框，
+    而单选按钮添加边框后就非常难看 */
+        input:not([type="radio"]){
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+        <li>5555</li>
+    </ul>
+
+    <div>1111</div>
+    <div></div>
+
+    姓名<input type="text" name="username"><br>
+    密码<input type="password" name="mima">
+    <h6>您的爱好</h6>
+    <input type="radio" id="cy" name="aaa">
+    <label for="cy">抽烟</label>
+    <input type="radio" name="aaa">喝酒
+    <input type="radio" name="aaa">烫头
+
+    <h6>您的选择</h6>
+    <input type="checkbox" name="bbb">座子
+    <input type="checkbox" name="bbb">电脑
+    <input type="checkbox" name="bbb">本子
+    <input type="checkbox" name="bbb">椅子
+
+
+
+
+</body>
+</html>

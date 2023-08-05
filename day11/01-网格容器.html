@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 200px;
+            height: 200px;
+            background: red;
+            /* display:grid;块级网格容器 */
+            display: grid;
+        }
+        span{
+            width: 200px;
+            height: 200px;
+            margin-top: 20px;
+            background: red;
+            /* display:grid;*/
+            
+            /*行内块级网格容器,此时span标签变为块元素 */
+            display: -moz-inline-grid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 网格项目：网格容器的直系子元素 -->
+        <div class="items"></div>
+    </div>
+
+    <span></span>
+</body>
+</html>

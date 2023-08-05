@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: relative;
+      width: 249px;
+      height: 35px;
+      border: 1px solid #000;
+    }
+
+    div::after {
+      content: "";
+      /* 伪元素创建一个行内元素，又设置了绝对定位（脱离文档流，有行内块元素的特性） */
+      position: absolute;
+      top: 8px;
+      right: 15px;
+      width: 10px;
+      height: 10px;
+      /* 只设置两个边有边框，右边和下边，再顺时针旋转45度得到向下的小三角 */
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      transform: rotate(45deg);
+      transition: all 0.2s;
+    }
+
+    /* 鼠标经过div  里面的三角旋转，向上的小三角，原本旋转了45度，再旋转180度即可，但是会覆盖，所有旋转45+180=225度 */
+    div:hover::after {
+      transform: rotate(225deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>

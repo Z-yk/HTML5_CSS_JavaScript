@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    document.addEventListener('DOMContentLoaded',function() {
+      const btn =document.querySelector('button')
+      // console.log(btn); // 能拿到DOM元素
+      btn.addEventListener('click',function() {
+        alert('11')
+      })
+    })
+  </script>
+</head>
+<body>
+  <!-- <script>
+    // 写在这里，连DOM元素都找不到，代码从上到下执行，所有还没有加载
+    const btn = document.querySelector('button')
+    btn.addEventListener('click',function() {
+      alert('11')
+    })
+  </script> -->
+  <button>点击</button>
+</body>
+</html>

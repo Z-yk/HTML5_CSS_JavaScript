@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 600px;
+            height: 600px;
+            border: 2px solid grey;
+        }
+        .div1{
+            margin-bottom: 50px;
+            /* 定义背景从透明渐变为红色,从左往右 */
+            background-image: linear-gradient(to right,rgba(255,0,0,0),rgba(255,0,0,1));
+        }
+        .div2{
+        
+            /* 定义背景从透明渐变为红色,从左往右 */
+            background-image: radial-gradient(circle, rgba(255,0,0,0),rgba(255,0,0,1) )
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+</body>
+</html>

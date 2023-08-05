@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 600px;
+            height: 600px;
+            border: 2px solid grey;
+        }
+        .box div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            border: 1px solid black;
+        }
+        .box div:nth-child(1){
+            /* 平移 */
+            transform: translateX(400px);
+        }
+        .box div:nth-child(2){
+            /* 平移+缩放 */
+            transform: translateX(400px) scale(0.5);
+            /* 先写位移，再缩放 */
+        }
+        .box div:nth-child(3){
+            /* 缩放+平移，和第二个相反，对比效果 */
+            transform: scale(0.5) translateX(400px);
+            /* 这里先缩放，把后面的位移也缩放了，400*0.5=200px */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

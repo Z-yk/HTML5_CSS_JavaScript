@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    span {
+      display: inline-block;
+      width: 250px;
+      height: 30px;
+      vertical-align: middle;
+      line-height: 30px;
+      padding-left: 15px;
+    }
+
+    .error {
+      color: red;
+      background: url(./images/error1.png) no-repeat left center;
+    }
+
+    .right {
+      color: green;
+      background: url(./images/right.png) no-repeat left center;
+    }
+  </style>
+</head>
+<body>
+  <input type="text">
+  <span></span>
+
+  <script>
+    const ipt = document.querySelector('input')
+    const span = document.querySelector('span')
+    // 1. 定义规则
+    const reg = /^[a-zA-Z0-9-_]{6,16}$/ // 英文字母，数字，下划线或者短横线组成，长度6~16位
+    ipt.addEventListener('blur',function() { // 表单失去焦点
+      // 2. 查找
+      if(reg.test(this.value)) {
+        span.classList.add('right')
+        span.innerHTML = '验证通过'
+      } else {
+        span.classList.add('error')
+        span.innerHTML = '请输入6~16位的英文数字下划线'
+      }
+    })
+  </script>
+</body>
+</html>

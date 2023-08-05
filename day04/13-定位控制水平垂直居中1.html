@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            /* margin: 0 auto; */
+            /* step1先定位，让其偏移top和left */
+            position: absolute;
+            top:50%;
+            left: 50%;
+            /* step2再设置margin-top负值为盒子高一半
+               margin-left负值为盒子宽一半 */
+            margin-top: -100px;
+            margin-left: -100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>

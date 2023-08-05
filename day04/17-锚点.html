@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            /* 固定定位：参照物浏览器的当前窗口，脱离文档流 */
+            position:fixed;
+            right: 0px;
+            top: 100px;
+        }
+        li{
+            width: 100px;
+            height: 50px;
+            /* 文本的垂直水平居中 */
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        div{
+            height: 600px;
+            border: 1px solid grey;
+        }
+
+        /* 锚点作用：页面不同区域的跳转，使用a超链接
+            <a href="#锚点名字">
+            <div id="锚点名字"></div> 
+            点击a 跳转到相应的区域div
+         */
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#md1">京东秒杀</a>
+        </li>
+        <li>
+            <a href="#md2">双11优选</a>
+        </li>
+        <li>
+            <a href="#md3">频道优选</a>
+        </li>
+        <li>
+            <a href="#md4">特色广场</a>
+        </li>
+    </ul>
+
+    <div id="md1">
+        京东秒杀
+    </div>
+    <div id="md2">
+        双11优选
+    </div>
+    <div id="md3">
+        频道优选
+    </div>
+    <div id="md4">
+        特色广场
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 5px solid grey;
+            display: flex;
+            /* 3d */
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+
+        .center{
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            background: red;
+
+            /* 缩放 */
+            /* transform: scaleX(2); */
+            /* transform: scaleY(2); */
+            /* X,Y轴同时缩放 */
+            /* transform: scale(2，2); */
+
+            /* 单独设置看不出效果，配合其他变形 */
+            /* transform: scaleZ(5) rotateX(45deg); */
+            /* 等于 */
+            transform: scale3d(1,1,5) rotateX(45deg);
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="center"></div>
+    </div>
+</body>
+</html>

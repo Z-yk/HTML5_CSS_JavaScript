@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绝对定位水平垂直居中</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background: pink;
+      /* margin: 0 auto; */
+      /* 1. 先设置绝对定位，让其偏移top和left */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* 2. 再设置margin-top负值为盒子高一半，margin-left负值为盒子宽一半 */
+      margin-top: -100px;
+      margin-left: -100px;
+    }
+    .box1 {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      /* margin-bottom: -20px; */
+    }
+    .box2 {
+      width: 100px;
+      height: 100px;
+      background-color: yellow;
+      margin-top: -20px;
+      margin-left: -30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <div class="box1"></div>
+  <div class="box2"></div>
+</body>
+
+</html>

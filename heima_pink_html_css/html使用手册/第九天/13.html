@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box1 {
+      width: 0;
+      height: 0;
+      /* 再把上边框的宽度设置大一些，且让其透明 */
+      border-top: 100px solid transparent;
+      border-right: 50px solid skyblue;
+      /* 先设置下边框和左边框宽度为0 */
+      border-bottom: 0px solid blue;
+      border-left: 0px solid green;
+    }
+    .box2 {
+      width: 0;
+      height: 0;
+      /* 简写：四个值：上 右 下 左 */
+      /* 1. 只保留右边的边框有颜色 */
+      border-color: transparent skyblue transparent transparent;
+      /* 2. 样式都是solid */
+      border-style: solid;
+      /* 3. 下边框和左边框宽度都为0，上边框宽度要大，右边框宽度较小 */
+      border-width: 100px 50px 0 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1"></div>
+  <br>
+  <div class="box2"></div>
+</body>
+</html>

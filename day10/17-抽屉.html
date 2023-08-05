@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+
+        div{
+            height: 100%;
+            width: 200px;
+            background: red;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            /* transform: translateX(-200px); */
+            /* 100%是相对于自身的 */
+            transform: translateX(-100%); 
+
+
+            /* animation: run 1s linear forwards; */
+            animation: run 1s linear forwards reverse;
+            /* 填充模式：forwards，动画执行完毕，保持结束状态 */
+            /* animation-fill-mode: forwards; */
+
+        }
+
+        @keyframes run {
+            from{
+                transform: translateX(-100%);
+            }
+            to{
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

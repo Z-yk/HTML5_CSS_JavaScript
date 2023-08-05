@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <a href="https://www.baidu.com" title="都挺好">都挺好</a>
+    <a href="https://itcast.cn"></a>
+    <input type="checkbox" name="" id="" checked>
+    <div index="1" data-index="3">我是div</div>
+    <span>123</span>
+    <script>
+        $(function() {
+            //1. prop()
+            console.log($('a').prop('href'));
+            
+            $('a').prop('title','我们都挺好');
+            
+            $('input').change(function() {
+                console.log($(this).prop('checked'));//选中复选框为true，没选中为false
+            })
+            //2.attr()
+            //console.log($('div').prop('index')); //获取不到自定义属性
+            console.log($('div').attr('index'));//1
+            $('div').attr('index','2');
+            console.log($('div').attr('index'));//2
+            console.log($('div').attr('data-index'));//3
+            //3.data() 数据缓存 这个里面的数据是存放在元素的内存里面
+            $('span').data('uname','andy');
+            console.log($('span').data('uname'));
+            console.log($('div').data('index'));//3 去掉data-，获取H5自定义属性data-index
+
+        })
+    </script>
+</body>
+</html>

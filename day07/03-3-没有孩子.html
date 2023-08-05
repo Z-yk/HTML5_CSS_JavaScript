@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+        }
+        p{
+            width: 100px;
+            height: 100px;
+        }
+        /* 用来定位一个**没有子级元素的元素**，
+        并且**该元素也没有任何文本内容** */
+        /* 匹配没有子级元素的且没有任何文本内容的div */
+        div:empty{
+            background: yellow;
+        }
+        p:empty{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        11111
+    </div>
+    <div></div>
+    <p>11111</p>
+    <p></p>
+</body>
+</html>

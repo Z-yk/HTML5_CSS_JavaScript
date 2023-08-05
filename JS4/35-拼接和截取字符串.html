@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //1.concat() 方法将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回。str.concat(str2,[str3,..strN])
+        var str = 'hello';
+        console.log(str.concat(' world','!'));
+        
+        //2.substr(start,length) 方法返回一个字符串中从指定位置开始到指定字符数的字符。start-从哪开始截取，length-截取的长度
+        var str1 = '改革春风吹满地';
+        console.log(str1.substr(2,3));//春风吹
+        console.log(str1.substr(-3,3)); //吹满地，开始位置7-3=4
+        
+        //3.slice(start,end) 方法从start开始，截取到end位置，end取不到（start和end都是索引号）
+        console.log(str1.slice(2,4)); //春风
+        console.log(str1.slice(4,-1)); //end=7-1=6
+        
+        //4.substring(start,end) 方法和slice(start,end)差不多，但是不接受负值
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

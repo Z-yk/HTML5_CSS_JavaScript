@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 100px;
+            /* 通过js改变 */
+        }
+        body{
+            font-size: 16px;
+            /* 基准font-size */
+        }
+        .box{
+            /* width: 375px; */
+            width: 7.5rem;
+            height: 100px;
+            background: yellow;
+            /* font-size: 16px; */
+        }
+    </style>
+
+    <script>
+        //fontsize计算
+        document.documentElement.style.fontSize=document.documentElement.
+        clientWidth/750 * 100 +'px'
+
+        //font-size = 当前设备的css布局宽度/物理分辨率（设计稿宽度）*基准(当前设定的)font-size
+        //这里font-size=当前设备的css布局宽度/750 *100px=
+    </script>
+</head>
+<body>
+    <div class="box">
+        张三李四
+<!-- 字体不设置，会继承html的字体大小
+设置body的字体大小，重置一下，给字体继承 -->
+    </div>
+</body>
+</html>

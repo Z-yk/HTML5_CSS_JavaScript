@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //案例4（面试题）
+        f1();
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        function f1(){
+            var a = b = c = 9;
+            console.log(c);
+            console.log(b);
+            console.log(a);
+        }
+        //等于如下代码：
+        function f1(){
+            //var a = b = c = 9;
+            //相当于 var a = 9; b = 9; c = 9; b和c没有声明var，直接赋值，当作全局变量。
+            //集体声明 var a = 9, b = 9, c = 9;
+            var a;
+            a = b = c = 9;
+            console.log(c); //9
+            console.log(b); //9
+            console.log(a); //9
+        }
+        f1();
+        console.log(c); //9
+        console.log(b); //9
+        console.log(a); //报错
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

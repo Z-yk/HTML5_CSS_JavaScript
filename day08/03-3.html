@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 350px;
+            background: #eee;
+            margin: 0 auto;
+            display: flex;
+            
+        }
+        .box span{
+            width: 150px;
+            height: 150px;
+            background: red;
+            border-radius: 50%;
+            margin: auto;
+            /* 给仅有的子元素加上margin:auto;使得水平垂直居中 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.当只有一个子元素时，设置该子元素水平垂直居中只需添加
+                        margin:auto;-->
+    <div class="box">
+        <span></span>
+    </div>
+</body>
+</html>

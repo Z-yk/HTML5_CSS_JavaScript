@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box1"><span>我是文字的内容</span></div>
+  <div class="box2"><span>我是box2</span></div>
+
+  <script>
+    // const obj = {
+    //   name: 'pink老师'
+    // }
+    // console.log(obj.name)
+    // obj.name = 'red老师'
+    // 获取元素
+    const box1 = document.querySelector('.box1')
+    const box2 = document.querySelector('.box2')
+
+    // 1. 对象.innerText 属性
+    console.log(box1.innerText) // 获取文字内容-我是文字的内容
+    // box1.innerText = '我是一个盒子'  // 修改文字内容
+    box1.innerText = '<strong>我是一个盒子</strong>' // 不解析标签
+
+    // 2. 对象.innerHTML 解析标签
+    console.log(box2.innerHTML) // 不仅仅只获取文字内容，包括标签
+    // box2.innerHTML = '我要更换'
+    box2.innerHTML = '<strong>我要更换</strong>' // 解析标签
+  </script>
+</body>
+
+</html>

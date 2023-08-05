@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //函数形参实参个数匹配
+        function getSum(num1,num2){
+            console.log(num1 + num2);
+        }
+        //1.实参的个数和形参的个数相等，则正常输出
+        getSum(1,2); //3
+        //2.实参的个数多于形参的个数，会从前面开始取。
+        getSum(1,2,3); //3
+        //3.实参的个数少于形参的个数
+        getSum(1); //1 + undefined = NaN
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

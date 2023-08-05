@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .dad{
+                width: 500px;
+                height: 500px;
+                background: yellow;
+                margin: 0 auto;
+                /* 当父元素没有设置定位position(不等于static)时，son的top和left是相对浏览器的 */
+                /* 当父元素设置定位relative相对定位时，son的偏移参照物是父元素 */
+                position: relative; 
+                /* 当父元素设置定位absolute绝对定位时，要看父元素的父元素情况 */
+                position: absolute;
+        }
+        .son{
+                width: 200px;
+                height: 200px;
+                background: red;
+                left: 100px;
+                top: 100px;
+                position: absolute;  
+        }
+    </style>
+</head>
+<body>
+    <div class="dad">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

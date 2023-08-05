@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input:enabled {
+      background: red;
+    }
+
+    input:disabled {
+      background: yellow;
+    }
+
+    input:focus {
+      background: blue;
+    }
+
+    input:checked {
+      background: green;
+    }
+
+    div::selection {
+      background: yellow;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text">
+  
+  <div>
+    <!-- 默认选中这部分文字会是白色字体，蓝色背景 -->
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus vitae vero voluptatibus non consectetur quidem
+    laudantium. Sunt, officia autem error tempore, omnis minus quos sit obcaecati natus, aliquid debitis consequatur!
+  </div>
+</body>
+
+</html>

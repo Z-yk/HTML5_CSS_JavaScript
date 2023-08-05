@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        textarea{
+            width: 300px;
+            height: 200px;
+            /* resize: both; */
+            /* resize: none; */
+            /* resize: vertical; */
+            resize: horizontal;
+        }
+    </style>
+</head>
+<body>
+    <!-- 单选框 -->
+    <div>
+        <div>您的地址：</div>
+        <div>
+            <input type="radio" name="aaa" id="ln">
+            <label for="ln">辽宁</label>
+        </div>
+        <div>
+            <input type="radio" name="aaa" checked>江西
+        </div>
+        <div>
+            <input type="radio" name="aaa" disabled>河北
+        </div>
+        <div>   
+            <input type="radio" name="aaa">湖南
+        </div> 
+        <div>
+            <input type="radio" name="aaa">湖北
+        </div>
+        <div>
+            <input type="radio" name="aaa">四川
+        </div>
+    </div><br><br>
+    <!-- 复选框 -->
+    <div>
+        <div>您的爱好</div>
+        <div>
+            <input type="checkbox" name="aa" id="cy">
+            <label for="cy">抽烟</label>
+        </div>
+        <div>
+            <input type="checkbox" name="aa" checked>喝酒
+        </div>
+        <div>
+            <input type="checkbox" name="aa" disabled>烫头
+        </div>
+        <div>
+            <input type="checkbox" name="aa">唱歌
+        </div>
+    </div><br><br>
+    <!-- 下拉菜单 -->
+    <div>
+        <div>您的选中：</div>
+        <select size="3" multiple>
+            <!-- option属性：value一定要写， selected默认选中 -->
+            <option value="dn" selected>电脑</option>
+            <option value="dz">凳子</option>
+            <option value="yz">椅子</option>
+            <option value="sb">书本</option>
+            <option value="bz">被子</option>
+        </select>
+    </div>
+    <br><br>
+    <!-- 禁用和只读 -->
+    <div>
+        <input type="radio" name="a" id="" disabled>不满意
+    </div>
+    <div>
+        <input type="text" placeholder="输入" readonly>
+    </div>
+    <br><br>
+    <!-- 上传文件和隐藏字段 -->
+    <div>
+        <div>
+            <input type="file">
+        </div>
+        <div>
+            <input type="hidden">给后端看的
+        </div>
+    </div><br><br>
+    <!-- 文本域 -->
+    <div>
+        <div>
+            <textarea cols="30" rows="10" placeholder="多行文本输入">aaaa</textarea>
+        </div>
+    </div><br><br>
+    <!-- 字段集 -->
+    <div>
+        <div>
+            <fieldset>
+                <legend>爱好</legend>
+                <input type="checkbox" name="1">抽烟
+                <input type="checkbox" name="1">喝酒
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend>性别</legend>
+                <input type="radio" name="2">男
+                <input type="radio" name="2">女
+            </fieldset>
+        </div>
+    </div>
+</body>
+</html>

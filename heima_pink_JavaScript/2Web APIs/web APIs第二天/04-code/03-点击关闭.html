@@ -1,0 +1,58 @@
+李伟兴 09:31:13
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 1000px;
+      height: 200px;
+      /* 父相对定位，不脱离文档流，偏移参照自己原先位置 */
+      position: relative;
+      background-color: pink;
+      margin: 100px auto;
+      text-align: center;
+      font-size: 50px;
+      line-height: 200px;
+      font-weight: 700;
+    }
+
+    .box1 {
+      width: 20px;
+      height: 20px;
+      /* 子绝对，脱离文档流，参照物看祖先元素有无定位，谁有参照谁 */
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      background-color: skyblue;
+      text-align: center;
+      line-height: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    我是广告
+    <div class="box1">X</div>
+  </div>
+  <script>
+    // 1. 获取事件源
+    const box1 = document.querySelector('.box1')
+    //  获取大盒子 （关闭的是大盒子）
+    const box = document.querySelector('.box')
+    // 2. 事件侦听
+    box1.addEventListener('click', function () {
+      // display: none;
+      box.style.display = 'none'
+    })
+  </script>
+</body>
+
+</html>

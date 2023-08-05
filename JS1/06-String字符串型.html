@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //引号嵌套使用，外单内双或者外双内单
+        var str = '我是一个"高富帅"的程序员' ;
+        console.log(str);
+        var str1 = "我是一个'高富帅'的程序员" ;
+        console.log(str1);
+        //字符串转义符：\开头
+        var str2 = "我是一个'高富帅'的\n程序员" ; //\n--换行
+        console.log(str2);
+
+        //1.检测获取字符串型的长度 length
+        var str3 = 'my name is andy' ;//15 空格也算
+        console.log(str3.length);
+        //2.字符串的拼接 +：'字符串型' + 任何类型  最终结果都是字符串型
+        console.log('沙漠' + '骆驼' + '薛之谦');
+        console.log('pink老师' + 18);
+        console.log('pink老师' + true);
+        console.log('12' + 12); //1212
+        
+        
+        //案例
+        //输入框，并定义一个变量保存这个变量
+        var age = prompt('请输入您的年龄：');
+        //alert输出，用字符串拼接
+        alert('您今年' + age + '岁啦');
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

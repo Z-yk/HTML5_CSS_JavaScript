@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻导航案列</title>
+
+    <style>
+        .home{
+            background-color: red;
+        }
+        /* a:link{
+                background-color: black;
+                color: white;
+        }
+        a:visited{
+                background-color: black;
+                color: white;
+        }
+        a:hover{
+                background-color: red;
+        }
+        a:active{
+                background-color: red;
+        } */
+
+        /* 下面表示，超链接初始状态和访问过后的状态是一样的，背景黑色，字体白色
+            而鼠标悬停和激活（按下时）状态是一样的 */
+        /* a标签是行内元素，不可以设置高度、宽度、上下内外边距，但是可以设置左右边距 */
+        a{
+            background-color: black;
+            color: white;
+            /*取消a链接默认的下划线，text-decoration:none; */
+            text-decoration: none; 
+            padding: 10px;
+            margin: 5px;
+            display: block;
+            float: left;
+        }
+        a:hover{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <a href="" class="home">首页</a>
+    <a href="">国内</a>
+    <a href="">国际</a>
+    <a href="">军事</a>
+    <a href="">财经</a>
+    <a href="">娱乐</a>
+
+    <div style="clear: left;">111111111111111111</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      position: relative;
+      width: 1000px;
+      height: 200px;
+      margin: 100px auto;
+    }
+
+    input {
+      padding: 10px;
+      width: 800px;
+      /* height: 50px; */
+    }
+
+    .input1 {
+      height: 50px;
+    }
+
+    button {
+      display: block;
+      float: right;
+      width: 80px;
+      height: 50px;
+      background-color: rgb(197, 197, 216);
+    }
+
+    .box1 {
+      display: none;
+      position: absolute;
+      right: 150px;
+    }
+
+    .list {
+      margin-top: 20px;
+      margin-left: 300px;
+      min-width: 400px;
+      max-width: 800px;
+      display: flex;
+    }
+
+    .list .item {
+      width: 100%;
+      display: flex;
+    }
+
+    .list .item .info {
+      flex: 1;
+      border-bottom: 1px dashed #e4e4e4;
+      padding-bottom: 10px;
+    }
+
+    .list .item p {
+      margin: 0;
+    }
+
+    .list .item .name {
+      color: #FB7299;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .list .item .text {
+      color: #333;
+      padding: 10px 0;
+    }
+
+    .list .item .time {
+      color: #999;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <input type="text">
+    <button>发布</button>
+    <div class="box1">
+      0/200
+    </div>
+  </div>
+
+  <div class="list">
+    <div class="item" style="display: none;">
+      <i class="avatar"></i>
+      <div class="info">
+        <p class="name">清风徐来</p>
+        <p class="text">大家都辛苦啦，感谢各位大大的努力，能圆满完成真是太好了[笑哭][支持]</p>
+        <p class="time">2022-10-10 20:29:21</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.querySelector('button')
+    const ipt = document.querySelector('input')
+    const box1 = document.querySelector('.box1')
+    const pl = document.querySelector('.item')
+    const tx = document.querySelector('.item .text')
+    // console.log(box1);
+    // 输入框获得焦点，
+    ipt.addEventListener('focus', function () {
+      ipt.classList.add('input1')
+      box1.style.display = 'block'
+    })
+    // 失去焦点
+    ipt.addEventListener('blur', function () {
+      ipt.classList.remove('input1')
+      box1.style.display = 'none'
+    })
+    // 表单输入触发
+    ipt.addEventListener('input', function () {
+      // console.log(ipt.value.length) // 输入的值的长度
+      box1.innerHTML = `${ipt.value.length}/200`
+    })
+    // 发布评论：按下回车发布评论
+    ipt.addEventListener('keyup', function (e) {
+      if (e.key == 'Enter') {
+        if (ipt.value.trim()) { // 如果用户输入的不为空就显示和打印，且trim可以去除输入值的前后空格
+          pl.style.display = 'block'
+          tx.innerHTML = ipt.value
+        }
+        // 发布后，把输入框清空
+        ipt.value = ''
+      }
+    })
+  </script>
+</body>
+
+</html>

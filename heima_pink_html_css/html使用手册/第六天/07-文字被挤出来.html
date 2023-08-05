@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .red {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      float: left;
+    }
+    .green {
+      width: 200px;
+      height: 150px;
+      background-color: green;
+    }
+    .blue {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="red"></div>
+  <div class="green">大家好，我是绿色div中的文字，被浮动的红色挤出来显示</div>
+  <!-- 红色div先左浮动，飘在绿色上面（前提：绿色div区域大于红色div），
+      但是绿色div中的字体会被挤出来显示 -->
+  <div class="blue"></div>
+  <!--这个blue不会浮动到红色div旁边，因为绿色div是不浮动的，所以默认又从绿色div下面开始，存浮动 -->
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 字符串类型内容
+        // var s1 = '100'
+        // 转换一个非数字内容
+        var s1 = "abc"
+        console.log(s1)
+        console.log(typeof s1)
+        // 使用Number()方法转换为数值类型，当内容是非数字内容时，结果为NaN
+        var n1 = Number(s1)
+        console.log(n1)
+        console.log(typeof n1)
+
+
+        var s2 = '100'
+        console.log(s2)
+        console.log(typeof s2)
+        // 使用parseInt()转换为数值类型
+        var n2 = parseInt(s2)
+        console.log(n2)
+        console.log(typeof n2)
+
+        var s3 = '100abc'
+        console.log(s3)
+        console.log(typeof s3)
+        // 使用parseInt()转换非数值的内容，一个一个解析，把前面数字保留，直到碰到非数字
+        var n3 = parseInt(s3)
+        console.log(n3)
+        console.log(typeof n3)
+
+
+        var s4 = '100.234'
+        console.log(s4)
+        console.log(typeof s4)
+        // parseInt()转换小数时，只会保留整数
+        var n4 = parseInt(s4)
+        console.log(n4)
+        console.log(typeof n4)
+        // parseFloat()可以转换小数
+        var n5 = parseFloat(s4)
+        console.log(n5)
+        console.log(typeof n5)
+        
+
+
+
+    </script>
+
+</body>
+</html>

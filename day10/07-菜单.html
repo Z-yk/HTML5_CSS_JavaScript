@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 50px;
+            background: yellow;
+            border: 1px solid grey;
+        }
+        div ul{
+            /* display: none; */
+            /* 并不是所有属性都会有过渡，比如display:none|block属性  */
+            margin-top: 50px;
+            transition: all 3s ease-in-out;
+            height: 0px;
+            overflow: hidden;
+            /* 默认高度为0，但是内容会撑开，设置溢出隐藏 */
+        }
+        /* 鼠标悬停在div时，ul的效果 */
+        div:hover ul{
+            display: block;
+            height: 350px;
+            /* 会有过渡效果 */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        我的菜单
+        <ul>
+            <li>11111</li>
+            <li>22222</li>
+            <li>33333</li>
+            <li>44444</li>
+            <li>55555</li>
+            <li>66666</li>
+            <li>77777</li>
+            <li>88888</li>
+            <li>99999</li>
+            <li>00000</li>
+            <li>aaaaa</li>
+            <li>bbbbb</li>
+        </ul>
+    </div>
+</body>
+</html>

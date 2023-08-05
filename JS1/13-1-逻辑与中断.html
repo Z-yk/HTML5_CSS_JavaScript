@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //&&中断：当左边的表达式可以确定结果，后面的表达式就不继续运算了
+        //1.逻辑运算符是 布尔值 参与运算，返回结果也是布尔值。
+        //2.但是用 123 && 456 用 值或者表达式 参与运算。注意：这些值或者表达式会被转换成布尔类型，值是true or false 
+        //如果表达式1为真，则返回表达式2；如果表达式1为假，则返回表达式1
+        console.log(123 && 456); //456
+        console.log(0 && 456); // 0是false，返回表达式1
+        console.log(0 && 1+2 && 456 && 56789); //0是\flase，返回表达式1
+        
+
+        console.log(123 || 456); //123  表达式123为真，或运算的结果一定为真，后面不孕算了
+        console.log(0 || 456);//456  0为假，返回表达式2
+        var num = 0;
+        console.log(123 || num++);//返回表达式123，后面不运行，所以num还是0
+        console.log(num);
+        
+        
+        
+        
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

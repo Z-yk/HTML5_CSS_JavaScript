@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div {
+      /* 带有相对定位，不脱离文档 */
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      margin: 100px;
+    }
+
+    p {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      margin: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p></p>
+  </div>
+  <script>
+    const div = document.querySelector('div')
+    const p = document.querySelector('p')
+    console.log(div.offsetLeft) // 100 相对于body（无父元素或者没用祖先元素有定位）的左边框的偏移
+    // 检测盒子的位置  最近一级带有定位的祖先元素，离其左边框的偏移
+    console.log(p.offsetLeft) // 50
+  </script>
+</body>
+
+</html>

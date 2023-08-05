@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定位的特殊特性</title>
+  <style>
+    span {
+      /* 行内元素添加绝对or固定定位（脱离文档流），可以直接设置高度和宽度 */
+      position: absolute;
+      top: 300px;
+      width: 200px;
+      height: 150px;
+      background-color: pink;
+      margin-left: 50px;
+    }
+
+    div {
+      /* 块元素没有设置宽高，默认宽继承父元素 */
+      /* 但是设置了绝对or固定定位，默认就是内容撑开 */
+      position: absolute;
+      /* width: 100px; */
+      height: 100px;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <span>123</span>
+
+  <div>abcd</div>
+</body>
+
+</html>

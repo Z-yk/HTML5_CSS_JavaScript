@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div getTime = '20' data-index="2" data-list-name="andy"></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.getAttribute('getTime'));//20
+        div.setAttribute('data-time',20); //添加了一个data-time="20" 属性
+        div.removeAttribute('getTime');
+        
+        //获取自定义属性
+        console.log(div.getAttribute('data-index')); //2
+        //h5新增获取自定义属性的方法 它只能去掉data-开头
+        //dataset 是一个集合，里面存放了所有以data开头的自定义属性
+        console.log(div.dataset);
+        console.log(div.dataset.index); //获取自定义属性data-index
+        console.log(div.dataset['index']);
+        //获取很长的自定义属性:里面有多个 - 链接的单词，我们采取驼峰命名法
+        //console.log(div.dataset.list-name);
+        console.log(div.dataset.listName);
+        console.log(div.dataset['listName']);
+    </script>
+</body>
+</html>

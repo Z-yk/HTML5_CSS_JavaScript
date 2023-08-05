@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* var num =10;
+
+        function fn(){
+            console.log(num);
+            var num = 20;
+            console.log(num);
+        }
+        fn(); */
+        //相当于以下代码
+        var num;
+        function fn(){
+            var num;
+            console.log(num); //undefined
+            num = 20;
+            console.log(num); //20
+        }
+        num  = 10;
+        fn();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="grandfather">
+    <div class="father">
+      <div class="son">x</div>
+    </div>
+  </div>
+  <script>
+    const son = document.querySelector('.son')
+    console.log(son)  // 返回dom对象
+    console.log(son.parentNode)  // 返回dom对象 父元素节点
+    console.log(son.parentNode.parentNode)  // 返回dom对象
+  </script>
+</body>
+
+</html>

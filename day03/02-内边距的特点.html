@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            /* 总有一些标签会默认一些内边距和外边距,这是我们设置就比较乱，
+            所以一般在最开始写上这个通配选择器，取消这些标签的默认边距，后续我们自定义 */
+        }
+
+        div{
+            width: 300px;
+            height: 300px;
+            padding: 30px;
+            background-color: yellow;
+        }
+        ul{
+            padding-left: 0;
+            /* 可以在一开始设置通配符*，取消所有标签的默认padding和margin */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. At libero architecto iste explicabo dicta harum quod doloremque quaerat veniam, delectus et facilis eius tenetur aspernatur molestiae sed quos, in debitis!
+    </div>
+
+    <!-- ul会默认左边距padding-left:40px; -->
+    <ul>
+        <li>11111</li>
+        <li>22222</li>
+        <li>33333</li>
+    </ul>
+</body>
+</html>

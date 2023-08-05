@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //数组转换为字符串
+        //1.toString() 返回一个字符串，表示指定的数组及其元素
+        var arr = [1,2,3,'pink'];
+        console.log(arr.toString()); //1,2,3,pink
+        //2.join('分隔符')
+        var arr1 = ['green','blue','pink'];
+        console.log(arr1.join()); //green,blue,pink  默认逗号隔开
+        console.log(arr1.join('/'));//green/blue/pink
+        console.log(arr1.join('&')); //常用
+        var arr2 = ['green','blue','pink',null];
+        console.log(arr2.join('&'));
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

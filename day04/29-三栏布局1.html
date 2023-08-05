@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+
+        .left,.right{
+            width: 200px;
+            height: 100%;
+        }
+        .left{
+            background: yellow;
+            float: left;
+        }
+        .right{
+            background: red;
+            float: right;
+            
+        }
+        .center{
+            background: blue;
+            height: 100%;
+            /* width: 100%; */
+            /*效果差不多，但是会覆盖，要是有内容，不好 */
+            margin: 0 200px 0 200px; 
+            /*上 右 下 左*/
+        }
+    </style>
+</head>
+<body>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center"></div>
+</body>
+</html>

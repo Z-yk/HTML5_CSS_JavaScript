@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //1~100的所有偶数和，奇数和。需要一个偶数even变量和奇数odd变量
+        var even = 0,odd = 0;
+        /* for(var i = 1;i <= 100; i+=2){
+            odd+=i;
+        }
+        for(var i =2;i <= 100; i+=2){
+            even+=i;
+        } */
+        for(var i = 1;i <= 100; i++){
+            if(i % 2 == 0){//偶数
+                even += i;
+            }else{ //奇数
+                odd +=i;
+            }
+        }
+        console.log(odd);
+        console.log(even);
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

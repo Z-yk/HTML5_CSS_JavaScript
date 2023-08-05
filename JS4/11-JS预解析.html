@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //预解析
+        //1问
+        //console.log(num); //报错，不声明、不赋值，直接使用
+
+        //2问
+        console.log(num); //undefined ? 因为变量的声明会被提升到当前作用域的最前面，但是赋值操作不提升，所以这里的num没有值，为undefined
+        var num = 10;
+        //等于如下代码
+        var num;
+        console.log(num);
+        num = 10;
+        
+
+        //3问
+        fn();  // 11
+        function fn(){
+            console.log(11);
+        }
+
+        //4问 第二中函数定义方式
+        fun(); //报错 ？
+        var fun = function(){
+            console.log(22);
+        }
+        //fun();//这样正常 22
+        //等于如下代码：
+        var fun;
+        fun();
+        fun = function(){
+            console.log(22);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

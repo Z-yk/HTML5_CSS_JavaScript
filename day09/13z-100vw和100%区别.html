@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box1{
+            width: 100vw;
+            height: 1000px;
+            background: yellow;
+        }
+        .box2{
+            width: 100%;
+            height: 1000px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        没有滚动条时：100vw=100%
+        有了滚动条时：100vw！=100%，
+        因为100vw包含滚动条，窗口大小
+        100%，刨除滚动条的剩余空间。
+    -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

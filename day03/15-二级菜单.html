@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 300px;
+            margin: 0 auto;
+        }
+        ul{
+            list-style-type: none;
+        }
+         .box .item{  /*后代选择器 */
+            float: left;
+            /* 这个div是300px,div下面两个item，加上border宽，
+               所以width设置注意不是150px */
+            width: 148px;
+            text-align: center;
+            border: 1px solid blue;
+            background: blue;
+            color: white;
+            line-height: 40px;
+        }
+        /* .item所作用的标签指针悬停时，所有效果 */
+        .item:hover{
+            background-color: rgb(100, 198, 237);
+        }
+        .item>ul{
+            display: none;
+            background: white;
+            color: black;
+        }
+        /* .item所作用的标签指针悬停时，ul的效果 */
+        .item:hover ul{
+            display: block;
+        }
+        /* .item所作用标签下面的li标签的指针悬停效果设置 */
+        .item li:hover{
+            color: blue;
+            background-color: rgb(100, 114, 237);
+        }
+    </style>
+</head>
+<body>
+    <!-- 嵌套 -->
+    <ul class="box">
+        <li class="item">视频教程
+            <ul>
+                <li>全部视频教程</li>
+                <li>HTML5视频教程</li>
+                <li>JAVA视频教程</li>
+                <li>Python视频教程</li>
+            </ul>
+        </li>
+        <li class="item">认证考试
+            <ul>
+                <li>pmp</li>
+                <li>红帽</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

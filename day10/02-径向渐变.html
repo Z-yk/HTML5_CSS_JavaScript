@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 300px;
+            height: 300px;
+            border: 5px solid grey;
+            /* background-image: radial-gradient(red,green,blue); */
+            /* 颜色默认均分 */
+            background-image: radial-gradient(red 20%,green 40%,blue 80%);
+            /* 前20%都是red，red到20%才开始渐变，20%到40%是red-green渐变，
+               40%到80%是green-blue渐变，80%以后都是blue */
+
+        }
+        .box2{
+            width: 300px;
+            height: 150px;
+            border: 5px solid grey;
+            margin-top: 50px;
+            /* background-image: radial-gradient( red,green,blue); */
+            /* 非正方形情况下，默认椭圆 */
+            /* 可以设置circle */
+            background-image: radial-gradient(30% 80%, red,green,blue);
+
+            /* background-image: -webkit-radial-gradient(60% 40%,closest-side, red,green,blue); */
+        
+        /*
+        -webkit-
+        -moz- 
+         */
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

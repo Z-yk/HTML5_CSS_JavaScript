@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    我是body的文字
+    <button>按扭1</button>
+    <button>按扭2</button>
+    <button>按扭3</button>
+    <button>按扭4</button>
+    <button>按扭5</button>
+    <button>按扭6</button>
+    <script>
+        $(function(){
+            //1. 隐式迭代 给所有的按扭都绑定了点击事件
+            $('button').click(function(){
+                /* //(1) 当前的元素变化背景颜色
+                $(this).css('background','red');
+                //(2) 其余的兄弟去掉背景颜色 隐式迭代
+                $(this).siblings('button').css('background',''); */
+                //链式编程
+                // $(this).css('background','red').siblings('button').css('background','');
+                //我的颜色为红色，我的button兄弟的颜色为空
+                // $(this).siblings('button').css('color','red');
+                //我的button兄弟颜色为红色，我本身不变
+                $(this).siblings('button').parent().css('color','red');
+                //我的button兄弟的爸爸颜色为红色
+            })
+        })
+    </script>
+</body>
+</html>

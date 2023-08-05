@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //数组去重
+        function unique(arr){
+            var newArr = [];
+            for(var i=0; i < arr.length; i++){
+                if(newArr.indexOf(arr[i]) === -1){
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+        var arr = [1,2,3,4,5,2,3,2];
+        console.log(unique(arr));
+        var demo = ['c','a','z','a','x','a','x','b'];
+        console.log(unique(demo));
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background: green;
+            padding: 30px;
+            border: 10px solid black;
+            margin: 30px;
+            /* 标准盒模型 */
+            box-sizing: content-box;
+            /* box1盒子的 width=height=200+30*2+10*2+30*2=340px */
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background: red;
+            padding: 30px;
+            border: 10px solid black;
+            margin: 30px;
+            /* 怪异盒模型 */
+            box-sizing: border-box;
+            /* box2盒子的 width=height=200+30*2（margin）=260px */
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

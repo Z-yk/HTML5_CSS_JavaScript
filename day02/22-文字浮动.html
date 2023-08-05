@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    div{
+        width: 100px;
+        height: 100px;
+    }
+    /* 正常的文档流，**竖向排列**，独占一行 */
+    .red{
+        background-color: red;
+        float: left; 
+    }
+    .green{
+        background-color: green;
+        /* float: left; */
+        width: 300px;
+        height: 300px;
+    }
+    .blue{
+        background-color: blue;
+        float: left;
+        /* 这个blue不会浮动到红色div旁边，因为绿色div是不浮动的，所以默认又从绿色div下面开始，存浮动 */
+    }
+    .grey{
+        background-color: grey;
+        float:left;
+    
+    }
+</style>
+</head>
+<body>
+    <div class="red"></div>
+    <div class="green">大家好</div>
+    <!-- 红色div会左浮动，飘在绿色上面（前提：绿色div区域大于红色div），
+        但是绿色div中的字体会被挤出来显示 -->
+    <div class="blue"></div>
+    <div class="grey"></div>
+</body>
+</html>

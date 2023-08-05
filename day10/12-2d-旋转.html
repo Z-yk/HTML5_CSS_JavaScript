@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background:lightblue;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(white 50%,black 50%);
+            margin:10px auto;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            border-radius: 50%;
+            /* 设置元素以指定角度参数旋转 */
+            /* transform: rotate(10deg); */
+
+            /* transform: rotateX(10deg); */
+            /* transform: rotateY(10deg); */
+            /* transform: rotateZ(10deg); */
+
+            /* transform-origin: 0 0; */
+            transition: all 2s;
+        }
+
+        div:hover{
+            /* 设置指针悬停时旋转 */
+            transform: rotate(360deg);
+        }
+
+        div::before{
+            content: " ";
+            width: 100px;
+            height: 100px;
+            display: block;
+            /* background: green; */
+            background-image: radial-gradient( white 20% ,black 20%);
+            /* 前面10%是white，10%到100%是black */
+            border-radius: 50%;
+        }
+        div::after{
+            content: " ";
+            width: 100px;
+            height: 100px;
+            display: block;
+            /* background-color: red; */
+            background-image: radial-gradient( black 20%,white 20%);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

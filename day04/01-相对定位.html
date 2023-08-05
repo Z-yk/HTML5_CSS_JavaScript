@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+    }
+    .box1{
+        background: red;
+    }
+    .box2{
+        background: blue;
+        position: relative;/*相对定位，下面的偏移位置设置是相对于自己的原始位置
+                            不脱离文本*/
+        top: 100px;
+        left: 100px;
+        /* 定位可以取负值 */
+        
+    }
+    .box3{
+        background: yellow;
+    }
+</style>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

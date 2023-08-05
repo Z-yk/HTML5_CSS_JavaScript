@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>123</div>
+  <div class="box">456</div>
+  <p>789</p>
+  <script>
+    //innerText 和 innerHTML的区别
+    //innerText 不识别html标签、去掉换行和空格 ，非标准,
+    const div = document.querySelector('div')
+    div.innerText = '<strong>今天是</strong>：2022'
+
+    //innerHTML 识别html标签、保留空格和换行 W3C标准
+    const div1 = document.querySelector('.box')
+    div1.innerHTML = '<strong>今天是</strong>：2022'
+
+    //这两个属性是 可读写 的
+    const p = document.querySelector('p')
+    console.log(p.innerText)
+    console.log(p.innerHTML)
+  </script>
+</body>
+
+</html>

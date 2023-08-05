@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 显示小三角形：先设置边框(两种方法)，粗一点,再取消高度和宽度 */
+        /* 1、分别设置四个边的边框都一样宽度，实线和颜色，想显示哪一个就把其他的三个颜色透明（） */
+        .box1{
+            width: 0px;
+            height: 0px;
+            border-top: 40px solid red;
+            border-left: 40px solid rgba(0, 0, 0, 0);
+            border-right: 40px solid transparent;
+            border-bottom: 40px solid transparent;
+        }
+        /* 2.设置边框border为透明,在单独设置border-方向颜色显示 */
+        .box2{
+            width: 0px;
+            height: 0px;
+            /* border-top: 40px solid transparent;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 40px solid red; */
+            border: 40px solid transparent;
+            border-bottom: 40px solid red;
+        }
+        .box3{
+            width: 0px;
+            height: 0px;
+            border-top: 40px solid transparent;
+            border-left: 40px solid red;
+            border-right: 40px solid transparent;
+            border-bottom: 40px solid transparent;
+        }
+        .box4{
+            width: 0px;
+            height: 0px;
+            border-top: 40px solid transparent;
+            border-left: 40px solid rgba(0, 0, 0, 0);
+            border-right: 40px solid red;
+            border-bottom: 40px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</body>
+</html>

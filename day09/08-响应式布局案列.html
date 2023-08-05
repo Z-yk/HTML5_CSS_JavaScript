@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .top{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        /* 两个亲儿子div */
+        .top>div{
+            width: 49%;
+        }
+        .top img{
+            width: 100%;
+        }
+        .top .right{
+            display: flex;
+            justify-content: space-between;
+        }
+        .top .right>div{
+            width: 49%;
+        }
+        /* 屏幕最大768px=小于768px的样式 */
+        @media screen and (max-width: 768px){
+            .top>div{
+                width: 100%;
+            }
+        }
+
+        .bottom{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .bottom>div{
+            width: 23%;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid grey;
+            margin-bottom: 10px;
+            box-shadow: 0 0 5px black;
+        }
+        .bottom img{
+            width: 100%;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1024px){
+            .bottom>div{
+                width: 31%;
+            }
+        }
+        @media screen and (min-width: 450px) and (max-width: 768px){
+            .bottom>div{
+                width: 48%;
+            }
+        }
+        @media screen and (max-width: 450px){
+            .bottom>div{
+                width:98%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        top上面区域:flex wrap
+        >768px  左49% 右49%
+        <768px  左100% 右100% 
+
+        bottom下面区域：
+        >1024px  24%*4
+        768px< <1024px  31%*3
+
+        450px< <768px  48%*2
+        <450px  90%*1
+    -->
+    <div class="top">
+        <div class="left">
+            <img src="images/swiper1.jpeg" alt="">
+        </div>
+
+        <div class="right">
+            <div>
+                <img src="images/ad1.png" alt="">
+            </div>
+            <div>
+                <img src="images/ad2.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+        <div>
+            <img src="images/img1.jpg" alt="">
+            <p>迷你微型摄影展</p>
+        </div>
+    </div>
+</body>
+</html>

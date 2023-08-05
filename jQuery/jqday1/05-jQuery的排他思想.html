@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <button>按扭1</button>
+    <button>按扭2</button>
+    <button>按扭3</button>
+    <button>按扭4</button>
+    <button>按扭5</button>
+    <button>按扭6</button>
+    <script>
+        /* //1获取所有按扭元素
+        var btns = document.getElementsByTagName('button');
+        //2.循环注册事件  得到的btns是一个伪数组，里面的每一个元素btns[i]
+        for(var i = 0; i < btns.length; i++){
+            btns[i].onclick = function(){
+                //(1)先把所有按扭的背景颜色去掉
+                for(var j=0; j<btns.length; j++){
+                    btns[j].style.backgroundColor='';
+                }
+                //(2)然后才让当前的元素背景颜色为pink
+                this.style.backgroundColor = 'pink';
+            }
+        } */
+        //排他思想：首先排除其他人样式，然后才设置自己的样式
+        $(function(){
+            //1. 隐式迭代 给所有的按扭都绑定了点击事件
+            $('button').click(function(){
+                //(1) 当前的元素变化背景颜色
+                $(this).css('background','red');
+                //(2) 其余的兄弟去掉背景颜色 隐式迭代
+                $(this).siblings('button').css('background','');
+                //siblings(selector)选择所有的selector兄弟元素，不包括自己
+
+                /* $('button').css('background','');
+                $(this).css('background','red'); */
+            })
+        })
+    </script>
+</body>
+</html>

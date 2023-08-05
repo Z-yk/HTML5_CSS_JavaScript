@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //对象
+        /* var obj = {
+            age: 18
+        }
+        if(obj['age']){
+            console.log('里面有该属性');
+        }else{
+            console.log('里面没有该属性');
+        } */
+        //1.
+        var str = 'abcoefoxyozzopp';
+        var o = {};
+        for(var i=0; i<=str.length-1;i++){
+            var chars = str.charAt(i); //chars获取每一个字符
+            if(o[chars]){ //得到的属性值
+                o[chars]++;
+            }else{
+                o[chars] = 1;
+            }
+        }
+        console.log(o);
+
+        //2.遍历对象
+        var max = 0;
+        var ch = '';
+        for(var k in o){
+            //console.log(o[k]); 
+            if(o[k] > max){
+                max = o[k];
+                ch = k;
+            }
+        }
+        console.log(max);
+        console.log('最多的字符是：'+ ch);
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            color: red;
+            text-align: center;
+        }
+        div{
+            margin: auto;
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <h2>首页</h2>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        
+        console.log(location.search);//?uname=zyk
+        // 1.先去掉？  substr('起始的位置'[，截取几个字符]);后面一个不写，默认截取到最后
+        var param = location.search.substr(1); //截取1到最后
+        console.log(param);//uname=zyk
+        // 2. 利用=把字符串分割为数组 split('=');
+        var arr = param.split('='); //指定分隔符分割字符串，返回数组
+        console.log(arr); // ['name','zyk']
+        // 3.把数据写入div中
+        div.innerHTML = arr[1] + '欢迎您';
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            width: 500px;
+            height: 500px;
+            border: 10px solid grey;
+            /* 0-10%是red-yellow渐变，10%到20%是yellow-green渐变，后面全是green */
+            background-image:linear-gradient(red,yellow 10%,green 20%);
+        }
+        .div2{
+            width: 500px;
+            height: 500px;
+            border: 10px solid grey;
+            /* 0-10%是red-yellow渐变，10%到20%是yellow-green渐变，后面全是green */
+            background-image:linear-gradient(red,yellow 10%,green 20%);
+            /* 重复径向 */
+            background-image:repeating-linear-gradient(red,yellow 10%,green 20%);
+
+        }
+        .div3{
+            width: 500px;
+            height: 500px;
+            border: 10px solid grey;
+            /* 0-10%是red-yellow渐变，10%到20%是yellow-green渐变，后面全是green */
+            background-image:linear-gradient(red,yellow 10%,green 20%);
+            /* 重复径向 */
+            background-image:repeating-radial-gradient(red,yellow 10%,green 20%);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+</body>
+</html>

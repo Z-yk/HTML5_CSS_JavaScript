@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const date = new Date()
+    // console.log(date.getHours())
+    // console.log(date.getMinutes())
+    // console.log(date.getSeconds())
+
+    // 封装一个函数getTimer，返回当前的时分秒
+    function getTimer() {
+      // 获取当前时间 new Date()
+      const date = new Date()
+      let h = date.getHours()
+      let m = date.getMinutes()
+      let s = date.getSeconds()
+      h = h < 10 ? '0' + h : h
+      m = m < 10 ? '0' + m : m
+      s = s < 10 ? '0' + s : s
+      return  h+':'+m+':'+s;
+    }
+    console.log(getTimer());
+  </script>
+</body>
+
+</html>

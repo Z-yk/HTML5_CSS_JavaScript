@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: lightblue;
+            color: white;
+        }
+        span{
+            width: 0;
+            height: 0;
+            display: inline-block;/*span是行内元素，要转换成行内块元素*/
+            border: 5px solid transparent;
+            border-top: 5px solid black;
+            position: relative;/*相对定位，下面的偏移位置设置是相对于自己的原始位置不脱离文本*/
+            top: 2.5px; /*向下移动2.5px,因为边框5px*/
+        }
+        /* .box span{
+            display: none;
+        }这个是初始状态正常情况下，让它隐藏 */
+        /* 我们这里span正常显示top向下的三角形，指针悬停时显示bottom向上的三角形 */
+        .box:hover span{
+            border: 5px solid transparent;
+            border-bottom: 5px solid black;
+            top: -2.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        导航
+        <span></span>
+    </div>
+</body>
+</html>

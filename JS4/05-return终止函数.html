@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //1.return终止函数
+        function getSum(num1,num2){
+            return num1 + num2;
+            alert('return后面的代码不被执行');
+        }
+        console.log(getSum(1,2));
+        
+        //2.return只能返回一个值，多个值用逗号隔开，则返回最后一个值
+        function fn(num1,num2){
+            return num1,num2;  //只会返回num2
+        }
+        console.log(fn(1,2)); //返回最后一个值2
+        
+        //3.我们求任意两个数的+-乘除的结果
+        function getResult(num1,num2){
+            return [num1+num2, num1-num2, num1*num2, num1 / num2] //返回多个值可以用返回一个数组
+        }
+        console.log(getResult(2,1));
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

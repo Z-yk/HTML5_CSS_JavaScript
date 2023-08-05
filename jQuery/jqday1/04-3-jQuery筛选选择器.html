@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+    </ul>
+    <ol>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+        <li>***</li>
+    </ol>
+    <script>
+        $(function(){
+            $('ul li:first').css('color','red'); //获取ul的 第一个li
+            $('ul li:eq(2)').css('color','blue'); //获取ul的 li元素中，选择索引号为2的元素
+            $('ol li:odd').css('color','skyblue'); //获取的ol的 li元素中，选择索引号为奇数的元素
+            $('ol li:even').css('color','pink'); //偶数
+        })
+    </script>
+</body>
+</html>

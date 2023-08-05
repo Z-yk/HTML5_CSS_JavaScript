@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //求0-50的累加
+        var sum = 0;
+        for(var i = 0; i <= 50; i++){
+            sum += i;
+        }
+        console.log(sum);
+        
+        //求50-100的累加
+        var sum1 = 0;
+        for(var i = 50; i <= 100; i++){
+            sum1 += i;
+        }
+        console.log(sum1);
+        
+        //函数实现累加功能，减轻代码量
+        function getSum(num1,num2){
+            var sum3 = 0;
+            for(var i = num1;i <= num2;i++){
+                sum3 += i;
+            }
+            console.log(sum3);
+        }
+        //直接调用函数
+        getSum(1,100);
+        getSum(1,1000);
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

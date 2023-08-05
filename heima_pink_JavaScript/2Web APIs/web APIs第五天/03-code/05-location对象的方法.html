@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="reload">刷新</button>
+  <button class="assign">assign</button>
+  <button class="replace">replace</button>
+
+  <script>
+    const reload = document.querySelector('.reload')
+    const assign = document.querySelector('.assign')
+    const replace = document.querySelector('.replace')
+
+    reload.addEventListener('click', function () {
+      //重新加载页面方法
+      // location.reload() // 相当于f5
+      location.reload(true) // 强制刷新，相当于ctrl+f5
+    })
+
+    assign.addEventListener('click', function () {
+      // 记录浏览历史，所以可以实现后退功能
+      location.assign('https://www.baidu.com') //和location.href属性一样，可以跳转页面，有区别
+    })
+
+    replace.addEventListener('click', function () {
+      // 不记录浏览历史，所以不可以实现后退功能
+      location.replace('http://www.itcast.cn')
+    })
+  </script>
+</body>
+
+</html>

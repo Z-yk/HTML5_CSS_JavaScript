@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            /* 文本水平对齐 */
+            text-align: center;
+            width: 500px;
+            background-color: yellow;
+        }
+        .box2{
+            /* justify,只对多行文本有用，两端对齐 */
+            text-align: justify;
+            width: 500px;
+            background-color: green;
+        }
+        .box3{
+            background-color: yellow;
+            width: 500px;
+            height: 100px;
+            /*line-height 行高  
+            line-height高度=height高度，可以使单行文本垂直居中 */
+            line-height:100px;
+            /* 再加上水平居中，可以使单行文本在div中间显示 */
+            text-align: center;
+        }
+        .box4{
+            background-color:rgb(0, 200, 0);
+            width: 500px;
+            height: 100px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        大家好！
+    </div>
+    <div class="box2">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem assumenda expedita eos? Rem nulla ipsa iste exercitationem fugiat officiis adipisci, fugit voluptatum repellat. Labore aliquid qui, illum perferendis enim ullam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto doloremque, soluta provident illo cumque laborum consequatur enim nobis beatae officiis. Deleniti error accusamus eum impedit et quae ex ducimus maxime!
+
+    </div>
+
+    <div class="box3">
+        大家好！
+    </div>
+    <div class="box4">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed minima corrupti, voluptate, adipisci non voluptatibus illum exercitationem labore eum recusandae amet temporibus aperiam reprehenderit voluptatem blanditiis pariatur, omnis architecto deleniti!
+
+    </div>
+</body>
+</html>

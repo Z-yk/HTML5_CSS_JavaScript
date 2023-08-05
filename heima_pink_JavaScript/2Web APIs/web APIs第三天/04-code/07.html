@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>第个1孩子</li>
+    <li>第个2孩子</li>
+    <li>第个3孩子</li>
+    <li>第个4孩子</li>
+    <li>第个5孩子</li>
+    <p>我不需要变色</p>
+  </ul>
+
+  <script>
+    // 点击每个小li 当前li 背景颜色红色
+    // 按照事件委托的方式  委托给父级，事件写到父级身上
+    const ul = document.querySelector('ul')
+    // 事件写到父级
+    ul.addEventListener('click', function (e) {
+      for (let i = 0; i < ul.children.length; i++) {
+        // 排他 
+        ul.children[i].style.backgroundColor = ''
+      }
+      // console.dir(e.target) // 就是我们点击的那个对象
+      // console.log(e.target.tagName); // LI 得到点击的那个对象的标签名（大写）
+       // 我的需求，我们只有点击li才会有效果
+      if (e.target.tagName == 'LI') {
+        e.target.style.backgroundColor = 'green'
+      }
+    })
+  </script>
+</body>
+
+</html>

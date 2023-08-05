@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1,.div2,.div3,.div4{
+            width: 200px;
+            height: 200px;
+            background-color: grey;
+            margin: 100px auto;
+            transition: all 1.5s ease;
+        }
+        .div1:hover{
+            transform: rotateX(180deg);
+        }
+        .div2:hover{
+            transform: rotateY(360deg);
+        }
+        .div3:hover{
+            transform: rotateZ(360deg);
+        }
+        .div4:hover{
+            /* transform: rotate(80deg); */
+            transform: rotate(-80deg);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+</body>
+</html>

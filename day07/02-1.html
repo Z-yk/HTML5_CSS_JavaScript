@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* E[att],匹配E标记，且定义了att属性 */
+        input[name]{
+                background: red;
+        }
+        /* E[att="value"] */
+        input[name="email"]{
+            background: yellow;
+        }
+        /* E[att^="value"] 前缀有value的字符串*/
+        input[name^="pass"]{
+            background: green;
+        }
+        /* E[att$="value"] 后缀有value的字符串*/
+        input[name$="er"]{
+            background: blue;
+        }
+        /* E[att*="value"]  包含value的字符串*/
+        input[type*="ubmi"]{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="user">
+    <input type="password" name="password">
+    <input type="email" name="email">
+    <input type="number">
+    <input type="file" name="file">
+    <input type="submit">
+</body>
+</html>

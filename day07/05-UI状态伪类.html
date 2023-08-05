@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:enabled{
+            background: red;
+        }
+        input:disabled{
+            background: yellow;
+        }
+        input:focus{
+            background: blue;
+        }
+
+        input[type=checkbox]{
+            /* 去掉默认样式 */
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+        }
+        input:checked{
+            background: green;
+        }
+
+        div::selection{
+            background: yellow;
+            color: red;
+            
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        用户名<input type="text"><br>
+        密码<input type="password"><br>
+        记住用户名<input type="checkbox"><br>
+        <input type="submit" disabled>
+    </form>
+
+    <div>
+        <!-- 默认选中这部分文字会是白色字体，蓝色背景 -->
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus vitae vero voluptatibus non consectetur quidem laudantium. Sunt, officia autem error tempore, omnis minus quos sit obcaecati natus, aliquid debitis consequatur!
+
+    </div>
+</body>
+</html>

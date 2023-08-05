@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: pink;
+            width: 200px;
+            height: 200px;
+            /* margin: 10px; */
+            padding: 10px;
+            /* border: 10px solid black; */
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+        我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+        我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+    </div>
+    <script>
+        var div = document.querySelector('div');
+        //scroll系列
+        //获得元素大小 padding+width,内容超出是，会根据内容返回实际高度
+        console.log(div.scrollWidth);
+        console.log(div.scrollHeight);//内容实际高度
+        //区别client系列的clientHeight
+        console.log(div.clientHeight);
+
+        // scroll滚动事件当我们滚动条发生变化会触发的事件
+        div.addEventListener('scroll',function(){
+            console.log(div.scrollTop);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 单选框 type="radio" 且一组单选框只能选一个
+        所以name属性值相同 -->
+    <h1>表单进阶-单选框</h1>
+    <div>您对于京东首页的满意度如何</div>
+    <div>
+        <input type="radio" name="a" checked="checked">非常满意
+    </div>
+    <div>
+        <input type="radio" name="a">满意
+    </div>
+    <div>
+        <input type="radio" name="a">一般
+    </div>
+    <div>
+        <input type="radio" name="a" disabled="disabled">不满意
+    </div><br> 
+    
+<!--上面这种只能点击那个小圆圈选中单选框，
+    如何做到点击文字也可以选择该单选框 -->
+    <div>
+        <div>你的性别</div>
+        <div>
+            <input type="radio" name="sex" id="man">
+            <label for="man">男</label>
+        </div>
+        <div>
+            <input type="radio" name="sex" id="woman">
+            <label for="woman">女</label>
+        </div>
+    </div>
+</body>
+</html>

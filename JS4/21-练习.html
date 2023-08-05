@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //猜数字游戏
+        //3.得到一个两数之间的随机整数，包含这两个数在内
+        function getRandomIntInclusive(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值
+        } 
+        var random = getRandomIntInclusive(1,10)
+        
+        while(true){ //死循环
+            var num = prompt('输入1~10中的一个数字:');
+            if(parseInt(num) > random){ 
+                alert('数字大了');
+            }else if(parseInt(num) < random){
+                alert('数字小了');
+            }else{
+                alert('猜对了');
+                break; //跳出整个循环
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

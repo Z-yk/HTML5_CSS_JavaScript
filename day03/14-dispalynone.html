@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hide{
+            /* 先不显示，隐藏 */
+            display: none;
+            
+        }
+        /* .box所作用的标签的指针悬停时，所有的效果 */
+        .box:hover  {
+            background: yellow;
+        } 
+        
+        /* 先让ul正常情况下隐藏起来(link初始状态和visited访问过后的状态) */
+        .box ul{
+            display: none;
+        }
+
+        /* .box所作用的标签指针悬停时，ul的效果 */
+        .box:hover ul{
+            background: red;
+            display: block;
+        }
+        /* .box ul:hover{
+            background: red;
+            display: block;
+        } */
+        
+    </style>
+</head>
+<body>
+    <div class="hide">1111111111111111</div>
+    <!--此时div不再是block块元素，而是不显示none  -->
+
+    <div class="box">
+        军事
+        <ul >
+            <li>1111111</li>
+            <li>2222222</li>
+            <li>3333333</li>
+        </ul>
+    </div>
+</body>
+</html>

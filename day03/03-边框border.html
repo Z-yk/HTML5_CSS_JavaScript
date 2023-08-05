@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            border:10px dotted red;
+            /* 
+            solid 实线
+            double 双实线（宽度的内外两条）
+            dashed 虚线
+            dotted 圆点线
+             */
+             /* 1、背景色 也能蔓延到边框 */
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            border-top: 5px solid red;
+            border-right: 10px dotted yellow;
+            /* 2、可以设置单一方向 */
+        }
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            border-width: 5px 10px 20px;
+            border-style: dashed dotted;
+            border-color: red blue yellow pink;
+        }
+        /*  border-width:  边框线的宽度
+            border-style:  边框线样式（solid\double\dashed\dotted）
+            border-color: 边框颜色
+            这三个属性（同padding）取值：
+                1个值，4个方向一样，都是等于该值
+                2个值，上下  左右（top、bottom前面的值  left、right后面的值）
+                3个值，上 左右 下
+                4个值，上 右 下 左 （上开始顺时针转）*/
+    </style>
+</head>
+<body>
+    <div class="box1">
+            
+    </div>
+    <div class="box2">
+
+    </div>
+    <div class="box3">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+
+        body{
+            display: flex;
+            /* 弹性盒子 */
+        }
+        
+        .left,.right{
+            width: 200px;
+            /* height: 100%; */
+            /* 不用设置高度
+            stretch- 如果项目未设置高度或设为auto，将占满整个容器的高度。 */
+        }
+        .left{
+            background: red;
+        }
+        .right{
+            background: blue;
+        }
+        .center{
+            flex: 1;
+            /* 其余的flex-grow默认为0——不会占据剩余空间,该项目
+            占据所有剩余空间*/
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+    
+</body>
+</html>

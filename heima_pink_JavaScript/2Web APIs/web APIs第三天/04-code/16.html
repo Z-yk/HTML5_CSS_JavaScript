@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      /* border和padding划归到width和height范围内，可以理解为是IE的怪异盒模型 */
+      box-sizing: border-box;
+    }
+
+    .content {
+      overflow: hidden;
+      width: 1000px;
+      height: 3000px;
+      background-color: pink;
+      margin: 0 auto;
+    }
+
+    .backtop {
+      display: none;
+      width: 50px;
+      left: 50%;
+      margin: 0 0 0 505px;
+      position: fixed;
+      bottom: 60px;
+      z-index: 100;
+    }
+
+    .backtop a {
+      height: 50px;
+      width: 50px;
+      background: url(./images/bg2.png) 0 -600px no-repeat;
+      opacity: 0.35;
+      overflow: hidden;
+      display: block;
+      text-indent: -999em;
+      cursor: pointer;
+    }
+
+    .header {
+      /* fixed： 固定定位，脱离文档流。参照浏览器可视窗口（当前窗口）。 */
+      position: fixed;
+      /* 相对于浏览器可视窗口，偏移-80px = 自身的高度 隐藏了 */
+      top: -80px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: purple;
+      text-align: center;
+      color: #fff;
+      line-height: 80px;
+      font-size: 30px;
+      /* 过渡效果：指定一些属性发生变化时的切换方式 */
+      transition: all .3s;
+    }
+
+    .sk {
+      width: 300px;
+      height: 300px;
+      background-color: skyblue;
+      margin-top: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">我是顶部导航栏</div>
+  <div class="content">
+    <div class="sk">秒杀模块</div>
+  </div>
+  <div class="backtop">
+    <img src="./images/close2.png" alt="">
+    <a href="javascript:;"></a>
+  </div>
+  <script>
+    // 目标：当秒杀模块滚动到浏览器最上面时，显示顶部导航栏（初始时top=-80px）
+    // 当页面滚动到 秒杀模块的时候，就改变 头部的 top值
+    // 页面被卷去的头部 >=  秒杀模块偏移浏览器顶部的值 offsetTop
+    const sk = document.querySelector('.sk')
+    const header = document.querySelector('.header')
+    // 1. 页面注册滚动事件scroll
+    window.addEventListener('scroll',function() {
+      // 页面被卷去的头部距离 document.documentElement.scrollTop
+      // console.log(document.documentElement.scrollTop);
+      const n = document.documentElement.scrollTop
+      header.style.top = n >= sk.offsetTop ? 0 : '-80px'
+    })
+  </script>
+</body>
+</html>

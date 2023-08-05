@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = ['pink', 'red', 'blue']
+    // for in 我们不推荐遍历数组
+    for (let k in arr) {
+      console.log(k) // 数组的下标 索引号  但是是字符串 '0' '1' '2'
+      console.log(arr[k]) // arr[k]
+    }
+    
+    let obj = {
+      uname: 'pink老师',
+      age: 18,
+      gender: '男'
+    }
+    // 2. 遍历对象
+    for (let k in obj) { 
+      console.log(k) // 属性名 'uname' 'age' 'gender' 换行显示，且是字符串类型
+      // console.log(obj.uname)
+      // console.log(obj.k) // undefined 相当于下面这一行写法
+      // console.log(obj.'uname')
+      // console.log(obj['uname'])   'uname'  === k
+      console.log(obj[k]) // 属性值  obj[k]
+    }
+
+
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Person(name){ //构造函数
+            this.name = name;
+        }
+
+        function f1(x){  //x = p  栈里存放的地址复制一份给形参x，指向同一个存放在堆里面的对象
+            console.log(x.name); //2.刘德华
+            x.name = '张学友';
+            console.log(x.name); //3.张学友
+        }
+
+        var p = new Person('刘德华');  //栈里面存放地址，指向存放在堆里面的对象
+        console.log(p.name);  //1.刘德华
+
+        f1(p);
+        console.log(p.name); //4.张学友
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // console.log(1)
+    // console.log(2)
+    // setTimeout(function () {
+    //   console.log(3)
+    // }, 0)
+    // console.log(4);
+    // 顺序：1  2  4  3
+
+    console.log('-----------------------');
+
+    // 多个异步任务
+    console.log(1);
+    // 函数放入异步进程处理，异步任务完毕=点击触发，才会送入任务队列
+    document.onclick = function () {
+      console.log('click');
+    }
+    console.log(2);
+    // 3秒后异步任务完毕放入任务队列中
+    setTimeout(function () {
+      console.log(3)
+    }, 3000)
+
+    // 顺序：1  2  3和click不确定，看click是在三秒前点击，还是三秒后。
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //遍历对象
+        var obj = {
+            u_name: 'pink老师',
+            age: 18,
+            sex: '男',
+            fn: function(){
+                console.log('haha');
+            }
+        }
+        //一个一个输出
+        //console.log(obj);
+        console.log(obj.u_name);
+        console.log(obj['age']);
+        console.log(obj.sex);
+        //for...in语句——用于对 数组 或者 对象的属性 进行循环操作
+        /* 格式
+        for(变量 in 对象){
+            k
+            对象名[k]
+        }
+         */
+        //使用for...in语句，里面的变量。一般写k或key
+        for(var k in obj){
+            console.log(k); //k输出的是：对象obj的属性名
+            console.log(obj[k]);//obj[k]输出的是：obj的属性值
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

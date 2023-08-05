@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,body{
+            height: 100%;
+        }
+        .left{
+            width: 200px;
+            height: 100%;
+            background: red;
+            float: left;
+            /*这个浮动，下面的div会浮上来，而且覆盖一部分*/
+        }
+        .right{
+            height: 100%;
+            background: yellow;
+            overflow: hidden;
+            /* 让溢出部分隐藏，不占位置 */
+        }
+    </style>
+</head>
+<body>
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+</html>

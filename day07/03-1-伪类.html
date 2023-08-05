@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            border: 1px solid red;
+        }
+        /* 选中所有的li元素中，第一个作为子级元素的li */
+        /* li:first-child{
+            background: yellow;
+        }
+        li:last-child{
+            background: red;
+        } */
+        /* li:nth-child(2){
+            background: blue;
+        } */
+        /* 第几个，  偶数2n/even  奇数2n+1/2n-1/odd */
+        /* li:nth-child(odd){
+            background: yellow;
+        } */
+        /* 匹配所有的li元素中，第一个作为子级元素的li */
+        li:nth-child(1){
+            background: green;
+        }
+        /* 前面指定了父元素是.box */
+        .box li:nth-last-child(1){
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>11111</li>
+        <li>22222</li>
+        <li>33333</li>
+        <li>44444</li>
+        <li>55555</li>
+    </ul>
+    <ul class="box">
+        <li>66666</li>
+        <li>77777</li>
+        <li>88888</li>
+    </ul>
+</body>
+</html>

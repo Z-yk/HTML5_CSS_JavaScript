@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 先设置div整体鼠标悬停时的效果 */
+        .box:hover  {
+            background: green;
+        }
+
+        /* 先设置正常情况下，div下面的无序列表隐藏 */
+        .box ul{
+            display: none;
+        }
+
+        /* 再设置鼠标悬停在div时，把无序列表显示出来 */
+        /* .box所作用的标签指针悬停时，ul的效果 */
+        .box:hover ul{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">军事
+        <ul>
+            <li>飞机</li>
+            <li>大炮</li>
+            <li>坦克</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //案例3
+        var a = 18;
+        f1();
+        function f1(){
+            var b = 9;
+            console.log(a);
+            console.log(b);
+            var a = '123'
+        }
+        //等于如下代码：
+        var a;
+        function f1(){
+            var b;
+            var a;
+            b = 9;
+            console.log(a); //undefined
+            console.log(b); //9
+            a = '123'
+        }
+        a = 18;
+        f1();
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>

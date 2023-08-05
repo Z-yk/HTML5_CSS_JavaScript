@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const date = new Date()
+    console.log(date.getFullYear()) // 年份
+    console.log(date.getMonth() + 1) // 0-11月份，记得月份要+1
+    console.log(date.getDate()) // 日份
+    console.log(date.getDay()) // 0-6星期几，周日是0
+
+    //写一个2022年 10月 26日 星期三
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1 // 返回0-11，月数+1
+    const dates = date.getDate()
+    const arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', ]
+    const day = arr[date.getDay()]
+    console.log('今天是' + year + '年' + month + '月' + dates + '日' + day)
+  </script>
+</body>
+
+</html>

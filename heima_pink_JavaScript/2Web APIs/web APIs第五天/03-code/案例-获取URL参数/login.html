@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .login{
+      width: 500px;
+      height: 280px;
+      background-color: pink;
+      margin: 200px auto;
+    }
+    h2 {
+      color: brown;
+      text-align: center;
+      margin: 20px auto;
+    }
+    .box1,.box2{
+      margin-left: 50px;
+      margin-top: 30px;
+      color: brown;
+    }
+    input[type='submit'],input[type='reset'] {
+      margin-left: 120px;
+      margin-top: 20px;
+      color: brown;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h2>登录</h2>
+    <!-- action指向处理表单数据的url地址 -->
+    <form action="index.html">
+      <div class="box1">
+        用户名：<input type="text" name="username">
+      </div>
+      <div class="box2">
+        密&ensp;&ensp;码：<input type="password" name="psw">
+      </div>
+      <input type="submit" value="登录">
+      <input type="reset" value="清空">
+    </form>
+  </div>
+</body>
+</html>

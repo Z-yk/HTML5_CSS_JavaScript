@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>背景色透明写法</title>
+  <style>
+    div {
+      width: 300px;
+      height: 300px;
+      color: blue;
+      background-color: black;
+      /* background: rgba(0, 0, 0, 0.3); */
+      /* 背景半透明是指盒子背景半透明，盒子里面的内容不受影响 */
+      background: rgba(0, 0, 0, .3);
+      /* 整体的div的透明度 */
+      /* opacity: 0.5; */
+    }
+  </style>
+</head>
+
+<body>
+  <div>隐形的翅膀</div>
+</body>
+
+</html>

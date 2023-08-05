@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      /* 设置溢出部分隐藏，这里放大了图片，如果不设置盒子会被撑大，设置了，就不会 */
+      overflow: hidden;
+      float: left;
+      margin: 10px;
+    }
+
+    div img {
+      /* 设置过渡效果 */
+      transition: all .4s;
+    }
+
+    div img:hover {
+      /* 鼠标悬停时，放大原来的1.1倍，默认是中心点放大，且只有一个值：宽度和高度都放大 */
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <a href="#"><img src="media/scale.jpg" alt=""></a>
+  </div>
+  <div>
+    <a href="#"><img src="media/scale.jpg" alt=""></a>
+  </div>
+  <div>
+    <a href="#"><img src="media/scale.jpg" alt=""></a>
+  </div>
+</body>
+
+</html>

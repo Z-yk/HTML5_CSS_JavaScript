@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        div{
+            height: 750px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* 三张图片是固定的，固定在浏览器窗口，但是得到自己的div区域才会显示，在div里面就显示，不在就不显示。
+        所以到了谁的div地盘上，就显示谁 */
+        .box1{
+            background-image: url(image/bg1.png);
+        }
+        .box2{
+            background-image: url(image/bg2.png);
+        }
+        .box3{
+            background-image: url(image/bg3.png);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

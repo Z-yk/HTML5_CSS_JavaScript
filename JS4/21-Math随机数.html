@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 返回值——一个浮点型伪随机数字，在[0,1)之间
+        console.log(Math.random());
+        
+        //1.得到一个两数之间的随机数 [min,max)，返回了一个在指定值之间的随机数
+        function getRandomArbitrary(min, max) {
+           return Math.random() * (max - min) + min;
+        }
+        console.log(getRandomArbitrary(1,10));
+        
+        //2.得到一个两数之间的随机整数，这个例子返回了一个在指定值之间的随机整数。这个值不小于 min （如果 min 不是整数，则不小于 min 的向上取整数），且小于（不等于）max。
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //不含最大值，含最小值
+        }
+        console.log(getRandomInt(1.1,10.9)); //[2,10)
+        
+        //3.得到一个两数之间的随机整数，包含这两个数在内
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值
+        }  
+        console.log(getRandomIntInclusive(1.1,10.9));//[2,10]
+        
+
+        //随机点名
+        var arr = ['张三', '李四', '王五', '周六'];
+        console.log(arr[getRandomIntInclusive(0,3)]);
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

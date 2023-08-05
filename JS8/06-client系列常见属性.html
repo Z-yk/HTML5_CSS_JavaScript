@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* padding */
+            padding: 10px; 
+            /* 边框 */
+            border: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //client系列
+        var div = document.querySelector('div');
+        //获得元素大小：不包含边框大小，只是 padding+width/height
+        console.log(div.clientHeight);
+        console.log(div.clientWidth);
+        //上边框和左边框的大小
+        console.log(div.clientLeft);
+        console.log(div.clientTop);
+    </script>
+</body>
+</html>

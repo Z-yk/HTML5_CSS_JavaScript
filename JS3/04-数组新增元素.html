@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //1.新增数组元素 ：通过修改length长度实现数组扩容
+        var arr = ['red','green','blue'];
+        console.log(arr.length); //3
+        arr.length=5; //把数组长度修改为5，则元素应该有5个
+        console.log(arr); //5个元素 
+        console.log(arr[3],arr[4]); //此时输出第4，5个元素=undefined
+
+        //2.修改索引号  追加数组元素
+        var arr1 = ['red','green','blue'];
+        arr1[3] = 'pink'; //arr1原本只有索引号0，1，2,追加一个索引3
+        console.log(arr1); //此时数组多了一个元素
+        arr1[4] = 'yellow'; //
+        console.log(arr1);
+        
+        arr1[0] = 'orange';//已有索引号0，这里会替换
+        console.log(arr1);
+        
+        arr1 = '哈哈'; //给数组名赋值，会使得元素全没了，不是数组了，成了一个变量
+        console.log(arr1);
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        li{
+            width: 200px;
+            height: 50px;
+            background: yellow;
+            border: 1px solid grey;
+        }
+        ul:hover li:nth-child(1){
+            width: 600px;
+            transition: all 2s linear;
+            /* linear 开始至结束都匀速运动 */
+        }
+        ul:hover li:nth-child(2){
+            width: 600px;
+            transition: all 2s ease;
+            /* 先慢速开始，先加速，再减速，慢速结束 */
+        }
+        ul:hover li:nth-child(3){
+            width: 600px;
+            transition: all 2s ease-in;
+            /* 慢开始，加速运动 */
+            
+        }
+        ul:hover li:nth-child(4){
+            width: 600px;
+            transition: all 2s ease-out;
+            /* 快速开始，减速运动 */
+        }
+        ul:hover li:nth-child(5){
+            width: 600px;
+            transition: all 2s ease-in-out;
+            /* 先加速，再减速 */
+        }
+        ul:hover li:nth-child(6){
+            width: 600px;
+            transition: all 2s cubic-bezier(.99,.14,.12,.59);
+            /* cubic-bezier(n,n,n,n)自定义过渡效果 */
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .top {
+      height: 50px;
+      background-color: gainsboro;
+    }
+
+    .banner {
+      width: 980px;
+      height: 150px;
+      margin: 10px auto;
+      background-color: gainsboro;
+    }
+
+    .box {
+      width: 980px;
+      /* 这里要定义高度 */
+      height: 300px;
+      margin: 0 auto;
+    }
+
+    .box li {
+      background-color: gainsboro;
+      float: left;
+      height: 300px;
+      width: 237px;
+      margin-right: 10px;
+    }
+
+    .box .last {
+      margin-right: 0px;
+    }
+
+    .footer {
+      /* 只要是通栏的盒子(和浏览器一样宽) 不需要指定宽度 */
+      background-color: gainsboro;
+      height: 200px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">top</div>
+  <div class="banner">banner</div>
+  <div class="box">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li class="last">4</li>
+    </ul>
+  </div>
+  <div class="footer">footer</div>
+
+</body>
+
+</html>

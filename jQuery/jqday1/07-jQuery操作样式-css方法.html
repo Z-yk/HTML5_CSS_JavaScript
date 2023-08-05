@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //操作样式-css方法
+        $(function(){
+            //1.只写属性,返回属性值 200px
+            console.log($('div').css('width')); 
+            //2.属性必须加引号，但属性值如果是数组可以不加引号和单位
+            //$('div').css('width','300px');
+            // $('div').css('width',300);
+            //3.
+            $('div').css({
+                width: 300,
+                height: '300px',
+                backgroundColor: 'red'
+                //复合属性，要使用驼峰命名法；如果值不是数字，需要加引号
+            });
+        })
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 400px;
+            height: 400px;
+            background-color: yellow;
+
+            /* 背景图片background-image:url(); */
+            background-image: url(./image/4.jpg);
+            /* 当图片较小时，默认是平铺占满整个区域x、y方向都平铺 */
+            
+            /* background-repeat 设置背景平铺 */
+            /*  repeat 默认平铺x、y都会
+                repeat-x 平铺满x方向
+                repeat-y 平铺满y方向
+                no-repeat 不会平铺 */
+            background-repeat: no-repeat;
+            
+
+            background-position: left bottom ;
+            /* 
+            1.  20px  20px
+            2.  10%   10%
+            3.  left / center / right    top / center / bottom
+            
+             */
+
+            background-size: contain;
+            /* 
+            1.  400px  400px
+            2.  100%  100%
+            3.  cover:把背景图片扩展至足够大，以使背景图片完全覆盖背景区域
+            也许无法显示在背景定位区域中
+            cover 覆盖
+            4.  contain 把图象扩展至最大尺寸，以使其宽度和高度完全适应内容
+            区域。铺不满盒子，留白  contain包含
+             */
+
+        }
+        .box2{
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+            background-image: url(image/5.png);
+            /* 当图片较大，大于区域时，图片会占满整个区域，而且显示不完整 */
+            
+            background-position: center center;
+
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

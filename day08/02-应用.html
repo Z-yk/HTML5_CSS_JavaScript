@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 900px;
+            height: 300px;
+            background: yellow;
+            margin: 0 auto;
+        }
+        /* 标准盒模型：一旦设置padding或者border就得改变width大小 */
+        /* .box div{
+            width: 280px;
+            height: 300px;
+            float: left;
+            text-align: center;
+            padding: 10px;
+            
+        } */
+        .box div{
+            width: 300px;
+            height: 300px;
+            float: left;
+            text-align: center;
+            padding: 10px;
+            border: 10px solid red;
+            box-sizing: border-box;
+        }
+            
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate maiores dignissimos libero? Accusantium, quisquam eos consequuntur, ullam eveniet a magni expedita ipsa et qui ad quibusdam, maxime corporis aspernatur dolor!
+
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione consequatur nemo at placeat eaque numquam quam, similique rerum impedit, qui voluptas beatae voluptatem natus doloribus repellat suscipit quidem modi magni.
+
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis suscipit itaque eveniet asperiores porro ipsum, possimus ad atque delectus expedita ipsa ratione illo nam accusantium quidem earum quas voluptatum ducimus.
+
+        </div>
+    </div>
+</body>
+</html>

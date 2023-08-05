@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //window.document.querySelector();
+        //全局作用域下的变量和函数都是window对象的属性和方法
+        var num = 10;
+        console.log(num);
+        console.log(window.num);//完整写法，num属于window对象中的一个属性
+        function fn(){
+            console.log('11');
+        }
+        fn();
+        window.fn(); //fn()函数属于window对象中的一个方法
+        alert('22');
+        window.alert('22');
+        //看看window里面包含什么
+        console.dir(window);
+        // var name = 10; 
+        console.log(window.name);
+    </script>
+</body>
+</html>

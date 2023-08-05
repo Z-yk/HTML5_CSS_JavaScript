@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //要求用户输入班级人数，之后一次输入每个学生的成绩，最后打印出该班总的成绩以及平均成绩
+        var tol = 0;
+        var num = prompt('输入该班级的人数');
+        for(i = 1;i <= num; i++){
+            var score = prompt('输入第'+i+'位学生的成绩');
+            tol += parseInt(score);
+        }
+        console.log(tol);
+        var average = tol / num ;
+        console.log(average);
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

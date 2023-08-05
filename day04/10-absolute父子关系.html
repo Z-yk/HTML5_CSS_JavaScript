@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            position: relative;/*父元素相对定位*/
+            /* 父盒子想在子盒子上层，层级高与子
+               1、设置父的z-inde没用，可以设置子的z-index为负数 */
+            /* z-index: 100; */
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;/*子元素绝对定位*/
+            top: 10px;
+            left: 10px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="child"></div>
+    </div>
+</body>
+</html>

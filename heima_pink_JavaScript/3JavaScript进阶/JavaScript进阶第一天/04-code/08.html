@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //2. ...复制
+    const a = [1, 2, 3]
+    const b = a // 将数组a直接复制给d，将栈中的地址复制一份，指向的还是同一个堆中的数组
+    b[0] = 'zyk'
+    console.log(a, b) // ['zyk', 2, 3]  ['zyk', 2, 3]
+    // 利用...展开符复制
+    const c = [1, 2, 3]
+    const d = [...c] // 将数组c复制给d 
+    d[0] = 'zyk'
+    console.log(c, d) // [1, 2, 3] ['zyk', 2, 3]
+
+
+    //5. ...伪数组转换——将伪数组展开，赋值给数组。
+    const test = function () {
+      var arr = [...arguments]
+      console.log(arr) // [1, 2, 3, 4, 5]
+    }
+    test(1, 2, 3, 4, 5) 
+    
+    const lis = document.querySelectorAll('li')
+    // console.log(lis.filter); //获取过来的是四个li，伪数组形式存储，不能使用数组方法
+    const lisarr = [...lis]
+    console.log(lisarr.filter)
+  </script>
+</body>
+
+</html>

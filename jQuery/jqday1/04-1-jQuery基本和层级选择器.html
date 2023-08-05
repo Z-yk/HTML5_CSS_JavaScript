@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <div>我是div</div>
+    <div class="nav">我是nav div</div>
+    <p>我是p</p>
+    <ol>
+        <li>我是ol的</li>
+        <li>我是ol的</li>
+        <li>我是ol的</li>
+        <li>我是ol的</li>
+    </ol>
+    <ul class="dad">
+        <li>
+            <ul>儿子
+                <li>孙子1</li>
+                <li>孙子2</li>
+            </ul>
+        </li>
+        <li>我是ul的</li>
+        <li>我是ul的</li>
+        <li>我是ul的</li>
+    </ul>
+    <script>
+        //jQuery获取元素--$('选择器')
+        $(function(){
+            console.log($('.nav'));
+            console.log($('.dad li'));//后代选择器，儿子、孙子，6个li
+            console.log($('.dad>li'));//子代选择器，亲儿子，4个li
+        })
+    </script>
+</body>
+</html>

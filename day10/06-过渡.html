@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            background: green;
+            /* transition: height 2s; */
+            /* transition: all 2s; */
+            /* 所有属性。过渡持续时间是2s */
+            transition: all 2s linear 2s ;
+            /*  all--所有属性
+                2s--过渡持续时间
+                linear--匀速，过渡的执行方式，运动曲线
+                2s--过渡延迟执行 、
+                
+                并不是所有属性都会有过渡，比如display:none|block属性 
+                */
+                
+                
+        }
+        div:hover{
+            width: 400px;
+            height: 600px;
+            background: yellow;
+            /* transition: height 2s; */
+            /* 过渡效果不是写在:hover里面 */
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

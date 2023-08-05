@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //参数个数：
+    // 1. 得到当前时间，没有参数
+    const date = new Date();
+    console.log(date); // 没参数，返回的是系统的当前时间
+    // 2. 指定时间，参数的常用写法 数字型：2019, 10, 01  或者是字符串型： '2019-10-1 8:8:8'
+    const date1 = new Date(2019, 10, 1);
+    console.log(date1); // 返回的是11月Nov不是10月Oct，从0开始
+    const date2 = new Date('2019-10-1 8:8:8');
+    console.log(date2); // 正常返回10月
+    const date3 = new Date('2019/10/1 08:30:00')
+    console.log(date3);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #iddiv{
+            background-color: blue;
+        }
+        div{
+            background-color: yellow;
+        }
+        .cdiv{
+            background-color: red;
+        }
+        /* id选择器权重>class类选择器>标签选择器 */
+
+        p{
+            background-color: green;
+        }
+        div p{
+            background-color: orange;
+        }
+        div .ddiv{
+            background-color: violet;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="cdiv" id="iddiv">111111111111111111111111</div>
+
+    <div>
+        <p class="ddiv">11111111111111111111</p>
+    </div>
+
+    <p>1111111111111111111111</p>
+
+</body>
+</html>

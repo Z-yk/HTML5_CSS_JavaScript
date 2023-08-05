@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //简单类型传参
+        var num = 10;
+
+        function fn(a){
+            a++;
+            console.log(a); //11
+        }
+        var x = 10;
+        fn(x); //x在栈空间的值复制了一份给形参，在fn函数里面对形参做任何修改，也不会影响到x
+        console.log(x); //10 不变
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

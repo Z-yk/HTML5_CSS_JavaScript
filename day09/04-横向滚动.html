@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        ul{
+            list-style: none;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header{
+            height: 45px;
+            background: grey;
+        }
+        header ul{
+            display: flex;
+            overflow: auto;
+            /* 溢出，出现滚动条显示 */
+            color: white;
+        }
+        header ul li{
+            flex-shrink: 0;
+            /* 不收缩0 */
+            line-height: 45px;
+            padding: 0 10px;
+        }
+        header ul li:hover{
+            background-color: white;
+            color: red;
+        }
+
+        footer{
+            height: 50px;
+            background: grey;
+        }
+
+        section{
+            flex: 1;
+            display: flex;
+            overflow: auto;
+        }
+        /* section主体里有两栏布局：ul和div
+        ul固定宽，div设置float: 1px;占据所有的剩余空间 */
+        section ul{
+            width: 85px;
+            overflow: auto;
+            /* 有溢出时，会添加滚动条，下拉滚动条显示 */
+        }
+        section ul li{
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            font-size: 14px;
+            background-color: #f8f8f8;
+        }
+        section ul li:hover{
+            background: white;
+            color: #e96062;
+        }
+        section>div{
+            flex: 1;
+            background: yellow;
+            display: flex;
+            /* 换行 */
+            flex-wrap: wrap;
+            /*  align-content：定义多条轴线的对齐方式*/
+            align-content: flex-start;
+            overflow: auto;
+        }
+        section .content>div{
+            height: 101px;
+            width: 33.33%;
+            text-align: center;
+        }
+        section .content>div img{
+            width: 60px;
+            height: 50px;
+            margin-top: 11px;
+        }
+        
+        /* 将页面滚动条隐藏 */
+        ::-webkit-scrollbar{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+        </ul>
+    </header>
+    <section>
+        <ul>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+            <li>热门推荐</li>
+            <li>手机数码</li>
+            <li>京东超市</li>
+            <li>家用电器</li>
+        </ul>
+        <div class="content">
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+            <div>
+                <img src="pic copy.png" alt="">
+                <p>电脑</p>
+            </div>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>

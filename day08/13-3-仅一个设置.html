@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            display: flex;
+            /* 弹性盒子 */
+            flex-direction: column;
+        }
+        .box div{
+            width: 100px;
+            height: 100px;
+            border: 1px dashed red;
+            box-sizing: border-box;
+        }
+
+        
+        .div2{
+            flex: 1;
+            /* 其余的flex-grow默认为0——不会占据剩余空间,该项目
+            占据所有剩余空间*/
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="div1">1111</div>
+        <div class="div2">2222</div>
+        <div class="div3">3333</div>
+        
+    </div>
+</body>
+</html>

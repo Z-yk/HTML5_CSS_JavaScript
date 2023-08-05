@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            width: 300px;
+            line-height: 50px;
+            background-color: yellow;
+            list-style-position: inside;
+        }
+        ul li{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1知否知否，应该有弹框在手</li>
+        <li>2知否知否，应该有弹框在手</li>
+        <li>3知否知否，应该有弹框在手</li>
+        <li>4知否知否，应该有弹框在手</li>
+        <li>5知否知否，应该有弹框在手</li>
+    </ul>
+    <script>
+        /* var lis = document.querySelectorAll('li');
+        //循环注册事件，给每个li注册事件
+        for(var i=0;i<=lis.length;i++){
+            lis[i].onclick = function(){
+                var text = this.innerHTML;
+                alert(text);
+            }
+        } */
+
+        // 事件委托的核心原理：给父节点添加侦听器， 利用事件冒泡影响每一个子节点
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click',function(e){
+            //alert('知否知否，应该有弹框在手');//好比li-ul
+            //// e.target 这个可以得到我们点击的对象
+            for(var i=0; i<ul.children.length;i++){//排他
+                ul.children[i].style.backgroundColor = '';
+            }
+            e.target.style.backgroundColor = 'pink';
+        },false);
+    </script>
+</body>
+</html>

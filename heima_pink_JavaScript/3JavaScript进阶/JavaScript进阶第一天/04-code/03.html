@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 闭包应用：实现数据的私有
+    // 统计函数调用的次数
+    
+    // 1、定义全局变量i，但是全局变量容易被修改
+    let i = 0
+    function fn() {
+      i++;
+      console.log(`函数被调用了${i}`);
+    }
+    // 2、闭包实现数据的私有
+    // function outer() {
+    //   let i = 0
+    //   return function fn() {
+    //     i++;
+    //     console.log(`函数被调用了${i}`);
+    //   }
+    // }
+    // const fun = outer()
+</script>
+</body>
+</html>

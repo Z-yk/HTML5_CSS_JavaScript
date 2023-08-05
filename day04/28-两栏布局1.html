@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,body{
+            height: 100%;
+        }
+        .left{
+            width: 200px;
+            height: 100%;
+            background: red;
+            float: left;
+        }
+        .right{
+            height: 100%;
+            background: yellow;
+            margin-left: 200px;
+            /* 红色div浮动覆盖区域，设置外边距，让覆盖区域远离 */
+        }
+    </style>
+</head>
+<body>
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+</html>

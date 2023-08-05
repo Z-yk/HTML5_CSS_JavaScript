@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>边框的复合写法</title>
+  <style>
+    .box1 {
+      width: 200px;
+      height: 200px;
+      background-color: yellow;
+      border: 10px dotted red;
+      /* （1）背景色 也能蔓延到边框 */
+    }
+
+    .box2 {
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+      border-top: 5px solid red;
+      border-right: 10px dotted yellow;
+      /* （2）可以设置单一方向 */
+    }
+
+    .box3 {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+      /* （3）边框的三个属性可以分别写 */
+      border-width: 5px 10px 20px;
+      border-style: dashed dotted;
+      border-color: red blue yellow pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1"></div>
+  <br>
+  <div class="box2"></div>
+  <br>
+  <div class="box3"></div>
+</body>
+
+</html>

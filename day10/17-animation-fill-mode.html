@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            animation: zyk 3s linear;
+            /* animation-fill-mode: none; */
+            /* animation-fill-mode: forwards; */
+            /* animation-fill-mode: backwards; */
+            /* animation-fill-mode: both; */
+        }
+
+        @keyframes zyk {
+            0%{
+                width: 250px;
+                height: 250px;
+                background: orange;
+            }
+            25%{
+                width: 300px;
+                height: 300px;
+                background: yellow;
+            }
+            50%{
+                width: 350px;
+                height: 350px;
+                background: green;
+            }
+            75%{
+                width: 400px;
+                height: 400px;
+                background: blue;
+            }
+            100%{
+                width: 450px;
+                height: 450px;
+                background: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

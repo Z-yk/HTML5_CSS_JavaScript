@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>表单进阶--下拉菜单</h1>
+    <!-- select标签和option标签
+        select属性：size显示几个  multiple 多选
+        option属性：value一定要写，给后端看  selected选项默认选中-->
+    <div>
+        <div>你的收货地址：</div>
+        <select size="3">
+            <option value="ln" selected>辽宁</option>
+            <option value="sd">山东</option>
+            <option value="">山西</option>
+            <option value="">河南</option>
+            <option value="">河北</option>
+            <option value="">江西</option>
+            <option value="">湖南</option>
+        </select>
+    </div>
+    <div>
+        <div>你的选择：</div>
+        <select size="3" multiple>
+            <option selected>座子</option>
+            <option>椅子</option>
+            <option selected>电脑</option>
+            <option>台灯</option>
+            <option selected>本子</option>
+            <option>书包</option>
+            <option>铅笔</option>
+            
+        </select>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            width: 100px;
+            height: 100px;
+            /* span是行内元素，不可以设置高度宽度、上下内外边距（有假象） */
+            background: yellow;
+
+            /* 设置绝对定位，会使得span行内元素变为块元素 */
+            /* position: relative; */
+            /* position: absolute; */
+
+            /* 设置浮动也会使得行内元素变为块元素 */
+            float:right;
+        }
+        /* 
+        1.display:block;
+        2.设置绝对定位position:absolute;
+        3.设置浮动float:left;
+         */
+    </style>
+</head>
+<body>
+    <span>sport</span>
+</body>
+</html>
