@@ -1429,7 +1429,7 @@ console.log(obj.result);
       test2();
   ```
 
-- 语法： `(形参) => { 函数体 }`
+- 语法： **`(形参) => { 函数体 }`**
 
   ```javascript
   const fn = function (a, b) {
@@ -1459,48 +1459,11 @@ console.log(obj.result);
   }
   ```
 
-  ```HTML
-    <script>
-      // const fn = function () {
-      //   console.log(123)
-      // }
-      // 1. 箭头函数 基本语法
-      const fn = () => {
-        console.log(123)
-      }
-      fn()
-      const fn1 = (x) => {
-        console.log(x)
-      }
-      fn1(1)
-  
-      // 2. 只有一个形参的时候，可以省略小括号
-      const fn2 = x => {
-        console.log(x)
-      }
-      fn2(1)
-  
-      // 3. 只有一行代码的时候，我们可以省略大括号
-      const fn3 = x => console.log(x)
-      fn3(1)
-  
-      // 4. 只有一行代码的时候，可以省略return
-      const fn4 = x => x + x
-      console.log(fn4(1)) // 2
-  
-      // 5. 箭头函数可以直接返回一个对象
-      const fn5 = (uname) => ({
-        uname: uname
-      })
-      console.log(fn5('刘德华')) // {uname: '刘德华'}
-    </script>
-  ```
-  
   
 
-### 箭头函数的特殊性
+### 2、箭头函数的特殊性
 
-- 箭头函数内部**没有 this**，箭头函数的this指向的是**父级作用域的**
+- 箭头函数内部**没有 this**，箭头函数的this指向的是**从自己的作用域链的上一层沿用this（即：指向上一层作用域的this的指向）**
 
   ```javascript
       const obj1 = {
@@ -1519,9 +1482,9 @@ console.log(obj.result);
   - 按照我们之前的 this 指向来判断，两个都应该指向 obj
   - 但是 fun 因为是箭头函数，所以 this 不指向 obj，而是**指向 fun 的外层**，就是 window
 
-- 箭头函数内部**没有 `arguments` 这个参数集合**
+- 箭头函数内部**没有 `arguments` 这个实参集合**
 
-  复习：arguments里面**存储了所有传递过来的实参**，**伪数组形式**存储。
+  复习：`arguments`里面**存储了所有传递过来的实参**，**伪数组形式**存储。
 
   ```javascript
   const obj = {
@@ -1533,10 +1496,10 @@ console.log(obj.result);
     }
   }
   obj.fn(1, 2, 3) // 会打印一个伪数组 [1, 2, 3]
-  obj.fun(1, 2, 3) // 会直接报错
+  obj.fun(1, 2, 3) // 会直接报错，arguments is not defined
   ```
 
-- 函数**只有一个形参**的时候**可以不写 `()`** 其余情况必须写
+- 函数**只有一个形参**的时候**可以不写小括号 `()`** 其余情况必须写
 
   ```javascript
   const obj = {
@@ -1552,7 +1515,7 @@ console.log(obj.result);
   }
   ```
 
-- 函数体**只有一行代码**的时候，**可以不写 `{}`** ，并且**会自动 return**
+- 函数体**只有一行代码**的时候，**可以不写大括号 `{}`** ，并且**会自动 return**
 
   ```javascript
   const obj = {
@@ -1568,9 +1531,88 @@ console.log(obj.result);
   console.log(fun(10)) // 20
   ```
 
++ 箭头函数可以**直接返回一个对象**。由于对象也是{}，函数体也是{}，这里把函数体的{}改成`()`，**（形参）=> ( {...} )**
+
+  <img src="ES6.assets/image-20230808171603646.png" alt="image-20230808171603646" style="float:left;" />
 
 
-### 函数传递参数的时候的默认值
+
+```html
+<script>
+    // const fn = function () {
+    //   console.log(123)
+    // }
+    // 1. 箭头函数 基本语法
+    const fn = () => {
+      console.log(123)
+    }
+    fn()
+    const fn1 = (x) => {
+      console.log(x)
+    }
+    fn1(1)
+
+    // 2. 只有一个形参的时候，可以省略小括号
+    const fn2 = x => {
+      console.log(x)
+    }
+    fn2(1)
+
+    // 3. 只有一行代码的时候，我们可以省略大括号
+    const fn3 = x => console.log(x)
+    fn3(1)
+
+    // 4. 只有一行代码的时候，可以省略return
+    const fn4 = x => x + x
+    console.log(fn4(1)) // 2
+
+    // 5. 箭头函数可以直接返回一个对象，由于对象也是{}，函数体也是{}，这里把函数体的{}改成()
+    const fn5 = (uname) => ({
+      uname: uname
+    })
+    console.log(fn5('刘德华')) // {uname: '刘德华'}
+  </script>
+```
+
+
+
+### 3、箭头函数的参数
+
+#### 没有`arguments`但有剩余参数
+
+<img src="ES6.assets/image-20230808172804766.png" alt="image-20230808172804766" style="zoom:67%;float:left" />
+
+```js
+    const obj = {
+      fn: function () {
+        console.log(arguments)
+      },
+      fun: () => {
+        console.log(arguments)
+      }
+    }
+    obj.fn(1, 2, 3) // 会打印一个伪数组 [1, 2, 3]
+    obj.fun(1, 2, 3) // 会直接报错，arguments is not defined
+```
+
+```html
+  <script>
+    // 1. 利用箭头函数来求和
+    const getSum = (...arr) => { // 剩余数组
+      let sum = 0
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i]
+      }
+      return sum
+    }
+    const result = getSum(2, 3, 4)
+    console.log(result) // 9
+  </script>
+```
+
+
+
+#### 函数传递参数的时候的默认值
 
 - 我们在定义函数的时候，有的时候**需要一个默认值出现**
 
@@ -1609,6 +1651,90 @@ console.log(obj.result);
 
 
 
+### 4、箭头函数this
+
+<img src="ES6.assets/image-20230808174944730.png" alt="image-20230808174944730" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230808175640355.png" alt="image-20230808175640355" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230808175813489.png" alt="image-20230808175813489" style="zoom:67%;float:left" />
+
+```js
+// 以前this的指向：  谁调用的这个函数，this 就指向谁
+    console.log(this)  // window
+    // 普通函数
+    function fn() {
+      console.log(this)  // window
+    }
+    window.fn()
+    
+    // 对象方法里面的this
+    const obj = {
+      name: 'andy',
+      sayHi: function () {
+        console.log(this)  // obj
+      }
+    }
+    obj.sayHi()
+```
+
+```js
+// 2. 箭头函数的this：指向上一层作用域的this的指向
+    const fn = () => {
+      console.log(this) // window
+    }
+    fn()
+    // 对象方法箭头函数 this
+    const obj = {
+      uname: 'pink老师',
+      sayHi: () => {
+        console.log(this) // this 指向谁？ window
+      }
+    }
+    obj.sayHi()
+
+    const obj1 = {
+      uname: 'pink老师',
+      sayHi: function () {
+        console.log(this) // obj
+        let i = 10
+        const count = () => {
+          console.log(this) // obj 
+        }
+        count()
+      }
+    }
+    obj1.sayHi()
+```
+
+
+
+
+
+## 对象简写
+
+对象的**属性和属性值相同**（变量名和参数相同），可以简写。
+
+```javascript
+    mybtn.addEventListener('click', function () {
+      //获取输入值
+      let username = myusername.value;
+      let password = mypassword.value;
+      console.log(username, password);
+
+      const obj = {
+        // username:username, 
+        // password:password
+        //变量名和参数一样，可以简写，直接写变量名
+        username,
+        password
+      }
+      console.log('发给后端的结构', obj);
+    })
+```
+
+
+
 
 
 ## 解构赋值
@@ -1619,6 +1745,8 @@ console.log(obj.result);
 
 ### 解构对象`{}`
 
+<img src="ES6.assets/image-20230809173628811.png" alt="image-20230809173628811" style="zoom:67%;float:left" />
+
 - **快速**的从对象中**获取成员**
 
   ```javascript
@@ -1628,51 +1756,122 @@ console.log(obj.result);
     age: 18,
     gender: '男'
   }
-  
   let name = obj.name
   let age = obj.age
   let gender = obj.gender
+  
+  // const uname = 'red老师' // 解构的变量名不要和外面的变量名冲突
+  // 解构的语法
+  const { uname, age } = {age: 18, uname: 'pink老师' }
+  // 等价于 const uname =  obj.uname
+  // 要求属性名和变量名必须相同才可以
+  console.log(uname) // pink老师
+  console.log(age) // 18
   ```
+  
 
-  ```javascript
-  // 解构赋值的方式从对象中获取成员
-  const obj = {
-    name: 'Jack',
-    age: 18,
-    gender: '男'
-  }
-  
-  // 前面的 {} 表示我要从 obj 这个对象中获取成员了
-  // name age gender 都得是 obj 中有的成员
-  // obj 必须是一个对象
-  let { name, age:myage, gender } = obj   //age重命名了
-  
-  //解构复杂对象
-        var obj2 = {
-              name:'zyk',
-              age:100,
-              location:{
-                  province:'jiangxi',
-                  city:'leping'
-              },
-              hobby:[111,222,333]
-          }
-   
-          var{
-              name, 
-              age, 
-              location:{
-                  province,
-                  city
-              }, 
-              hobby:[u,v,w]
-          } = obj2;
-          console.log(name,age,province,city,u,v,w);
-  ```
+<img src="ES6.assets/image-20230809174624859.png" alt="image-20230809174624859" style="zoom:67%;float:left" />
+
+```js
+// 1. 对象解构的变量名 可以重新改名  旧变量名 : 新变量名
+    const { uname: username, age } = { uname: 'pink老师', age: 18 }
+    console.log(username) // pinl老师
+    console.log(age) // 18
+```
+
+<img src="ES6.assets/image-20230809175245699.png" alt="image-20230809175245699" style="zoom:67%;float:left" />
+
+```js
+// 2. 解构数组对象
+    const pig = [
+      {
+        uname: '佩奇',
+        age: 6
+      }
+    ]
+    const [{ uname, age }] = pig
+    console.log(uname) // 佩奇
+    console.log(age) // 6
+```
+
+<img src="ES6.assets/image-20230809175505535.png" alt="image-20230809175505535" style="zoom:67%;float:left" />
+
+```js
+const person = [{
+      name: '佩奇',
+      family: {
+        mother: '猪妈妈',
+        father: '猪爸爸',
+        sister: '乔治'
+      },
+      age: 6
+    }]
+    const [{
+      name,
+      family: {
+        mother,
+        father,
+        sister
+      }
+    }] = person
+    console.log(name)
+    console.log(mother)
+    console.log(father)
+    console.log(sister)
+```
+
+```html
+  <script>
+    // 解构赋值的方式从对象中获取成员
+    const obj = {
+      name: 'Jack',
+      age: 18,
+      gender: '男'
+    }
+
+    // 前面的 {} 表示我要从 obj 这个对象中获取成员了
+    // name age gender 都得是 obj 中有的成员
+    // obj 必须是一个对象
+    const {
+      name,
+      age: myage,
+      gender
+    } = obj // age重命名为myage
+    console.log(name, myage, gender) // Jack 18 男
+    // console.log(name, age, gender) // 报错，要用重命名后的名字
+
+
+    //解构复杂对象
+    const obj2 = {
+      name1: 'zyk',
+      age: 100,
+      location: {
+        province: 'jiangxi',
+        city: 'leping'
+      },
+      hobby: [111, 222, 333]
+    }
+
+    const {
+      name1,
+      age,
+      location: {
+        province,
+        city
+      },
+      hobby: [u, v, w]
+    } = obj2
+    console.log(name1, age, province, city, u, v, w) // zyk 100 jiangxi leping 111 222 333
+  </script>
+```
 
 
 
 ### 解构数组`[]`
+
+<img src="ES6.assets/image-20230809151951493.png" alt="image-20230809151951493" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230809163441157.png" alt="image-20230809163441157" style="zoom:67%;float:left" />
 
 - 快速的从数组中获取成员
 
@@ -1691,9 +1890,50 @@ console.log(obj.result);
   // 前面的 [] 表示要从 arr 这个数组中获取成员了
   // a b c 分别对应这数组中的索引 0 1 2
   // arr 必须是一个数组
-  let [a, b, c] = arr;
-  consloe.log(a,b,c);
+  let [a, b, c] = arr
+  consloe.log(a,b,c)
   ```
+
+```html
+  <script>
+    // const arr = [100, 60, 80]
+    // 之前
+    // const max = arr[0]
+    // const min = arr[1]
+    // const avg = arr[2]
+    // 数组解构 赋值  将数组元素批量赋值给一系列变量
+    // const [max, min, avg] = arr
+    const [max, min, avg] = [100, 60, 80]
+    console.log(max) // 100
+    console.log(avg) // 80
+    
+    // 交换2个变量的值
+    let a = 1
+    let b = 2; // 这个分号一定要加
+    [b, a] = [a, b]
+    console.log(a, b) // 2 1
+  </script>
+```
+
+<img src="ES6.assets/image-20230809165954081.png" alt="image-20230809165954081" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230809170101592.png" alt="image-20230809170101592" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230809170258097.png" alt="image-20230809170258097" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230809170720183.png" alt="image-20230809170720183" style="zoom:67%;float:left" />
+
+```js
+// 4. 防止 undefined 传递
+    // const [a = 0, b = 0] = [1, 2]
+    const [a = 0, b = 0] = []
+    console.log(a) // 1  0
+    console.log(b) // 2  0
+```
+
+<img src="ES6.assets/image-20230809171334956.png" alt="image-20230809171334956" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230809172045887.png" alt="image-20230809172045887" style="zoom:67%;float:left" />
 
 **注意**：
 
@@ -1701,30 +1941,28 @@ console.log(obj.result);
 - `[]` 是专门**解构数组**使用的
 - **不能混用**
 
+**必须加分号`;`的情况**：
 
+<img src="ES6.assets/image-20230809164952961.png" alt="image-20230809164952961" style="zoom:67%;float:left" />
 
-
-
-## 对象简写
-
-对象的属性和属性值相同（变量名和参数相同），可以简写。
-
-```javascript
-    mybtn.addEventListener('click', function () {
-      //获取输入值
-      let username = myusername.value;
-      let password = mypassword.value;
-      console.log(username, password);
-
-      const obj = {
-        // username:username, 
-        // password:password
-        //变量名和参数一样，可以简写，直接写变量名
-        username,
-        password
-      }
-      console.log('发给后端的结构', obj);
+```html
+  <script>
+    // 1. 立即执行函数要加
+    // (function () { })();
+    // (function () { }());
+    // 2. 使用数组的时候
+    // const arr = [1, 2, 3]
+    const str = 'pink';
+    [1, 2, 3].map(function (item) {
+      console.log(item)
     })
+
+    let a = 1
+    let b = 2;
+    [b, a] = [a, b]
+
+    console.log(a, b)
+  </script>
 ```
 
 
