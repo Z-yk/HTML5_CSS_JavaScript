@@ -7343,7 +7343,7 @@ transition:all 3s(1s=1000ms) linear 0s;
 
 <img src="note1.assets/image-20230612160148347.png" alt="image-20230612160148347" style="zoom:67%;float:left" />
 
-**将元素向指定的方向移动**，类似于position中的相对定位`relative`
+**将元素向指定的方向移动**，类似于position中的**相对定位`relative`**
 
 两种写法：
 

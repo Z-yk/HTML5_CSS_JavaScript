@@ -10,21 +10,39 @@
 
 <body>
   <script>
-    // arr.reduce(function(累计值, 当前元素){}, 起始值)
-    // arr.reduce(function (prev, item) {
-    //   // console.log(11)
-    //   // console.log(prev)
-    //   return prev + item
-    // }, 0)
-    // arr.reduce(function (prev, item) {
-    //   console.log(11)
-    //   // console.log(prev)
-    //   return prev + item
-    // })
+    // 数组reduce方法
+    // arr.reduce(function(上一次值, 当前元素){}, 初始值)
+    const arr = [1, 5, 8]
 
-    const arr = [1, 2, 3]
-    const re = arr.reduce((prev, item) => prev + item)
-    console.log(re)
+    // 1. 没有初始值
+    const total = arr.reduce(function (prev, current) {
+      return prev + current
+    })
+    console.log(total) // 14  1+5+8
+
+    // 执行过程：
+    // 上一次值      当前值      返回值    （第一次循环）
+    //   1=第一个元素   5          6
+    // 上一次值      当前值      返回值    （第二次循环）
+    //    6            8          14
+
+
+
+    // 2. 有初始值
+    const total1 = arr.reduce(function (prev, current) {
+      return prev + current
+    }, 10)
+    console.log(total1) // 24  10 + 1+5+8
+    // 箭头函数写法
+    console.log(arr.reduce((prev, current) => prev + current, 10)) // 24
+
+    // 执行过程：
+    // 上一次值      当前值      返回值    （第一次循环）
+    //   10=起始值     1          11
+    // 上一次值      当前值      返回值    （第二次循环）
+    //   11            5          16
+    // 上一次值      当前值      返回值    （第三次循环）
+    //   16            8          24
   </script>
 </body>
 

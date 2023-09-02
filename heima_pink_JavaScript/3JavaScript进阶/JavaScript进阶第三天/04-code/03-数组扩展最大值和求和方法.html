@@ -26,17 +26,17 @@
       return Math.min(...this)
       // 原型函数里面的this 指向谁？ 实例对象 arr
     }
-    console.log(arr.max())
-    console.log([2, 5, 9].max())
-    console.log(arr.min())
+    console.log(arr.max()) // 3
+    console.log([2, 5, 9].max()) // 9
+    console.log(arr.min()) // 1 
     // const arr = new Array(1, 2)
     // console.log(arr)
     // 3. 求和 方法 
     Array.prototype.sum = function () {
       return this.reduce((prev, item) => prev + item, 0)
     }
-    console.log([1, 2, 3].sum())
-    console.log([11, 21, 31].sum())
+    console.log([1, 2, 3].sum()) // 6
+    console.log([11, 21, 31].sum()) // 63
   </script>
 </body>
 

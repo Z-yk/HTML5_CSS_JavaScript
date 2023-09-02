@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 先创建一个工厂函数
+    function createObj() {
+      // 手动创建一个对象
+      var obj = new Object()
+      // 手动的向对象中添加成员
+      obj.name = 'Jack'
+      obj.age = 18
+      obj.gender = '男'
+      // 手动返回一个对象
+      return obj;
+    }
+
+    // 2. 调用这个工厂函数创建对象
+    var o1 = createObj()
+    var o2 = createObj()
+    console.log(o1)
+    console.log(o2)
+    console.log(o1 === o2) // false 虽然两个对象的值一样
+  </script>
+</body>
+
+</html>

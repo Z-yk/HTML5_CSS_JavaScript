@@ -25,6 +25,7 @@
       width: 240px;
       margin-left: 10px;
       padding: 20px 30px;
+      /* 过渡 */
       transition: all .5s;
       margin-bottom: 20px;
     }
@@ -35,7 +36,8 @@
 
     .item:hover {
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-      transform: translate3d(0, -4px, 0);
+      /* 变形：3d平移，y轴负值向上平移 */
+      transform: translate3d(0, -4px, 0); 
       cursor: pointer;
     }
 
@@ -136,7 +138,7 @@
       </div>
       `
     })
-    // 3.生成的 字符串 添加给 list 
+    // 3.生成的 字符串 添加给 list  innerHTML可以解析标签
     document.querySelector('.list').innerHTML = str
   </script>
 </body>

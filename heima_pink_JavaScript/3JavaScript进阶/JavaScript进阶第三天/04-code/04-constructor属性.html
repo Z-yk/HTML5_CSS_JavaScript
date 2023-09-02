@@ -12,17 +12,18 @@
   <script>
     // constructor  单词 构造函数
 
+    function Star() {}
+    // 这样给构造函数的原型上加方法 比较麻烦
     // Star.prototype.sing = function () {
     //   console.log('唱歌')
     // }
     // Star.prototype.dance = function () {
     //   console.log('跳舞')
     // }
-    function Star() {
-    }
-    // console.log(Star.prototype)
+    console.log(Star.prototype) // 返回一个对象，里面有原型上的一些方法和属性constructor
+    // 写成对象的形式，但是会覆盖掉原先的值
     Star.prototype = {
-      // 从新指回创造这个原型对象的 构造函数
+      // 添加constructor属性，从新指回创造这个原型对象的 构造函数
       constructor: Star,
       sing: function () {
         console.log('唱歌')
@@ -32,10 +33,9 @@
       },
     }
     console.log(Star.prototype)
-    // console.log(Star.prototype.constructor)
-
-    // const ldh = new Star()
-    // console.log(Star.prototype.constructor === Star)
+    console.log(Star.prototype.constructor) // Star
+    const ldh = new Star()
+    console.log(Star.prototype.constructor === Star) // true
   </script>
 </body>
 

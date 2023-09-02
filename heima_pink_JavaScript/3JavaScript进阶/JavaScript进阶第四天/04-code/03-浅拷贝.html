@@ -11,24 +11,24 @@
 <body>
   <script>
     const obj = {
-      uname: 'pink',
+      name: 'pink',
       age: 18,
       family: {
-        baby: '小pink'
+        baby: '小pink' // 第二层
       }
     }
-    // 浅拷贝
-    // const o = { ...obj }
+    // （1）展开对象的方式
+    // const o = { ...obj } // 展开对象
+    // o.family.baby = '老pink'
     // console.log(o)
-    // o.age = 20
-    // console.log(o)
-    // console.log(obj)
+    // console.log(obj) // 这里的family里的baby也改变了
+
+    // （2）Object.assign(obj1,obj2)
     const o = {}
-    Object.assign(o, obj)
-    o.age = 20
+    Object.assign(o, obj) // 将obj 拷贝（合并）给o
     o.family.baby = '老pink'
     console.log(o)
-    console.log(obj)
+    console.log(obj) // 这里的family里的baby也改变了
   </script>
 </body>
 

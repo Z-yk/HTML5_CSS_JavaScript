@@ -97,8 +97,7 @@
   </div>
   <script>
     // 2. 初始化数据
-    const goodsList = [
-      {
+    const goodsList = [{
         id: '4001172',
         name: '称心如意手摇咖啡磨豆机咖啡豆研磨机',
         price: '289.00',
@@ -157,7 +156,7 @@
         // 解构
         const { name, picture, price } = item
         str += `
-         <div class="item">
+        <div class="item">
           <img src=${picture} alt="">
           <p class="name">${name}</p>
           <p class="price">${price}</p>
@@ -167,15 +166,17 @@
       // 追加给list 
       document.querySelector('.list').innerHTML = str
     }
-    render(goodsList)  // 页面一打开就需要渲染
+    render(goodsList) // 页面一打开就需要渲染
 
     // 2. 过滤筛选  
+    // 事件委托，点击子元素，通过事件冒泡，触发父级以上的同名事件，来影响其子元素
     document.querySelector('.filter').addEventListener('click', e => {
-      // e.target.dataset.index   e.target.tagName
+      // console.log(e.target)
+      // e.target返回触发事件的对象（DOM元素） 
+      // DOM元素的属性：dataset（自定义属性data-）和标签名tagName   e.target.dataset.index   e.target.tagName
       const { tagName, dataset } = e.target
       // 判断 
       if (tagName === 'A') {
-        // console.log(11) 
         // arr 返回的新数组
         let arr = goodsList
         if (dataset.index === '1') {

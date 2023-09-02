@@ -26,18 +26,23 @@
     // console.log(father)
     // console.log(sister)
 
-    const person = [
-      {
-        name: '佩奇',
-        family: {
-          mother: '猪妈妈',
-          father: '猪爸爸',
-          sister: '乔治'
-        },
-        age: 6
+    const person = [{
+      name: '佩奇',
+      family: {
+        mother: '猪妈妈',
+        father: '猪爸爸',
+        sister: '乔治'
+      },
+      age: 6
+    }]
+    const [{
+      name,
+      family: {
+        mother,
+        father,
+        sister
       }
-    ]
-    const [{ name, family: { mother, father, sister } }] = person
+    }] = person
     console.log(name)
     console.log(mother)
     console.log(father)

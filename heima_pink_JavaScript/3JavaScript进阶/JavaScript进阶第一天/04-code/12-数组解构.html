@@ -12,18 +12,20 @@
   <script>
     // const arr = [100, 60, 80]
     // 数组解构 赋值
-    // // const [max, min, avg] = arr
+    // const [max, min, avg] = arr
+    // 等价于
+    // const max = arr[0]
+    // const min = arr[1]
+    // const avg = arr[2]
+    // 将数组元素批量赋值给一系列变量
     const [max, min, avg] = [100, 60, 80]
-    // // const max = arr[0]
-    // // const min = arr[1]
-    // // const avg = arr[2]
     console.log(max) // 100
     console.log(avg) // 80
     // 交换2个变量的值
     let a = 1
     let b = 2;
     [b, a] = [a, b]
-    console.log(a, b)
+    console.log(a, b) // 2 1
   </script>
 </body>
 

@@ -779,6 +779,134 @@
 
 
 
+## ES6新增原始类型Symbol
+
+ES5中包含5种原始类型：字符串、数字、布尔值、null和undefined。ES6引入了**第6种原始类型——Symbol**
+
+引入原因：ES5 中**对象的属性名**都是**字符串**，这**容易造成属性名的冲突**。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，**保证每个属性的名字都是独一无二的**就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因。
+
+**Symbol 值**通过**`Symbol()`函数**生成。此时，对象的属性名现在可以有两种类型：一种是原来就有的字符串，另一种就是新增的 Symbol 类型。**凡是<span style="color:red">属性名属于 Symbol 类型，就都是独一无二的</span>**，可以**保证不会与其他属性名产生冲突**。
+
+```js
+let s = Symbol()
+console.log(typeof s) // symbol
+```
+
+### 1、Symbol类型的特性
+
+**（1）不可使用new操作符**
+
+注意，Symbol函数前**不能使用new命令，否则会报错**。这是因为生成的 Symbol 是**一个原始类型的值**，不是对象。也就是说，由于**Symbol 值不是对象，所以不能添加属性**。基本上，它是一种类似于字符串的数据类型。
+
+**（2）接收不同参数的情况**
+
+**Symbol函数的参数**就是**<span style="color:red;">对 Symbol 实例的描述</span>**，为了控制台显示，用于**区分**各个Symbol 实例。
+
++ Symbol函数可以接受一个**字符串**作为参数，表示**对 Symbol 实例的描述**，主要是为了在控制台显示，或者转为字符串时，比较容易**区分**。
+
+  ```js
+  let s1 = Symbol('foo');
+  let s2 = Symbol('bar');
+  console.log(s1)// Symbol(foo)
+  console.log(s2)// Symbol(bar)
+  
+  s1.toString() // "Symbol(foo)"
+  s2.toString() // "Symbol(bar)"
+  
+  //上面代码中，s1和s2是两个 Symbol 值。如果不加参数，它们在控制台的输出都是Symbol()，不利于区分。有了参数以后，就等于为它们加上了描述，输出的时候就能够分清，到底是哪一个值。
+  ```
+
++ 如果 Symbol 的**参数是一个对象，就会调用该对象的`toString`方法**，**将其转为字符串**，然后才生成一个 Symbol 值。
+
+  ```js
+  const obj = {
+    toString() {
+      return 'abc';
+    }
+  };
+  const sym = Symbol(obj);
+  sym // Symbol(abc)
+  ```
+
+注意，**Symbol函数的参数**只是表示**对当前 Symbol 值的描述**，因此即使是相同参数的Symbol函数（描述相同），其**返回值是不相等的**。因D:\zhangyongkang\Web front-end\TypeScript\TypeScript-资料\day-01\codes\05-原始类型.ts为每个Symbol实例都是独一无二的（尽管他们有着相同的描述）。
+
+```js
+// 没有参数的情况
+let s1 = Symbol();
+let s2 = Symbol();
+s1 === s2 // false
+
+// 有参数的情况
+let s1 = Symbol('foo');
+let s2 = Symbol('foo');
+s1 === s2 // false
+
+// 上面代码中，s1和s2都是Symbol函数的返回值，而且参数相同，但是它们是不相等的。
+```
+
+**（3）不能直接参与与其他类型的值的运算**
+
+Symbol 值不能与其他类型的值进行运算，会报错
+
+```js
+let sym = Symbol('My symbol');
+
+"your symbol is " + sym
+// TypeError: can't convert symbol to string
+`your symbol is ${sym}`
+// TypeError: can't convert symbol to string
+```
+
+但是，Symbol 值可以显式转换字符串，Symbol 值不会被自动转换为字符串，需要调用 **`toString`** 方法或**`String()`**或使用**模板字符串**来进行转换。
+
+```js
+let sym = Symbol('My symbol');
+
+String(sym) // 'Symbol(My symbol)'
+sym.toString() // 'Symbol(My symbol)'
+
+let symbol = Symbol("mySymbol");
+console.log(`The symbol is ${symbol}`);  // "The symbol is Symbol(mySymbol)"
+```
+
+另外，Symbol 值也可以转为布尔值，利用**`Boolean(转换的内容)`**，但是**不能转为数值**。
+
+```js
+let sym = Symbol();
+Boolean(sym) // true
+!sym  // false
+
+if (sym) {
+  // ...
+}
+
+Number(sym) // TypeError
+sym + 2 // TypeError
+```
+
+
+
+### 2、Symbol值作为对象的属性名（键）
+
+Symbol 值可以用作对象属性的键，它们可以**确保属性名的唯一性**。例如：
+
+```js
+let mySymbol = Symbol("mySymbol");
+
+// 第一种写法
+let a = {};
+a[mySymbol] = 'Hello!';
+
+// 第二种写法
+let a = {
+  [mySymbol]: 'Hello!'
+};
+```
+
+
+
+
+
 ## 作用域
 
 <img src="ES6.assets/image-20230803115822081.png" alt="image-20230803115822081" style="zoom:67%;float:left" />
@@ -961,424 +1089,6 @@ JS的作用域**在es6之前**，只有 **全局作用域** 和 **函数作用�
 
 
 
-## 深浅拷贝
-
-<img src="ES6.assets/107.png" style="zoom:90%;" />
-
-### 浅拷贝
-
-<img src="ES6.assets/108.png" style="zoom:90%;" />
-
-<img src="ES6.assets/109.png" style="zoom:90%;" />
-
-```js
-<script>
-    const obj = {
-      name:'pink',
-      age:18
-    }
-    // 第一种：展开对象的方式
-   /*  const o = {...obj} //展开对象
-    console.log(o); //{name: 'pink', age: 18}
-    o.age = 20
-    console.log(o); //{name: 'pink', age: 20}
-    console.log(obj); //{name: 'pink', age: 18} */
-    // 第二种：Object.assgin()
-    const o = {}
-    Object.assign(o,obj)
-    console.log(o); //{name: 'pink', age: 18}
-    o.age = 20
-    console.log(o); //{name: 'pink', age: 20}
-    console.log(obj); //{name: 'pink', age: 18}
-</script>
-
-问题：
-<script>
-    // 浅拷贝：拷贝的是地址，对象里的简单数据类型拷贝值，但是如果是引用类型（对象、数组），也只是拷贝其地址。只拷贝第一层，多层就不行了
-    const obj = {
-      name:'pink',
-      age:18,
-      family:{
-        baby:'小pink'
-      }
-    }
-    const o = {}
-    Object.assign(o,obj)
-    o.family.baby = '老pink'
-    console.log(o); 
-    console.log(obj); // 这里的family里的baby也改变了
-</script>
-```
-
-
-
-### 深拷贝
-
-![](ES6.assets/110.png)
-
-#### 递归函数实现
-
-**递归函数**
-
-<img src="ES6.assets/111.png" style="zoom:90%;" />
-
-```js
-<script>
-    let i =1
-    function fn() {
-      console.log(`这是第${i}次`);
-      if(i >= 6){
-        return
-      }
-      i++
-      fn()
-    }
-    fn() // 调用
-</script>
-```
-
-函数递归：利用递归函数实现 **setTimeout 模拟 setInterval 效果**
-
-```js
-<script>
-    // 利用递归函数实现 setTimeout 模拟 setInterval 效果
-    function getTime() {
-      document.querySelector('div').innerHTML = new Date().toLocaleString()
-      setTimeout(getTime,1000)
-    }
-    getTime()
-    
-    /* setInterval(getTime,1000) */
-</script>
-```
-
-实现深拷贝
-
-```js
-<script>
-    const obj = {
-      uname: 'pink',
-      age: 18,
-      hobby: ['乒乓球', '足球'],
-      family: {
-        baby: '小pink'
-      }
-    }
-    const o = {}
-    // 拷贝函数
-    function deepCopy(newObj, oldObj) {
-      for (var k in oldObj) {
-        // 处理数组的问题
-        if (oldObj[k] instanceof Array) {
-          newObj[k] = []
-          // newObj[k] 接收 []
-          // oldObj[k] ['乒乓球','足球']
-          deepCopy(newObj[k], oldObj[k])
-        } else if (oldObj[k] instanceof Object) {
-          newObj[k] = {}
-          deepCopy(newObj[k], oldObj[k])
-        } else {
-          // k--属性名   oldObj[k]--属性值
-          // newObj[k] = newObj['uname'] = o.uname
-          newObj[k] = oldObj[k]
-        }
-      }
-    }
-    deepCopy(o, obj) // 函数调用  两个参数 o新对象  obj旧对象
-    console.log(o);
-    o.age = 20
-    o.hobby[0] = '篮球'
-    o.family.baby = '老pink'
-    console.log(obj);
-</script>
-```
-
-面试回答利用递归函数实现深拷贝：深拷贝实现的是新对象的修改不会影响旧对象，当遇到普通拷贝的时候，直接赋值即可，但是如果遇到数组，递归调用函数，实现赋值。遇到对象，也是递归调用函数。注意：要先处理数组，在处理对象。
-
-
-
-#### js库lodash里面cloneDeep
-
-`_.cloneDeep(value)`：这个方法类似[`_.clone`](https://www.lodashjs.com/docs/lodash.cloneDeep#clone)，除了它会**递归拷贝 `value`。**（注：也叫**深拷贝**）。
-
-```js
-var objects = [{ 'a': 1 }, { 'b': 2 }];
- 
-var deep = _.cloneDeep(objects);
-console.log(deep[0] === objects[0]);
-// => false
-```
-
-```js
-<!-- 引入在线的lodash -->
-  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.min.js"></script>
-  <script>
-    const obj = {
-      uname: 'pink',
-      age: 18,
-      hobby: ['乒乓球', '足球'],
-      family: {
-        baby: '小pink'
-      }
-    }
-    // 语法：_.cloneDeep(要被克隆的对象)
-    const o = _.cloneDeep(obj)
-    console.log(o);
-    o.age = 20
-    o.hobby[0] = '篮球'
-    o.family.baby = '老pink'
-    console.log(obj);
-</script>
-```
-
-
-
-
-
-#### JSON.stringify( )实现
-
-JSON 对象包含两个方法：
-
-1. 用于**解析成 JSON 对象**的 `parse()`；
-2. 用于**将对象转换为 JSON 字符串方法**的 `stringify()`。
-
-+ **`JSON.stringify()`** 方法将一个 **JavaScript 对象或值**转换为 **JSON 字符串**，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。
-
-```js
-console.log(JSON.stringify({ x: 5, y: 6 }));
-// Expected output: "{"x":5,"y":6}"
-
-console.log(JSON.stringify([new Number(3), new String('false'), new Boolean(false)]));
-// Expected output: "[3,"false",false]"
-
-console.log(JSON.stringify({ x: [10, undefined, function(){}, Symbol('')] }));
-// Expected output: "{"x":[10,null,null,null]}"
-
-console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
-// Expected output: ""2006-01-02T15:04:05.000Z""
-```
-
-+ **`JSON.parse()`** 方法用来**解析 JSON 字符串**，**构造由字符串描述的 JavaScript 值或对象**。提供可选的 **reviver** 函数用以在返回之前对所得到的对象执行变换 (操作)。
-
-```js
-const json = '{"result":true, "count":42}';
-const obj = JSON.parse(json);
-
-console.log(obj.count);
-// Expected output: 42
-
-console.log(obj.result);
-// Expected output: true
-```
-
-使用上面两个方法实现深拷贝
-
-```js
-<script>
-    const obj = {
-      uname: 'pink',
-      age: 18,
-      hobby: ['乒乓球', '足球'],
-      family: {
-        baby: '小pink'
-      }
-    }
-    // 把 对象 转换成 JSON字符串
-    // console.log(JSON.stringify(obj)); //{"uname":"pink","age":18,"hobby":["乒乓球","足球"],"family":{"baby":"小pink"}}
-    // 先将对象转换为 JSON字符串，这样就成了简单数据类型
-    const o = JSON.parse(JSON.stringify(obj))
-    console.log(o);
-    o.age = 20
-    o.hobby[0] = '篮球'
-    o.family.baby = '老pink'
-    console.log(obj);
-</script>
-```
-
-
-
-
-
-## 异常处理
-
-+ throw抛异常
-+ try / catch 捕获异常
-+ debugger
-
-了解JavaScript中程序异常处理的方法，提升代码运行的健壮性。
-
-### throw 抛异常
-
-![](ES6.assets/112.png)
-
-```js
-<script>
-    function fn(x,y) {
-      if(!x || !y) {
-        // throw '没有传递参数进来'
-        throw new Error('没有传递参数进来') //抛出异常信息，程序会终止
-      }
-      return x + y;
-    }
-    console.log(fn()); //没有传递参数，默认undefined（只声明，不赋值）任何类型+undefined = NaN
-</script>
-```
-
-
-
-### try / catch 捕获异常
-
-![](ES6.assets/113.png)
-
-```html
-<p>123</p>
-  <script>
-    function fn() {
-      try {
-        // 可能发生错误的代码，要写到 try 里面
-        const p = document.querySelector('.p')
-        p.style.color = 'red'
-      } catch(err) {
-        // 拦截错误，提示浏览器提供的错误信息，但是不中断程序的执行
-        console.log(err.message); // message属性
-        // 抛出异常，中断程序
-        throw new Error('选择器错误') 
-        // 需要加return，中断程序
-        // return 
-      }
-      finally {
-        // 不管程序有没有错误，最终都会执行finally里的代码
-        alert('弹出对话框')
-      }
-      
-      console.log('没被中断');
-    }
-    
-    fn() // 调用
-  </script>
-```
-
-
-
-### debugger
-
-相当于打断点，程序代码太长，可以用。
-
-
-
-
-
-## 卡顿现象-引入防抖与节流
-
-正常情况（用户慢慢操作）：鼠标进入每一个一级分类h3，都会触发鼠标进入事件
-
-非正常情况（用户操作很快）：本身全部的一级分类都应该触发鼠标进入事件，但是经过测试，只有部分h3触发了
-
-就是由于用户行为过快，导致浏览器反应不过来。如果当前回调函数中有大量业务，有可能出现卡顿现象
-
-
-
-### 函数的防抖debounce
-
-<img src="ES6.assets/144.png" style="zoom:80%;" />
-
-防抖：前面的所有的触发都被取消，**最后一次执行，在规定的时间之后**才会触发，也就是说**如果连续快速的触发，只会执行一次**
-
-**lodash插件**：里面封装函数的防抖与节流的业务【闭包+延时器】
-
-(https://www.lodashjs.com/)  
-
-`_.debounce(func, [wait=0], [options=])`：创建一个 debounced（防抖动）函数，该函数会**从上一次被调用后，延迟 `wait` 毫秒后调用 `func` 方法**。
-
-1. `func` *(Function)*: 要**防抖动的函数**。
-2. `[wait=0]` *(number)*: 需要**延迟的毫秒数**。
-3. `[options=]` *(Object)*: 选项对象。
-4. `[options.leading=false]` *(boolean)*: 指定在延迟开始前调用。
-5. `[options.maxWait]` *(number)*: 设置 `func` 允许被延迟的最大值。
-6. `[options.trailing=true]` *(boolean)*: 指定在延迟结束后调用。
-
-```js
-// 防抖：前面的所有的触发都被取消，最后一次执行在规定的时间之后才会触发，也就是说如果连续快速的触发，只会执行一次
-  let input = document.querySelector('input');
-  // 文本发生变化  input事件：当input的value值发生变化时就会触发
-  input.oninput = _.debounce(function() {
-    console.log('ajax发请求');
-  },1000)
-  // lodash插件：里面封装函数的防抖与节流的业务【闭包+延时器】
-```
-
-
-
-### 函数的节流throttle
-
-<img src="ES6.assets/145.png" style="zoom:80%;" />
-
-节流：在**规定的间隔时间范围内不会重复触发回调**，只有**大于这个时间间隔才会触发回调**，把**频繁触发变为少量触发**
-
-`_.throttle(func, [wait=0], [options=])`：创建一个节流函数，**在 wait 秒内最多执行 `func` 一次的函数**。
-
-1. `func` *(Function)*: 要**节流的函数**。
-2. `[wait=0]` *(number)*: 需要**节流的毫秒**。
-3. `[options=]` *(Object)*: 选项对象。
-4. `[options.leading=true]` *(boolean)*: 指定调用在节流开始前。
-5. `[options.trailing=true]` *(boolean)*: 指定调用在节流结束后。
-
-```js
-// 计数器：在一秒之内，只能执行一次  （轮播图点击会用上）
-  btn.onclick = _.throttle(function() {
-    // 节流：目前这个回调函数1s执行一次
-    // 假如这里面有很多的业务代码，是不是可以给浏览器充裕的时间去解析
-    count++;
-    span.innerHTML = count;
-    console.log('执行');
-  },1000)
-```
-
-```html
-  <script>
-    // 1. 发送短信验证码模块
-    const code = document.querySelector('.code')
-    // 1.1 点击事件
-    code.addEventListener('click',_.throttle(function() {
-      let i = 5
-      // 点击后立马先显示信息，不需要一秒钟后
-      code.innerHTML = `0${i}秒后重新获取` 
-      let timerId = setInterval(function() {
-        i--
-        code.innerHTML = `0${i}秒后重新获取`
-        if(i === 0) {
-          clearInterval(timerId)
-          code.innerHTML = '重新获取'
-        }
-      },1000)
-    },5000,{leading:true, trailing:false}))
-  </script>
-```
-
-小结：
-
-防抖：用户操作很频繁，但是**只是执行一次**
-
-节流：用户操作很频繁，但是**把频繁的操作变为少量操作**，可以给浏览器充裕的时间去解析
-
-```js
-<script>
-    // 需求：鼠标在盒子上移动，里面的数字就会有变化
-    let box = document.querySelector('.box')
-    let count = 1
-    function mouseMove() {
-      box.innerHTML = count++
-      // 如果里面存在大量消耗性能的代码
-    }
-    // box.addEventListener('mousemove',_.debounce(mouseMove,500))
-    box.addEventListener('mousemove',_.throttle(mouseMove,500))
-</script>
-```
-
-
-
-
-
 ## 箭头函数
 
 <img src="ES6.assets/image-20230805114730137.png" alt="image-20230805114730137" style="zoom:67%;float:left" />
@@ -1389,15 +1099,15 @@ console.log(obj.result);
 
 第一种：<span style="color:red">**声明式（常见的）**</span>
 
-声明：**`function 函数名(...) {函数体}`**
+声明：**`function 函数名(...) { 函数体 }`**
 
-调用：**函数名(...)**;
+调用：**`函数名(...)`**;
 
 第二种：<span style="color:red">**函数表达式**</span>
 
 声明：**`let 变量名 = function(...) { 函数体 }`**
 
-调用：**变量名(...)**;
+调用：**`变量名(...)`**;
 
 - 箭头函数是 ES6 里面一个**简写函数的语法方式**
 
@@ -1463,7 +1173,7 @@ console.log(obj.result);
 
 ### 2、箭头函数的特殊性
 
-- 箭头函数内部**没有 this**，箭头函数的this指向的是**从自己的作用域链的上一层沿用this（即：指向上一层作用域的this的指向）**
+- 箭头函数内部**没有 `this`**，箭头函数的this指向的是**从自己的作用域链的上一层沿用this（即：指向上一层作用域的this的指向）**
 
   ```javascript
       const obj1 = {
@@ -1479,8 +1189,8 @@ console.log(obj.result);
           obj1.fun()
   ```
 
-  - 按照我们之前的 this 指向来判断，两个都应该指向 obj
-  - 但是 fun 因为是箭头函数，所以 this 不指向 obj，而是**指向 fun 的外层**，就是 window
+  - 按照我们之前的 `this` 指向来判断，两个都应该指向 obj
+  - 但是 fun 因为是箭头函数，所以 `this` 不指向 obj，而是**指向 fun 的外层**，就是 window
 
 - 箭头函数内部**没有 `arguments` 这个实参集合**
 
@@ -1558,7 +1268,7 @@ console.log(obj.result);
     }
     fn2(1)
 
-    // 3. 只有一行代码的时候，我们可以省略大括号
+    // 3. 只有一行代码的时候，我们可以省略大括号{}
     const fn3 = x => console.log(x)
     fn3(1)
 
@@ -1681,17 +1391,21 @@ console.log(obj.result);
 ```js
 // 2. 箭头函数的this：指向上一层作用域的this的指向
     const fn = () => {
-      console.log(this) // window
+      console.log(this) // window  全局的变量、函数都是在window上
     }
     fn()
     // 对象方法箭头函数 this
     const obj = {
-      uname: 'pink老师',
-      sayHi: () => {
-        console.log(this) // this 指向谁？ window
+      username:'zyk',
+      sayHi: function () {
+        console.log(this) // obj
+      },
+      sayHello: () => {
+        console.log(this) // window  全局的变量、函数都是在window上
       }
     }
     obj.sayHi()
+    obj.sayHello() 
 
     const obj1 = {
       uname: 'pink老师',
@@ -1762,7 +1476,7 @@ console.log(obj.result);
   
   // const uname = 'red老师' // 解构的变量名不要和外面的变量名冲突
   // 解构的语法
-  const { uname, age } = {age: 18, uname: 'pink老师' }
+  const { uname, age } = {age: 18, uname: 'pink老师' } 
   // 等价于 const uname =  obj.uname
   // 要求属性名和变量名必须相同才可以
   console.log(uname) // pink老师
@@ -1775,7 +1489,7 @@ console.log(obj.result);
 ```js
 // 1. 对象解构的变量名 可以重新改名  旧变量名 : 新变量名
     const { uname: username, age } = { uname: 'pink老师', age: 18 }
-    console.log(username) // pinl老师
+    console.log(username) // pink老师
     console.log(age) // 18
 ```
 
@@ -1789,7 +1503,8 @@ console.log(obj.result);
         age: 6
       }
     ]
-    const [{ uname, age }] = pig
+    // const [{ uname, age }] = pig
+    const [{ age, uname }] = pig // 顺序不一样也可以，匹配变量名和对象的属性名or方法名相同的
     console.log(uname) // 佩奇
     console.log(age) // 6
 ```
@@ -1865,6 +1580,56 @@ const person = [{
   </script>
 ```
 
+**4、只解构需要的属性or方法**
+
+```html
+  <script>
+    // 1. 这是后台传递过来的数据
+    const msg = {
+      "code": 200,
+      "msg": "获取新闻列表成功",
+      "data": [{
+          "id": 1,
+          "title": "5G商用自己，三大运用商收入下降",
+          "count": 58
+        },
+        {
+          "id": 2,
+          "title": "国际媒体头条速览",
+          "count": 56
+        },
+        {
+          "id": 3,
+          "title": "乌克兰和俄罗斯持续冲突",
+          "count": 1669
+        }]
+    }
+
+    // 需求1： 请将以上msg对象  采用对象解构的方式 只选出 data 方便后面使用渲染页面
+    // const { data } = msg
+    // console.log(data)
+    // 需求2： 上面msg是后台传递过来的数据，我们需要把data选出当做参数传递给 函数
+    // const { data } = msg
+    // msg 虽然很多属性，但是我们利用解构只要data值
+    
+    function render({ data }) {
+      // const { data } = arr
+      // 我们只要 data 数据
+      // 内部处理
+      console.log(data)
+    }
+    render(msg) // 实参msg传递给形参{data}：{ data } = msg 只解构msg中的data
+
+    // 需求3， 为了防止msg里面的data名字混淆，要求渲染函数里面的数据名改为 myData
+    function render({ data: myData }) {
+      // 要求将 获取过来的 data数据 更名为 myData
+      // 内部处理
+      console.log(myData)
+    }
+    render(msg)
+  </script>
+```
+
 
 
 ### 解构数组`[]`
@@ -1891,7 +1656,7 @@ const person = [{
   // a b c 分别对应这数组中的索引 0 1 2
   // arr 必须是一个数组
   let [a, b, c] = arr
-  consloe.log(a,b,c)
+  consloe.log(a,b,c) // Jack Rose Tom
   ```
 
 ```html
@@ -1964,6 +1729,223 @@ const person = [{
     console.log(a, b)
   </script>
 ```
+
+
+
+案例：渲染商品列表案例
+
+<img src="ES6.assets/image-20230810104536812.png" alt="image-20230810104536812" style="zoom: 50%; float: left;" />
+
+<img src="ES6.assets/image-20230810104018742.png" alt="image-20230810104018742" style="zoom:67%;float:left" />
+
+```html
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .list {
+      width: 990px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 100px;
+    }
+
+    .item {
+      width: 240px;
+      margin-left: 10px;
+      padding: 20px 30px;
+      /* 过渡 */
+      transition: all .5s;
+      margin-bottom: 20px;
+    }
+
+    .item:nth-child(4n) {
+      margin-left: 0;
+    }
+
+    .item:hover {
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      /* 变形：3d平移，y轴负值向上平移 */
+      transform: translate3d(0, -4px, 0); 
+      cursor: pointer;
+    }
+
+    .item img {
+      width: 100%;
+    }
+
+    .item .name {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .item .price {
+      font-size: 22px;
+      color: firebrick;
+    }
+
+    .item .price::before {
+      content: "¥";
+      font-size: 14px;
+    }
+  </style>
+
+  <div class="list">
+    <!-- <div class="item">
+      <img src="" alt="">
+      <p class="name"></p>
+      <p class="price"></p>
+    </div> -->
+  </div>
+
+  <script>
+    const goodsList = [
+      {
+        id: '4001172',
+        name: '称心如意手摇咖啡磨豆机咖啡豆研磨机',
+        price: '289.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg',
+      },
+      {
+        id: '4001594',
+        name: '日式黑陶功夫茶组双侧把茶具礼盒装',
+        price: '288.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/3346b7b92f9563c7a7e24c7ead883f18.jpg',
+      },
+      {
+        id: '4001009',
+        name: '竹制干泡茶盘正方形沥水茶台品茶盘',
+        price: '109.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/2d942d6bc94f1e230763e1a5a3b379e1.png',
+      },
+      {
+        id: '4001874',
+        name: '古法温酒汝瓷酒具套装白酒杯莲花温酒器',
+        price: '488.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/44e51622800e4fceb6bee8e616da85fd.png',
+      },
+      {
+        id: '4001649',
+        name: '大师监制龙泉青瓷茶叶罐',
+        price: '139.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/4356c9fc150753775fe56b465314f1eb.png',
+      },
+      {
+        id: '3997185',
+        name: '与众不同的口感汝瓷白酒杯套组1壶4杯',
+        price: '108.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/8e21c794dfd3a4e8573273ddae50bce2.jpg',
+      },
+      {
+        id: '3997403',
+        name: '手工吹制更厚实白酒杯壶套装6壶6杯',
+        price: '99.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/af2371a65f60bce152a61fc22745ff3f.jpg',
+      },
+      {
+        id: '3998274',
+        name: '德国百年工艺高端水晶玻璃红酒杯2支装',
+        price: '139.00',
+        picture: 'https://yanxuan-item.nosdn.127.net/8896b897b3ec6639bbd1134d66b9715c.jpg',
+      },
+    ]
+
+    // 1. 声明一个字符串变量
+    let str = ''
+    // 2. 遍历数据 
+    goodsList.forEach(item => {
+      // console.log(item)  // 可以得到每一个数组元素  对象 {id: '4001172'}
+      // const {id} =  item  对象解构
+      const { name, price, picture } = item
+      str += `
+      <div class="item">
+        <img src=${picture} alt="">
+        <p class="name">${name}</p>
+        <p class="price">${price}</p>
+      </div>
+      `
+    })
+    // 3.生成的 字符串 添加给 list  innerHTML可以解析标签
+    document.querySelector('.list').innerHTML = str
+  </script>
+```
+
+升级：商品列表价格筛选
+
+<img src="ES6.assets/image-20230810142137973.png" alt="image-20230810142137973" style="zoom:67%;float:left" />
+
+在上面代码的基础上：
+
+```html
+<div class="filter">
+    <a data-index="1" href="javascript:;">0-100元</a>
+    <a data-index="2" href="javascript:;">100-300元</a>
+    <a data-index="3" href="javascript:;">300元以上</a>
+    <a href="javascript:;">全部区间</a>
+  </div>
+  <div class="list">
+    <!-- <div class="item">
+      <img src="" alt="">
+      <p class="name"></p>
+      <p class="price"></p>
+    </div> -->
+  </div>
+```
+
+```js
+    const goodList = [...]
+
+// 1. 渲染函数  封装
+    function render(arr) {
+      // 声明空字符串
+      let str = ''
+      // 遍历数组 
+      arr.forEach(item => {
+        // 解构
+        const { name, picture, price } = item
+        str += `
+        <div class="item">
+          <img src=${picture} alt="">
+          <p class="name">${name}</p>
+          <p class="price">${price}</p>
+        </div> 
+        `
+      })
+      // 追加给list 
+      document.querySelector('.list').innerHTML = str
+    }
+    render(goodsList) // 页面一打开就需要渲染
+
+    // 2. 过滤筛选  
+    // 事件委托，点击子元素，通过事件冒泡，触发父级以上的同名事件，来影响其子元素
+    document.querySelector('.filter').addEventListener('click', e => {
+      // console.log(e.target)
+      // e.target返回触发事件的对象（DOM元素） 
+      // DOM元素的属性：dataset（自定义属性data-）和标签名tagName   e.target.dataset.index   e.target.tagName
+      const { tagName, dataset } = e.target
+      // 判断 
+      if (tagName === 'A') {
+        // arr 返回的新数组
+        let arr = goodsList
+        if (dataset.index === '1') {
+          arr = goodsList.filter(item => item.price > 0 && item.price <= 100)
+        } else if (dataset.index === '2') {
+          arr = goodsList.filter(item => item.price >= 100 && item.price <= 300)
+        } else if (dataset.index === '3') {
+          arr = goodsList.filter(item => item.price >= 300)
+        }
+        // 渲染函数
+        render(arr)
+      }
+    })
+```
+
+<img src="ES6.assets/image-20230810142409881.png" alt="image-20230810142409881" style="zoom:50%;" />
 
 
 
@@ -2063,7 +2045,7 @@ ES6 里面号新添加了一个运算符 `...` ，叫做**展开运算符**，�
     test(1, 2, 3, 4, 5) 
     
     const lis = document.querySelectorAll('li')
-    // console.log(lis.filter); //获取过来的是四个li，伪数组形式存储，不能使用数组方法
+    // console.log(lis.filter); //获取过来的是四个li，伪数组形式存储，不能使用数组方法(filter)
     const lisarr = [...lis]
     console.log(lisarr.filter)
 ```
@@ -2102,39 +2084,653 @@ ES6 里面号新添加了一个运算符 `...` ，叫做**展开运算符**，�
     <div id="box"></div>
 ```
 
-```javascript
-    var obj = {
-            name:'ker',
-            age:100,
-            location:'jiangxi',
-            id:'2133515185564891'
-        }
-        //render()函数，将对象的属性显示在box里面
-        //解构对象:形参是{} = 实参obj
-        function render({name,age,location}){
-            //console.log(obj);
-            box.innerHTML = `name:${name}, age:${age}, location:${location}`
-        }
-        render(obj); 
-        
-        btn.onclick = function(){
-            //获取新输入的值
-            var name = myusername.value || obj.name
-            var age = myage.value || obj.age
-            var newobj = {//修改后新的对象
-                ...obj,
-                //新的name和age会覆盖原来的obj,对象简写，直接写变量名
-                name, //name=name age=age
-                age
-            }
-            console.log(newobj);
-            
-            //传给后端
-            
-            //重新渲染页面
-            render(newobj);
-        }
+```js
+    const obj = {
+      name: 'ker',
+      age: 100,
+      location: 'jiangxi',
+      id: '2133515185564891'
+    }
+    // render()函数，将对象的属性显示在box里面
+    // 解构对象：形参是{} = 实参obj
+    function render({
+      name,
+      age,
+      location
+    }) {
+      // console.log(obj)
+      box.innerHTML = `name:${name}, age:${age}, location:${location}`
+    }
+    render(obj)
+
+    btn.onclick = function () {
+      //获取新输入的值
+      const name = myusername.value || obj.name
+      const age = myage.value || obj.age
+      const newobj = { //修改后新的对象
+        ...obj,
+        //新的name和age会覆盖原来的obj,对象简写，直接写变量名
+        name, //name=name age=age
+        age
+      }
+      console.log(newobj)
+
+      //传给后端
+      //重新渲染页面
+      render(newobj);
+    }
 ```
+
+
+
+
+
+## 深浅拷贝
+
+复制一个对象，因为对象是引用类型，其实只是把在**栈中的堆地址复制**了，指向的还是同一个堆中的对象。
+
+<img src="ES6.assets/107.png" style="float:left;" />
+
+### 1）浅拷贝
+
+<img src="ES6.assets/image-20230831160045365.png" alt="image-20230831160045365" style="zoom:67%;float:left" />
+
+![image-20230831162548329](ES6.assets/image-20230831162548329.png)
+
+**<span style="color:red">浅拷贝</span>**：拷贝的是**地址**，对象里的**<span style="color:red">简单数据类型拷贝其值</span>**，但是如果是**<span style="color:red">引用类型（对象、数组），也只是拷贝其堆地址</span>**。
+
+```html
+<script>
+    const obj = {
+      name: 'pink',
+      age: 18
+    }
+    // （1）展开对象的方式
+    const o = { ...obj } 
+    console.log(o) // {name: 'pink', age: 18}
+    o.age = 20
+    console.log(o) // {name: 'pink', age: 20}
+    console.log(obj) // {name: 'pink', age: 18}
+
+    // （2）Object.assign(obj1,obj2)
+    const o = {}
+    Object.assign(o, obj) // 将obj 拷贝（合并）给o
+    console.log(o) // {name: 'pink', age: 18}
+    o.age = 20
+    console.log(o) // {name: 'pink', age: 20}
+    console.log(obj) // {name: 'pink', age: 18}
+</script>
+
+但是会出现问题：
+<script>
+  // 浅拷贝：拷贝的是地址，对象里的简单数据类型拷贝值，但是如果是引用类型（对象、数组），也只是拷贝其地址。只拷贝第一层，多层就不行了
+    const obj = {
+      name: 'pink',
+      age: 18,
+      family: {
+        baby: '小pink' // 第二层
+      }
+    }
+    // （1）展开对象的方式
+    const o = { ...obj } 
+    o.family.baby = '老pink'
+    console.log(o)
+    console.log(obj) // 这里的family里的baby也改变了
+
+    // （2）Object.assign(obj1,obj2)
+    const o = {}
+    Object.assign(o, obj) // 将obj 拷贝（合并）给o
+    o.family.baby = '老pink'
+    console.log(o)
+    console.log(obj) // 这里的family里的baby也改变了
+</script>
+```
+
+<img src="ES6.assets/image-20230831162453014.png" alt="image-20230831162453014" style="zoom:67%;" />
+
+
+
+### 2）深拷贝
+
+<img src="ES6.assets/image-20230831162859886.png" alt="image-20230831162859886" style="zoom:67%;float:left" />
+
+#### 递归函数实现
+
+<img src="ES6.assets/image-20230831164323766.png" alt="image-20230831164323766" style="zoom:67%;float:left" />
+
+```js
+    let i =1
+    function fn() {
+      console.log(`这是第${i}次`);
+      if(i >= 6){
+        return
+      }
+      i++
+      fn()
+    }
+    fn() // 调用
+```
+
+函数递归：利用递归函数实现 **setTimeout 模拟 setInterval 效果**
+
+```html
+<script>
+    // 利用递归函数实现 setTimeout 模拟 setInterval 效果
+    function getTime() {
+      document.querySelector('div').innerHTML = new Date().toLocaleString()
+      setTimeout(getTime,1000)
+    }
+    getTime()
+    
+    /* setInterval(getTime,1000) */
+</script>
+```
+
+实现深拷贝
+
+```html
+<script>
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      hobby: ['乒乓球', '足球'],
+      family: {
+        baby: '小pink'
+      }
+    }
+    const o = {}
+    // 拷贝函数
+    function deepCopy(newObj, oldObj) {
+      for (var k in oldObj) {
+        // 处理数组的问题
+        if (oldObj[k] instanceof Array) {
+          newObj[k] = []
+          // newObj[k] 接收 []
+          // oldObj[k] ['乒乓球','足球']
+          deepCopy(newObj[k], oldObj[k])
+        } else if (oldObj[k] instanceof Object) {
+          newObj[k] = {}
+          deepCopy(newObj[k], oldObj[k])
+        } else {
+          // k--属性名   oldObj[k]--属性值
+          // newObj[k] = newObj['uname'] = o.uname
+          newObj[k] = oldObj[k]
+        }
+      }
+    }
+    deepCopy(o, obj) // 函数调用  两个参数 o新对象  obj旧对象
+    console.log(o);
+    o.age = 20
+    o.hobby[0] = '篮球'
+    o.family.baby = '老pink'
+    console.log(obj);
+</script>
+```
+
+面试回答利用递归函数实现深拷贝：深拷贝实现的是新对象的修改不会影响旧对象，当遇到普通拷贝的时候，直接赋值即可，但是如果遇到数组，递归调用函数，实现赋值。遇到对象，也是递归调用函数。注意：要先处理数组，在处理对象。
+
+
+
+#### js库lodash里面`cloneDeep`
+
+<img src="ES6.assets/image-20230831165420348.png" alt="image-20230831165420348" style="zoom:67%;float:left" />
+
+`_.cloneDeep(value)`：这个方法类似[`_.clone`](https://www.lodashjs.com/docs/lodash.cloneDeep#clone)，除了它会**递归拷贝 `value`。**（注：也叫**深拷贝**）。
+
+```js
+    var objects = [{'a': 1}, {'b': 2}]
+
+    var deep = _.cloneDeep(objects)
+    console.log(deep) // [{'a': 1}, {'b': 2}]
+    console.log(deep[0] === objects[0]) // false
+```
+
+```html
+  <!-- 引入在线的lodash -->
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.min.js"></script>
+  <script>
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      hobby: ['乒乓球', '足球'],
+      family: {
+        baby: '小pink'
+      }
+    }
+    // 语法：_.cloneDeep(要被克隆的对象)
+    const o = _.cloneDeep(obj)
+    console.log(o) // 这里打印的就是下面修改的结果了？
+    o.age = 20
+    o.hobby[0] = '篮球'
+    o.family.baby = '老pink'
+    // console.log(o)
+    console.log(obj)
+  </script>
+```
+
+
+
+#### `JSON.stringify()`实现
+
+JSON 对象包含两个方法：
+
+1. 用于**解析成 JSON 对象**的 **`parse()`**
+2. 用于**将对象转换为 JSON 字符串方法**的 **`stringify()`**
+
++ **`JSON.stringify()`** 方法将一个 **JavaScript 对象或值**转换为 **JSON 字符串**，如果指定了一个 `replacer` 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。
+
+```js
+console.log(JSON.stringify({ x: 5, y: 6 }))
+// Expected output: "{"x":5,"y":6}"
+
+console.log(JSON.stringify([new Number(3), new String('false'), new Boolean(false)]))
+// Expected output: "[3,"false",false]"
+
+console.log(JSON.stringify({ x: [10, undefined, function(){}, Symbol('')] }))
+// Expected output: "{"x":[10,null,null,null]}"
+
+console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)))
+// Expected output: ""2006-01-02T15:04:05.000Z""
+```
+
++ **`JSON.parse()`** 方法用来**解析 JSON 字符串**，**构造由字符串描述的 JavaScript 值或对象**。提供可选的 **`reviver`** 函数用以在返回之前对所得到的对象执行变换 (操作)。
+
+```js
+const json = '{"result":true, "count":42}'
+const obj = JSON.parse(json)
+
+console.log(obj.count)
+// Expected output: 42
+
+console.log(obj.result)
+// Expected output: true
+```
+
+使用上面两个方法实现深拷贝：**<span style="color:red">`JSON.parse(JSON.stringify(obj))`</span>**
+
+```html
+  <script>
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      hobby: ['乒乓球', '足球'],
+      family: {
+        baby: '小pink'
+      }
+    }
+    // 把 对象 转换成 JSON字符串
+    console.log(JSON.stringify(obj))
+    //{"uname":"pink","age":18,"hobby":["乒乓球","足球"],"family":{"baby":"小pink"}}
+    // 先将 对象 转换成 JSON字符串，这样就成了简单数据类型
+    const o = JSON.parse(JSON.stringify(obj))
+    console.log(o)
+    o.age = 20
+    o.hobby[0] = '篮球'
+    o.family.baby = '老pink'
+    console.log(obj)
+  </script>
+```
+
+
+
+
+
+## 异常处理
+
++ `throw`抛异常
++ `try / catch` 捕获异常
++ `debugger`
+
+了解JavaScript中程序异常处理的方法，提升代码运行的健壮性。
+
+### 1、`throw`抛异常
+
+<img src="ES6.assets/image-20230901094508603.png" alt="image-20230901094508603" style="zoom:67%;float:left" />
+
+```js
+    function fn(x,y) {
+      if(!x || !y) {
+        // throw '没有传递参数进来'
+        throw new Error('没有传递参数进来') //抛出异常信息，程序会终止
+      }
+      return x + y
+    }
+    console.log(fn()) // 没有传递参数，默认undefined（只声明，不赋值）任何类型+undefined = NaN
+```
+
+![image-20230901094723600](ES6.assets/image-20230901094723600.png)
+
+
+
+### 2、`try / catch`捕获异常
+
+<img src="ES6.assets/image-20230901100613172.png" alt="image-20230901100613172" style="zoom:67%;float:left" />
+
+```html
+  <p>123</p>
+  <script>
+    function fn() {
+      try {
+        // 可能发生错误的代码，要写到 try 里面
+        const p = document.querySelector('.p') // 获取元素错误
+        p.style.color = 'red'
+      } catch (err) { // err保存了浏览器提供的信息
+        // 拦截错误，提示浏览器提供的错误信息，但是不中断程序的执行（如果没有错误，不执行catch(){}里的代码）
+        console.log(err.message) // message属性
+        // 抛出异常，中断程序
+        throw new Error('选择器错误')
+        // 需要加return，中断程序，这里可以结合throw抛异常
+        // return 
+      } finally {
+        // 不管程序有没有错误，最终都会执行finally里的代码
+        alert('弹出对话框')
+      }
+
+      console.log('没被中断')
+    }
+
+    fn() // 调用
+  </script>
+```
+
+
+
+### 3、`debugger`
+
+相当于打断点，程序代码太长，可以用。
+
+当执行代码时，刷新一下，断点就会出现在`debugger`的位置。
+
+<img src="ES6.assets/image-20230901101029116.png" alt="image-20230901101029116" style="zoom:67%;float:left" />
+
+
+
+
+
+## 防抖与节流
+
+正常情况（用户慢慢操作）：鼠标进入每一个一级分类h3，都会触发鼠标进入事件
+
+非正常情况（用户操作很快）：本身全部的一级分类都应该触发鼠标进入事件，但是经过测试，只有部分h3触发了
+
+就是由于用户行为过快，导致浏览器反应不过来。如果当前回调函数中有大量业务，有可能出现卡顿现象
+
+
+
+### 1）函数的防抖`debounce`
+
+<img src="ES6.assets/144.png" style="zoom:80%;" />
+
+防抖：前面的所有的触发都被取消，**最后一次执行，在规定的时间之后**才会触发，也就是说**如果连续快速的触发，只会执行一次**
+
+**lodash插件**：里面封装函数的防抖与节流的业务【闭包+延时器】
+
+(https://www.lodashjs.com/)  
+
+**`_.debounce(func, [wait=0], [options=])`**：创建一个 `debounced`（防抖动）函数，该函数会**从上一次被调用后，延迟 `wait` 毫秒后调用 `func` 方法**。
+
+1. `func` *(Function)*: 要**防抖动的函数**。
+2. `[wait=0]` *(number)*: 需要**延迟的毫秒数**。
+3. `[options=]` *(Object)*: 选项对象。
+4. `[options.leading=false]` *(boolean)*: 指定在延迟开始前调用。
+5. `[options.maxWait]` *(number)*: 设置 `func` 允许被延迟的最大值。
+6. `[options.trailing=true]` *(boolean)*: 指定在延迟结束后调用。
+
+**返回值**：返回新的 debounced（防抖动）函数。
+
+```js
+// 防抖：前面的所有的触发都被取消，最后一次执行在规定的时间之后才会触发，也就是说如果连续快速的触发，只会执行一次
+  let input = document.querySelector('input');
+  // 文本发生变化  input事件：当input的value值发生变化时就会触发
+  input.oninput = _.debounce(function() {
+    console.log('ajax发请求');
+  },1000)
+  // lodash插件：里面封装函数的防抖与节流的业务【闭包+延时器】
+```
+
+
+
+### 2）函数的节流`throttle`
+
+<img src="ES6.assets/145.png" style="zoom:80%;" />
+
+节流：在**规定的间隔时间范围内不会重复触发回调**，只有**大于这个时间间隔才会触发回调**，把**频繁触发变为少量触发**
+
+**`_.throttle(func, [wait=0], [options=])`**：创建一个节流函数，**在 wait 秒内最多执行 `func` 一次的函数**。
+
+1. `func` *(Function)*: 要**节流的函数**。
+2. `[wait=0]` *(number)*: 需要**节流的毫秒**。
+3. `[options=]` *(Object)*: 选项对象。
+4. `[options.leading=true]` *(boolean)*: 指定调用在节流开始前。
+5. `[options.trailing=true]` *(boolean)*: 指定调用在节流结束后。
+
+**返回值**：返回节流的新函数
+
+```js
+// 计数器：在一秒之内，只能执行一次  （轮播图点击会用上）
+  btn.onclick = _.throttle(function() {
+    // 节流：目前这个回调函数1s执行一次
+    // 假如这里面有很多的业务代码，是不是可以给浏览器充裕的时间去解析
+    count++;
+    span.innerHTML = count;
+    console.log('执行');
+  },1000)
+```
+
+```html
+  <script>
+    // 1. 发送短信验证码模块
+    const code = document.querySelector('.code')
+    // 1.1 点击事件
+    code.addEventListener('click',_.throttle(function() {
+      let i = 5
+      // 点击后立马先显示信息，不需要一秒钟后
+      code.innerHTML = `0${i}秒后重新获取` 
+      let timerId = setInterval(function() {
+        i--
+        code.innerHTML = `0${i}秒后重新获取`
+        if(i === 0) {
+          clearInterval(timerId)
+          code.innerHTML = '重新获取'
+        }
+      },1000)
+    },5000,{leading:true, trailing:false}))
+  </script>
+```
+
+小结：
+
+防抖：用户操作很频繁，但是**只是执行一次**
+
+节流：用户操作很频繁，但是**把频繁的操作变为少量操作**，可以给浏览器充裕的时间去解析
+
+```html
+<script>
+    // 需求：鼠标在盒子上移动，里面的数字就会有变化
+    let box = document.querySelector('.box')
+    let count = 1
+    function mouseMove() {
+      box.innerHTML = count++
+      // 如果里面存在大量消耗性能的代码
+    }
+    // box.addEventListener('mousemove',_.debounce(mouseMove,500))
+    box.addEventListener('mousemove',_.throttle(mouseMove,500))
+</script>
+```
+
+
+
+
+
+## 处理`this`
+
+<img src="ES6.assets/image-20230901104933252.png" alt="image-20230901104933252" style="zoom:67%;float:left" />
+
+### 1、`this`指向
+
+**1）普通函数**：**谁调用** `this` 就**指向谁**
+
+<img src="ES6.assets/image-20230901110000879.png" alt="image-20230901110000879" style="zoom:67%;float:left" />
+
+```html
+  <button>点击</button>
+  <script>
+    // 普通函数：谁调用我，this就指向谁
+    console.log(this) // window
+
+    function fn() {
+      console.log(this) // window    
+    }
+    window.fn()
+
+    window.setTimeout(function () {
+      console.log(this) // window 
+    }, 1000)
+
+    document.querySelector('button').addEventListener('click', function () {
+      console.log(this) // 指向 button
+    })
+    
+    const obj = {
+      sayHi: function () {
+        console.log(this) // 指向 obj
+      }
+    }
+    obj.sayHi()
+  </script>
+```
+
+<img src="ES6.assets/image-20230901110600887.png" alt="image-20230901110600887" style="zoom:67%;float:left" />
+
+
+
+**2）箭头函数**：函数内**不存在`this`**，**沿用上一级的**，过程：**向外层作用域，一层一层查找`this`，直到有`this`的定义**
+
+<img src="ES6.assets/image-20230901111609146.png" alt="image-20230901111609146" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230901111738611.png" alt="image-20230901111738611" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230901111939160.png" alt="image-20230901111939160" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230901112118905.png" alt="image-20230901112118905" style="zoom:67%;float:left" />
+
+
+
+### 2、改变`this`
+
+<img src="ES6.assets/image-20230901112703977.png" alt="image-20230901112703977" style="zoom:67%;float:left" />
+
+#### 1）`call(this指向, 参数)`
+
+<img src="ES6.assets/image-20230902100418655.png" alt="image-20230902100418655" style="zoom:67%;float:left" />
+
+```js
+    // function fn() {
+    //   console.log(this) // window
+    // }
+    // fn() // this指向window
+
+    const obj = {
+      uname: 'pink'
+    }
+    function fn(x, y) {
+      console.log(this) // obj
+      console.log(x + y)
+    }
+    // 1. 调用函数  
+    // 2. 改变 this 指向
+    fn.call(obj, 1, 2) // 第一个参数是this指向的值，后面就是函数的参数
+    // 3. 返回值  本身就是在调用函数，所以返回值就是函数的返回值
+```
+
+
+
+#### 2）`apply(this指向, [参数])`
+
+<img src="ES6.assets/image-20230902101704723.png" alt="image-20230902101704723" style="zoom:67%;float:left" />
+
+```js
+    const obj = {
+      age: 18
+    }
+
+    function fn(x, y) {
+      console.log(this) // {age: 18}
+      console.log(x + y)
+    }
+    // 1. 调用函数
+    // 2. 改变this指向 
+    //  fn.apply(this指向谁, 数组参数)
+    fn.apply(obj, [1, 2])
+    // 3. 返回值   本身就是在调用函数，所以返回值就是函数的返回值
+```
+
+说明：和`call()`方法差不多，唯一区别就是**`apply()`使用数组传递参数**
+
+使用场景：
+
+<img src="ES6.assets/image-20230902102910489.png" alt="image-20230902102910489" style="zoom:67%;float:left" />
+
+```js
+    // Math.max()/min() 返回一组数值中的最大（小）值
+    // const max1 = Math.max(1, 2, 3)
+    // console.log(max1) // 3
+    
+    // 使用场景： 求 数组 最大值
+    // 1. Math.max/min.apply(Math, 数组) 返回数组的最大（小）值
+    const arr = [100, 44, 77]
+    const max = Math.max.apply(Math, arr)
+    const min = Math.min.apply(null, arr)
+    console.log(max, min) // 100 44
+    // 2. 展开运算符
+    console.log(Math.max(...arr)) // 100
+```
+
+
+
+#### 3）`bind(this指向, 参数)`
+
+<img src="ES6.assets/image-20230902103544839.png" alt="image-20230902103544839" style="zoom:67%;float:left" />
+
+```js
+    const obj = {
+      age: 18
+    }
+
+    function fn() {
+      console.log(this) 
+    }
+    // 1. bind 不会调用函数 
+    // 2. 能改变this指向
+    // 3. 返回值是仅改变了 this 值的原函数拷贝（新函数），这里新函数赋值给fun
+    const fun = fn.bind(obj)
+    console.log(fun) 
+    console.log(fn) 
+    console.log(fun == fn) // false
+    fun()
+
+```
+
+![image-20230902104430516](ES6.assets/image-20230902104430516.png)
+
+```js
+    // 需求，有一个按钮，点击里面就禁用，2秒钟之后开启
+    document.querySelector('button').addEventListener('click', function () {
+      // 禁用按钮
+      this.disabled = true
+      window.setTimeout(function () {
+        // 在这个回调函数里面，我们要this由原来的window 改为 btn
+        // 开启按钮 2s
+        this.disabled = false // 原本不能直接用this，用DOM元素
+      }.bind(this), 2000) // 这里的this 和 btn 一样
+    })
+```
+
+
+
+#### call、apply、bind总结
+
+<img src="ES6.assets/image-20230902105519609.png" alt="image-20230902105519609" style="zoom:67%;float:Left" />
 
 
 
@@ -2212,7 +2808,7 @@ ES6 里面号新添加了一个运算符 `...` ，叫做**展开运算符**，�
 
 
 
-## 面向对象
+## 编程思想
 
 - 首先，我们要明确，面向对象不是语法，是一个思想，是一种 **编程模式**
 - 面向： 面（脸），向（朝着）
@@ -2223,6 +2819,20 @@ ES6 里面号新添加了一个运算符 `...` ，叫做**展开运算符**，�
   - 在**面向对象**的时候，我们要关注的就是**找到一个对象来帮我做这个事情，我等待结果**
 - 我们以前的编程思想是，每一个功能，都按照需求一步一步的逐步完成
 
+### 1）面向过程编程
+
+<img src="ES6.assets/image-20230830100442740.png" alt="image-20230830100442740" style="zoom:67%;float:Left" />
+
+### 2）面向对象编程（oop）
+
+<img src="ES6.assets/image-20230830100918641.png" alt="image-20230830100918641" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230830101121104.png" alt="image-20230830101121104" style="zoom:67%;float:left" />
+
+对比：
+
+<img src="ES6.assets/image-20230830101334802.png" alt="image-20230830101334802" style="zoom:67%;float:left" />
+
 
 
 ### 创建对象的方式
@@ -2230,149 +2840,134 @@ ES6 里面号新添加了一个运算符 `...` ，叫做**展开运算符**，�
 - 因为面向对象就是一个找到对象的过程
 - 所以我们先要了解如何创建一个对象
 
-#### 字面量{}创建对象
+#### 1）字面量`{}`创建对象
 
-**对象字面量**：就是**花括号{ }**里面包含了表达这个**具体事物**（对象）的**属性**和**方法**。
+**对象字面量**：就是**花括号{ }**里面包含了表达这个具体事物（对象）的**属性**和**方法**。
 
 ```js
 //1.利用字面量————花括号{}创建对象
-        var obj1 = {}; //创建了一个空的对象
-        var obj = {
-            u_name: '张三疯', //逗号
-            age: 18,
-            sex: '男',
-            sayHi:function (){
-                console.log('hi~');
-            }
-        }
+    const obj1 = {}; //创建了一个空的对象
+    const obj = {
+      u_name: '张三疯', //逗号
+      age: 18,
+      sex: '男',
+      //方法
+      sayHi: function () {
+        console.log('hi~')
+      },
+      sayHi2() { // 简写写法（ES6+）
+        console.log('hi2~')
+      }
+    }
 ```
 
-说明：
-
-1）里面的属性或者方法采取**键:值对的形式**——
-
-      属性(键): 属性值(值)    
-      方法名: function(...) {函数体}/ (...) => {函数体}
-
- 2） 多个属性或者方法用 **逗号,** 隔开
-
- 3）方法冒号后面跟的是一个**匿名函数**
 
 
-
-#### new Object( )创建对象
+#### 2）`new Object()`创建对象
 
 跟前面创建数组 new Array( )差不多。
 
 ```js
 //利用new Object() 创建对象
-        var obj = new Object(); //创建了一个空的对象
-        //添加属性和方法（字面量也可以通过这样添加属性和方法）：
-        obj.u_name = '张三疯'; //分号
-        obj.age = 18;
-        obj.sex = '男';
-        obj.sayHi = function(){
-            console.log('hi~');
-        }
+  const obj = new Object() // 创建一个空对象
+    obj.uname = 'pink老师'
+    obj.age = 18;
+    obj.sex = '男';
+    obj.sayHi = function () {
+      console.log('hi~');
+    }
+    console.log(obj) // {uname: 'pink老师', age: 18, sex: '男', sayHi: ƒ}
+
+    const obj1 = new Object({
+      uname: 'pink'
+    })
+    console.log(obj1) // {uname: 'pink'}
 ```
 
-说明：
-
-1）利用 **等号=赋值** 的方法，**添加对象的属性和方法**--（在**字面量{}**创建对象中，也可以使用）
-
-​      **对象名.属性 =  属性值**
-
-​     **对象名.方法名 = function( ){ 方法体 }**
-
-2）每个属性和方法之间用 **分号**结束
 
 
-
-#### 工厂函数创建对象
+#### 3）工厂函数创建对象
 
 - 先书写一个工厂函数
 
-- 这个工厂函数里面可以创造出一个对象，并且给对象添加一些属性，还能把对象返回
+- 这个工厂函数里面可以**创造出一个对象**，并且给对象添加一些属性，还能**把对象返回**
 
 - 使用这个工厂函数创造对象
 
   ```javascript
-  // 1. 先创建一个工厂函数
-  function createObj() {
-    // 手动创建一个对象
-    var obj = new Object()
+      // 1. 先创建一个工厂函数
+      function createObj() {
+        // 手动创建一个对象
+        var obj = new Object()
+        // 手动的向对象中添加成员
+        obj.name = 'Jack'
+        obj.age = 18
+        obj.gender = '男'
+        // 手动返回一个对象
+        return obj;
+      }
   
-    // 手动的向对象中添加成员
-    obj.name = 'Jack'
-    obj.age = 18
-    obj.gender = '男'
-  
-    // 手动返回一个对象
-    return obj;
-  }
-  
-  // 2. 使用这个工厂函数创建对象
-  var o1 = createObj()
-  var o2 = createObj()
+      // 2. 调用这个工厂函数创建对象
+      var o1 = createObj()
+      var o2 = createObj()
+      console.log(o1)
+      console.log(o2)
+      console.log(o1 === o2) // false 虽然两个对象的值一样
   ```
 
 
 
 
-#### 构造函数创建对象
+#### 4）构造函数创建对象
 
 为什么要用构造函数创建对象？
 
   因为**前面两种**创建对象的方式**一次只能创建一个对象**
 
-<img src="ES6.assets/95.png" style="zoom:200%;" />
+**构造函数：**是一种**特殊的函数**，主要用来**<span style="color:red">初始化对象</span>**，即**为对象成员变量赋初始值**，**它总与`new`运算符一起使用**，我们可以把**对象**中一些**公共的属性和方法**抽取出来，然后**封装到这个函数**里面。
 
-**构造函数：**是一种**特殊的函数**，主要用来**初始化对象**，即**为对象成员变量赋初始值**，**它总与new运算符一起使用**，我们可以把**对象**中一些**公共的属性和方法**抽取出来，然后**封装到这个函数**里面。
+<img src="ES6.assets/image-20230810172917330.png" alt="image-20230810172917330" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230810173252350.png" alt="image-20230810173252350" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230810174104013.png" alt="image-20230810174104013" style="zoom:67%;float:left" />
+
+说明：属性和方法前面得加上 **this.**
+
+<img src="ES6.assets/image-20230830102520106.png" alt="image-20230830102520106" style="zoom:67%;float:left" />
 
 语法格式：
 
 ```js
-  //构造函数的语法格式——跟函数差不多
-        function 构造函数名(形参-属性值){
-            this.属性 = 属性值（形参）;
-            this.方法 = function(){
-                //方法体
-            }
-        }
-  //调用
-        new 构造函数名(实参); //调用，初始化对象
+    //构造函数的语法格式——跟函数差不多
+    function 构造函数名(形参) {
+      this.属性 = 属性值（ 形参）
+      this.方法 = function () {
+        //方法体
+      }
+    }
+    //调用
+    new 构造函数名(实参); //调用，初始化对象
 ```
 
 ```js
-      //构造函数
-function Star(u_name, age, sex){
-    //this指向的是下面实例化的对象，ldh
-            this.u_name = u_name; //左边是抽取的属性，右边是形参
-            this.age = age;
-            this.sex = sex;
-            this.sing = function(sang){
-                console.log(sang);
-            }
-        }
-       //对象
-        var ldh = new Star('刘德华', '18', '男'); //new调用
-        console.log(typeof ldh); //object (null也是object)
-        console.log(ldh.u_name);
-        console.log(ldh['sex']);
-        ldh.sing('冰雨');
+    //构造函数Star
+    function Star(u_name, age, sex) {
+      // this指向的是下面实例化的对象（谁调用指向谁），ldh
+      this.name = u_name // 左边是抽取的属性，右边是形参
+      this.age = age
+      this.sex = sex
+      this.sing = function (sang) {
+        console.log(sang)
+      }
+    }
+    //对象
+    var ldh = new Star('刘德华', '18', '男') // new调用，创建对象并实例化
+    console.log(typeof ldh) // object (null也是object)
+    console.log(ldh.name) // 刘德华
+    console.log(ldh['sex']) // 男
+    ldh.sing('冰雨') // 冰雨
 ```
-
-说明：
-
-​     1.构造函数名   **首字母大写**
-
-​    2.构造函数**不需要return就可以返回结果**
-
-​    3.**调用构造函数**，必须使用**new**
-
-​    4.只要new Star()**调用函数**就**创建一个对象** 
-
-​    5.属性和方法前面得加上 **this**.
 
 - 和普通函数一样，只不过 **调用的时候要和 new 连用**，不然就是一个**普通函数调用**
 
@@ -2394,7 +2989,7 @@ function Star(u_name, age, sex){
 
   - 注意： **如果不需要传递参数，那么可以不写 （），如果传递参数就必须写**
 
-- **构造函数内部的 this**，由于和 new 连用的关系，**是指向当前实例化对象的**
+- **构造函数内部的 `this`**，由于和 new 连用的关系，**是指向当前实例化对象的**
 
   ```javascript
   function Person() {
@@ -2411,22 +3006,27 @@ function Star(u_name, age, sex){
   - 你如果 return 一个**基本数据类型**，那么写了没有意义
   - 如果你 return 一个**引用数据类型**，那么**构造函数本身的意义就没有**了
 
-  ```
-   function CreateObj(name){
-               this.name = name;
-               return 100 //没用，不会返回
-               return {  //会返回，但是构造函数没意义了
-                    a:1,
-                    b:2
-               }
-           }
-          var obj1 = new CreateObj('zyk');
-          console.log(obj1);
+  ```js
+  function CreateObj(name){
+     this.name = name;
+     return 100 //没用，不会返回
+     return {  //会返回，但是构造函数没意义了
+        a:1,
+        b:2
+     }
+  }
+  var obj1 = new CreateObj('zyk');
+  console.log(obj1)
   ```
 
-  
 
-#### 使用构造函数创建一个对象
+
+
+#### new调用构造函数创建对象
+
+**new关键字的执行过程：**
+
+<img src="ES6.assets/96-16933627716361.png" style="float:left;" />
 
 - 我们在使用构造函数的时候，可以通过一些代码和内容来向**当前的对象**中添加一些内容
 
@@ -2486,8 +3086,12 @@ function Star(u_name, age, sex){
   - 所以我们执行 `console.log(o1.sayHi === o2.sayHi)` 的到的结果是 `false`
   - 缺点： **一摸一样的函数出现了两次，占用了两个空间地址**——构造函数里面的函数，每一个实例化对象都有，都会开辟一个内存空间，但是功能都一样。
 
+  <img src="ES6.assets/image-20230830104302616.png" alt="image-20230830104302616" style="zoom:67%;float:left" />
+
 - 怎么解决这个问题呢？
 
+  <img src="ES6.assets/image-20230830104452997.png" alt="image-20230830104452997" style="zoom:67%;float:left" />
+  
   - 就需要用到一个东西，叫做 **原型**
 
 
@@ -2509,63 +3113,62 @@ function Star(u_name, age, sex){
     </div>
 ```
 
-```javascript
-    <script>
-        //后台数据，这里用对象存储
-        var data1 = { //对象
-            title:'体育',
-            list:['体育-1','体育-2','体育-3'],
-        }
-        var data2 = { //对象
-            title:'综艺',
-            list:['综艺-1','综艺-2','综艺-3'],
-        }
+```html
+  <script>
+    //后台数据，这里用对象存储
+    var data1 = { //对象
+      title: '体育',
+      list: ['体育-1', '体育-2', '体育-3'],
+    }
+    var data2 = { //对象
+      title: '综艺',
+      list: ['综艺-1', '综艺-2', '综艺-3'],
+    }
 
-        function CreateList(select,data){ //构造函数
-            this.ele = document.querySelector(select);
-            this.title = data.title;
-            this.list = data.list;
-            
-            // this.render = function (){
-            //     //渲染页面
-            //     var h1 = this.ele.querySelector('h1');
-            //     var ul = this.ele.querySelector('ul');
-            //     //console.log(h1,ul);
-            //     h1.innerHTML = this.title;
-            //     ul.innerHTML = this.list.map(item=>`<li>${item}</li>`).join("")
-            // }
-        }
-        //1. 函数的原型prototype
-        CreateList.prototype.render = function (){
-                //渲染页面
-                var h1 = this.ele.querySelector('h1');
-                var ul = this.ele.querySelector('ul');
-                //console.log(h1,ul);
-                h1.innerHTML = this.title;
-                ul.innerHTML = this.list.map(item=>`<li>${item}</li>`).join("")
-        }
+    function CreateList(select, data) { //构造函数
+      this.ele = document.querySelector(select);
+      this.title = data.title;
+      this.list = data.list;
+      // 添加方法，渲染页面
+      // this.render = function (){
+      //     //渲染页面
+      //     var h1 = this.ele.querySelector('h1');
+      //     var ul = this.ele.querySelector('ul');
+      //     //console.log(h1,ul);
+      //     h1.innerHTML = this.title;
+      //     ul.innerHTML = this.list.map(item=>`<li>${item}</li>`).join("")
+      // }
+    }
+    //1. 函数的原型prototype
+    CreateList.prototype.render = function () {
+      //渲染页面
+      var h1 = this.ele.querySelector('h1');
+      var ul = this.ele.querySelector('ul');
+      //console.log(h1,ul);
+      h1.innerHTML = this.title;
+      ul.innerHTML = this.list.map(item => `<li>${item}</li>`).join("")
+    }
 
-        //对象实例化
-        var obj1 = new CreateList('.box1', data1);
-        var obj2 = new CreateList('.box2', data2);
-        //console.log(obj1);
-        obj1.render();
-        // console.log(obj2);
-        obj2.render();
-        //这两个对象的render()方法,代码功能都一样，但是却占据两个地址空间，造成浪费。把render()写到构造函数的prototype里面，实例化对象可以直接调用，因为对象有__proto__，这样就是共享render()函数
+    //对象实例化
+    var obj1 = new CreateList('.box1', data1);
+    var obj2 = new CreateList('.box2', data2);
+    //console.log(obj1);
+    obj1.render()
+    // console.log(obj2);
+    obj2.render()
+    //这两个对象的render()方法,代码功能都一样，但是却占据两个地址空间，造成浪费。把render()写到构造函数的prototype里面，实例化对象可以直接调用，因为对象有__proto__，这样就是共享render()函数
 
-        //2. 对象的__proto__
-        // 对象.__proto__ === 构造函数.prototype
-        //下面两个一模一样
-        console.log(obj1.__proto__);
-        console.log(CreateList.prototype);
-        console.log(obj1.__proto__ === CreateList.prototype); //true
+    //2. 对象的__proto__
+    // 对象.__proto__ === 构造函数.prototype
+    //下面两个一模一样
+    console.log(obj1.__proto__);
+    console.log(CreateList.prototype);
+    console.log(obj1.__proto__ === CreateList.prototype); //true
 
-        // obj1.toString()  //可以调用成功
-        //3. 原型链的概念
-        //先看实例化对象obj1本身有没有该方法，没有的话就通过__proto__去构造函数的原型prototype去找，还没有就通过构造函数的__proto__去上一级的原型prototype去找（顶级Object.prototype），依次类推。这就是原型链
-
-    </script>
+    // obj1.toString()  //可以调用成功
+    //3. 原型链的概念
+    //先看实例化对象obj1本身有没有该方法，没有的话就通过__proto__去构造函数的原型prototype去找，还没有就通过构造函数的__proto__去上一级的原型prototype去找（顶级Object.prototype），依次类推。这就是原型链
+  </script>
 ```
 
 ![](ES6.assets/1.png)
@@ -2574,35 +3177,37 @@ function Star(u_name, age, sex){
 
 
 
-#### 函数的原型prototype
+#### 函数的原型`prototype`
 
-- **每一个函数天生自带一个成员，叫做 prototype，是一个对象** , prototype原型
+<img src="ES6.assets/image-20230830111718693.png" alt="image-20230830111718693" style="zoom:67%;float:left" />
 
-- 即然每一个函数都有，构造函数也是函数，**构造函数也有prototype对象**
+- **每一个函数天生自带一个成员，叫做 `prototype`，是一个对象** 。  prototype原型
 
-- 这个 `prototype` 对象空间可以由    **函数名.prototype  ** 来访问
+- 即然每一个函数都有，构造函数也是函数，**构造函数也有`prototype`对象**
 
-  ```javascript
+- 这个 `prototype` 对象空间可以由 **`函数名.prototype`**来访问
+
+  ```js
   function Person() {}
   console.log(Person.prototype) // 是一个对象
   ```
 
   - 即然是个对象，那么我们就可以向里面放入一些东西（属性和方法）
 
-  ```javascript
+  ```js
   function Person() {}
   
   Person.prototype.name = 'prototype'
   Person.prototype.sayHi = function () {}
   ```
 
-- 重点： 在**函数的 prototype 里面存储的内容**，不是给函数使用的，**是给函数的每一个实例化对象使用的**
+- 重点： 在**函数的原型 `prototype` 里面存储的内容**，不是给函数使用的，**是给<span style="color:red">函数的每一个实例化对象</span>使用的**
 
 - 那**实例化对象**为什么能**直接调用**？
 
 
 
-#### 对象的 \__proto__
+#### 对象的` __proto__`
 
 - **每一个对象都自带一个成员，叫做 `__proto__`，也是一个对象空间**
 
@@ -2618,8 +3223,8 @@ function Star(u_name, age, sex){
 
 - 对象的`__proto__` 指向哪里？
 
-  - 这个对象**是由哪个构造函数 new 出来的**
-  - 那么这个  **对象的 `__proto__`**   就  **指向所属构造函数的 `prototype`**
+  - 这个对象**是由哪个构造函数 `new` 出来的**
+  - 那么这个  **<span style="color:red">对象的 `__proto__`</span>**   就指向 **<span style="color:red">所属构造函数的原型 `prototype`</span>**
 
   ```javascript
   function Person() {}
@@ -2629,8 +3234,8 @@ function Star(u_name, age, sex){
   console.log(p1.__proto__ === Person.prototype) // true
   ```
 
-  - 我们发现    **实例化对象的 `__proto__`**     和所属的    **构造函数的 `prototype`     是一个对象空间**
-  - 我们可以**通过构造函数名称来向 `prototype` 中添加成员**
+  - 我们发现    **实例化对象的 `__proto__`**     和  **所属构造函数的 `prototype` 是同一个对象空间**
+  - 我们可以**通过`构造函数名.prototype`来向其原型 `prototype` 中添加成员**
   - 对象在访问的时候自己没有，可以自动去自己的 `__proto__` 中查找
   - 那么，我们之前构造函数的缺点就可以解决了
     - 我们可以把**方法**放在**构造函数的 `prototype` 中**
@@ -2656,20 +3261,20 @@ function Star(u_name, age, sex){
 - 到这里，当我们实例化多个对象的时候，每个对象里面都没有方法
 
   - **都是去所属的构造函数的原型 `protottype` 中查找**
-  - 那么**每一个对象**使用的函数，其实**都是同一个函数**
+  - 那么**每一个对象**使用的函数，其实**<span style="color:red">都是同一个函数</span>**
   - 那么就解决了我们构造函数的缺点
 
   ```javascript
   function Person() {}
   
-  Person.prototype.sayHi = function () {
+  Person.prototype.sayHi = function() {
     console.log('hello')
   }
   
   var p1 = new Person()
   var p2 = new Person()
   
-  console.log(p1.sayHi === p2.sayHi) //true
+  console.log(p1.sayHi === p2.sayHi) //true，同一个sayHi函数
   ```
 
   - `p1` 是 `Person` 的一个实例
@@ -2683,7 +3288,95 @@ function Star(u_name, age, sex){
 
   - 当我们写构造函数的时候
   - **属性  直接写在 构造函数体内**
-  - **方法  写在  构造函数的原型prototype上**
+  - **<span style="color:red">方法  写在  构造函数的原型`prototype`上</span>**
+  
+  ```html
+    <script>
+      // 构造函数  公共的属性和方法 封装到 Star 构造函数里面了
+      // 1.公共的属性写到 构造函数里面
+      function Star(uname, age) {
+        this.uname = uname
+        this.age = age
+        // this.sing = function () {
+        //   console.log('唱歌')
+        // }
+      }
+      // 2. 公共的方法写到原型对象身上   节约了内存
+      Star.prototype.sing = function () {
+        console.log('唱歌')
+      }
+      const ldh = new Star('刘德华', 55)
+      const zxy = new Star('张学友', 58)
+      ldh.sing() //调用
+      zxy.sing() //调用
+      // console.log(ldh === zxy)  // false
+      console.log(ldh.sing === zxy.sing) // true
+      console.dir(Star.prototype)
+    </script>
+  ```
+
+<img src="ES6.assets/image-20230830112317007.png" alt="image-20230830112317007" style="zoom: 50%;" />
+
+
+
+#### 构造函数和原型的`this`指向
+
+<img src="ES6.assets/image-20230830142010093.png" alt="image-20230830142010093" style="zoom:67%;float:left" />
+
+```js
+    let that1
+    let that2
+    function Star(uname) {
+      that1 = this
+      console.log(this)
+      this.uname = uname
+    }
+    // 2. 原型对象里面的函数的this 也指向 实例对象 ldh
+    Star.prototype.sing = function () {
+      that2 = this
+      console.log('唱歌')
+    }
+    // 实例对象 ldh   
+    // 1. 构造函数里的this 指向 实例对象 ldh
+    const ldh = new Star('刘德华')
+    ldh.sing()
+    console.log(that1 === ldh) // true 构造函数里的this 指向 实例对象 ldh
+    console.log(that2 === ldh) // true 原型对象里面的函数的this 也指向 实例对象 ldh
+```
+
+案例：给数组Array扩展方法
+
+```html
+  <script>
+    // 自己定义 数组扩展方法  求和 和 最大值 
+    // 1. 我们定义的这个方法，任何一个数组实例对象都可以使用
+    // 2. 自定义的方法写到  数组.prototype 身上
+    // 1. 最大值
+    Array.prototype.max = function () {
+      // 展开运算符
+      return Math.max(...this)
+      // 原型函数里面的this 指向谁？ 实例对象 arr
+    }
+    // 2. 最小值
+    Array.prototype.min = function () {
+      // 展开运算符
+      return Math.min(...this)
+      // 原型函数里面的this 指向谁？ 实例对象 arr
+    }
+    const arr = [1, 2, 3]
+    console.log(arr.max()) // 3
+    console.log([2, 5, 9].max()) // 9
+    console.log(arr.min()) // 1 
+    // const arr = new Array(1, 2)
+    // console.log(arr)
+    // 3. 求和 方法 
+    Array.prototype.sum = function () {
+      return this.reduce((prev, item) => prev + item, 0)
+    }
+    console.log([1, 2, 3].sum()) // 6
+    console.log([11, 21, 31].sum()) // 63
+  </script>
+```
 
 
 
@@ -2696,7 +3389,7 @@ function Star(u_name, age, sex){
 
 
 
-#### 对象所属的构造函数-constructor
+#### 对象所属的构造函数-`constructor`属性
 
 - 每一个**对象**都有一个自己**所属的构造函数**
 
@@ -2722,38 +3415,95 @@ function Star(u_name, age, sex){
   - 以上两种方式都是创造一个函数
   - 我们就说**函数**所属的**构造函数就是 `Function`**
 
-**constructor**：
+**`constructor`属性**：
 
-- **对象的 `__proto__`** 里面也有一个成员叫做 **`constructor`**
-- 这个属性就是指向**当前这个对象所属的  构造函数**
-- **对象.`__proto__`.constructor**   
+- **对象的 `__proto__`（构造函数的`prototype`）** 里面也有一个成员叫做 **`constructor`**
+- 这个属性就是指向**当前这个对象所属的构造函数**
+- **`对象.__proto__.constructor`**    or  **`构造函数名.prototype.constructor`**
 
-```javascript
-        var arr = new Array();//arr是一个数组对象,Array()是其所属的构造函数
-        console.log(arr.__proto__.constructor);
-        
-        function Star(){}
-        var obj3 = new Star();
-        console.log(obj3.__proto__.constructor);
+<img src="ES6.assets/image-20230830150252871.png" alt="image-20230830150252871" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230830150023676.png" alt="image-20230830150023676" style="zoom:67%;float:left" />
+
+```js
+    const arr = new Array(); //arr是一个数组对象,Array()是其所属的构造函数
+    console.log(arr.__proto__.constructor)
+    console.log(Array.prototype.constructor)
+
+    function Star() {}
+    const obj = new Star();
+    console.log(obj.__proto__.constructor)
+    console.log(Star.prototype.constructor)
 ```
+
+![image-20230830144134081](ES6.assets/image-20230830144134081.png)
+
+```js
+    function Star() {}
+    // 这样给构造函数的原型上加方法 比较麻烦
+    // Star.prototype.sing = function () {
+    //   console.log('唱歌')
+    // }
+    // Star.prototype.dance = function () {
+    //   console.log('跳舞')
+    // }
+    console.log(Star.prototype) // 返回一个对象，里面有Star的原型上的一些方法和属性constructor
+    // 写成对象的形式，但是会覆盖掉原先的值
+    Star.prototype = {
+      // 添加constructor属性，从新指回创造这个原型对象的 构造函数
+      constructor: Star,
+      sing: function () {
+        console.log('唱歌')
+      },
+      dance: function () {
+        console.log('跳舞')
+      },
+    }
+    console.log(Star.prototype)
+    console.log(Star.prototype.constructor) // Star
+    const ldh = new Star()
+    console.log(Star.prototype.constructor === Star) // true
+```
+
+![image-20230830150455551](ES6.assets/image-20230830150455551.png)
 
 
 
 #### 链状结构
 
 - 当一个对象我们不知道准确的是谁构造的时候，我们呢就把它看成 `Object` 的实例化对象
-- 也就是说，我们的 **构造函数 的 prototype 的 `__proto__`** 指向的是 `Object.prototype`
+- 也就是说，我们的 **构造函数 的 `prototype` 的 `__proto__`** 指向的是 **`Object.prototype`**
 - 那么 `Object.prototype` 也是个对象，那么它的 `__proto__` 又指向谁呢？
 - 因为 `Object` 的 js 中的**顶级构造函数**，我们有一句话叫 **万物皆对象**
-- 所以 `Object.prototype` 就**到顶了**，`Object.prototype` 的 `__proto__` 就是 **null**
+- 所以 `Object.prototype` 就**到顶了**，`Object.prototype` 的 `__proto__` 就是 **`null`**
+
+<img src="ES6.assets/image-20230830172148693.png" alt="image-20230830172148693" style="zoom:67%;float:left" />
 
 
 
-#### 原型链的访问原则
+#### 原型链的查找原则
 
 - 我们之前说过，访问一个对象的成员的时候，自己没有就会去 `__proto__` 中找
 - 接下来就是，如果 `__proto__` 里面没有就再去 `__proto__` 里面找
 - 一直找到 `Object.prototype` 里面都没有，那么就会返回 `undefiend`
+
+<img src="ES6.assets/image-20230830174326616.png" alt="image-20230830174326616" style="zoom:67%;float:left" />
+
+**`instanceof`** **运算符**用于检测**构造函数的 `prototype` 属性** 是否出现在 **某个实例对象的原型链上**。返回一个**布尔值**。
+
+语法：`object instanceof constructor`      `object`某个实例对象，`constructor`某个构造函数
+
+```js
+    function Person() {}
+    const ldh = new Person()
+    // console.log(ldh.__proto__ === Person.prototype)
+    // console.log(Person.prototype.__proto__ === Object.prototype)
+    console.log(ldh instanceof Person) // true
+    console.log(ldh instanceof Object) // true
+    console.log(ldh instanceof Array) // flase
+    console.log([1, 2, 3] instanceof Array) // true
+    console.log(Array instanceof Object) // true
+```
 
 
 
@@ -2768,116 +3518,179 @@ function Star(u_name, age, sex){
 
 
 
+### 原型继承
+
+<img src="ES6.assets/image-20230830163748355.png" alt="image-20230830163748355" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230830164804668.png" alt="image-20230830164804668" style="zoom:67%;float:left" />
+
+<img src="ES6.assets/image-20230830165156396.png" alt="image-20230830165156396" style="zoom:67%;float:left" />
+
+解决：使用**构造函数**，`new`出来的对象：结构一样，但对象彼此独立。**`函数.prototype = new 构造函数()`**
+
+总结：原型继承——**构造函数的原型** 继承 **抽取了公共部分属性和方法的构造函数（new调用）**。   则该**构造函数的原型上**就包含了这些**<span style="color:red">公共属性和方法，以及其原型上的方法和属性</span>**。因此，该构造函数的实例对象的原型（`__proto__`）就可以使用。
+
+```js
+    // 使用对象
+    // const Person = {
+    //   eyes: 2,
+    //   head: 1
+    // }
+    // 使用构造函数  new出来的对象：结构一样，但是对象彼此独立
+    function Person() {
+      this.eyes = 2
+      this.head = 1
+    }
+    console.log(new Person)
 
 
-## ES6—类class
+    // 女人  构造函数   继承  想要 继承 Person
+    function Woman() {}
+    // Woman 通过原型来继承 Person
+    // 父构造函数（父类）   子构造函数（子类）
+    // 子类的原型 =  new 父类  
+    Woman.prototype = new Person() // {eyes: 2, head: 1} 
+    // 指回原来的构造函数
+    Woman.prototype.constructor = Woman
+    // 给女人添加一个方法  生孩子
+    Woman.prototype.baby = function () {
+      console.log('宝贝')
+    }
+    console.log(Woman.prototype)
 
-### class
+    const w = new Woman()
+    console.log(w)
 
-#### 在ES6中提供class关键字来定义类
+
+    // 男人 构造函数  继承  想要 继承 Person
+    function Man() {}
+    // 通过 原型继承 Person
+    Man.prototype = new Person()
+    Man.prototype.constructor = Man
+    console.log(Man.prototype)
+
+    const m = new Man()
+    console.log(m)
+```
+
+![image-20230830165926091](ES6.assets/image-20230830165926091.png)
+
+
+
+
+
+## ES6—类`class`
+
+### 1、类`class`
+
+#### （1）ES6提供`class`关键字来定义类
 
 ```javascript
-//1. 在ES6中提供  class关键字  来定义类
-        class Person{
-            //3. 在ES6中提供 static关键字类 声明静态成员,是类的所有对象（实例）共享的属性
-            static num = 1001;
-            constructor(name,gender){//构造器函数
-                this.name = name;
-                this.gender = gender;
-            }
-            
-            fun (){//普通成员方法
-                console.log(`姓名：${this.name}，性别：${this.gender}`)//this代表的是实例或者是对象
-            }
-        }
+    // 1. 在ES6中提供  class关键字  来定义类
+    class Person {
+      // 3. 在ES6中提供 static关键字类 声明静态成员
+      static num = 1001
+      constructor(name, gender) { // 构造器函数
+        this.name = name
+        this.gender = gender
+      }
+      fun() { // 普通成员方法
+        console.log(`姓名：${this.name}，性别：${this.gender}`) // this代表的是实例或者是对象
+      }
+    }
 
-        let p1 = new Person('张三','男');//构造方法里的this，代表的是p1中的对象
-        p1.fun();
-        console.log('编号：',Person.num)//编号： 1001
+    let p1 = new Person('张三', '男') // 构造方法里的this，代表的是p1这个对象
+    p1.fun() // 姓名：张三，性别：男
+    console.log('编号：', Person.num) // 编号： 1001
+    console.log('编号：', p1.num) // 实例不能使用静态成员，仅供类本身使用
 ```
 
 
 
-#### 取值函数getter和存值函数setter
+#### （2）取值函数`getter`和存值函数`setter`
 
-getter、setter就是给 **class的属性读值、传值用的**。
+`getter`、`setter`就是给 **class的属性读值、传值用的**。
 
-在ES6中，支持getter和setter方法的定义，使用getter方法时，采用使用**get关键字**。使用setter方法时，采用使用**set关键字**
+在ES6中，支持getter和setter方法的定义，使用getter方法时，采用使用**`get`关键字**。使用setter方法时，采用使用**`set`关键字**
 
 注意：
 
-+ 当一个属性**只有getter**没有setter的时候，这个属性就是**只读属性，不能赋值**，第一次初始化也不行。
++ 当一个属性**只有`getter`没有`setter`**的时候，这个属性就是**只读属性，不能赋值**，第一次初始化也不行。
 
 + 如果**变量定义为私有的**（定义在**类的花括号外面**），就可以**只使用getter**不使用setter。
 
-```javascript
-    <script>
-        class Person{
-            constructor(name,gender){//构造函数
-                this.name = name;
-                this.gender = gender;
-            }
+```js
+    class Person {
+      constructor(name, gender) { // 构造函数
+        this.name = name
+        this.gender = gender
+      }
 
-            get name(){//用来获取name属性。对象名.name 就会调用该方法
-                return this._name;
-            }
-            set name(newName){//用来设置name属性值。对象名.name='值' 就会调用该方法
-                this._name = newName;
-            }
+      get name() { // 用来获取name属性。对象名.name 就会调用该方法
+        return this._name
+      }
+      set name(newName) { // 用来设置name属性值。对象名.name='值' 就会调用该方法
+        this._name = newName
+      }
 
-            fun(){//普通函数
-                console.log(`姓名：${this.name}，性别：${this.gender}`);
-            }
-        }
-        var p1 = new Person('zyk','男');
-        p1.fun();
+      fun() { //普通函数
+        console.log(`姓名：${this.name}，性别：${this.gender}`)
+      }
+    }
 
-        console.log(p1.name);
-        p1.name = 'lqh';
-        console.log(p1.name);
-
-    </script>
+    var p1 = new Person('zyk', '男')
+    p1.fun() // 姓名：zyk，性别：男
+    console.log(p1.name) // zyk 调用 get name() 函数
+    p1.name = 'lqh' // 调用 set name() 函数
+    console.log(p1.name) // lqh 调用 get name() 函数
 ```
 
-```javascript
-    <script>
-        let data=[1,2,3,4];  //放在类外面属于私有变量，可以只读取，只使用getter
-        class Person{
-            //构造器函数
-            constructor(x,y){
-                this.x = x;
-                this.y = y;
-            }
+```js
+    let data = [1, 2, 3, 4]; // 2. 放在类外面属于私有变量，可以只读取，只使用getter
 
-            get x(){
-                return this._name;
-            }
-            set x(x){
-                this._name = x;
-            }
-            get data(){
-                return data;//只读属性，属性返回的值只能是私有变量
-            }
+    class Person {
+      //构造器函数
+      constructor(x, y) {
+        this.x = x
+        this.y = y
+      }
 
-            todoSome(){
-                alert(this.x + '的年龄是' + this.y + '岁');
-            }
-            static dayin(){
-                alert('dayin');
-            }
-        }
+      get x() {
+        return this._name
+      }
+      set x(x) {
+        this._name = x
+      }
+      // 1. 当一个属性只有getter没有setter的时候，是只读属性，不能赋值，第一次初始化也不行
+      get z() {
+        return data[0]
+      }
 
-        var test= new Person('haha','18');
-        console.log(test.x);
-        test.x="haha3";  //改变了实例化时候的x的值
-        test.todoSome(); //输出：haha3的年龄是18岁。这里就已经不是实例化时候的haha了
-        console.log(test.data);   //结果：打印[1,2,3,4]
-    </script>
+      get data() {
+        return data // 只读属性，属性返回的值只能是私有变量
+      }
+
+      todoSome() {
+        alert(this.x + '的年龄是' + this.y + '岁')
+      }
+      static dayin() {
+        alert('dayin')
+      }
+    }
+
+    var test = new Person('zyk', '18')
+    console.log(test.x) // zyk
+    // 使用只读属性
+    console.log(test.z) // 1 
+    console.log(test.data) // [1, 2, 3, 4]
+    // x都有，所以可以修改
+    test.x = "lqh" // 改变了实例化时候的x的值
+    test.todoSome() // 弹出：lqh的年龄是18岁。这里就已经不是实例化时候的zyk了
 ```
 
 
 
-#### 静态方法和静态属性
+#### （3）静态方法和静态属性`static`
 
 静态方法和静态属性，是使用  **static关键字**  的属性和方法
 
@@ -2885,8 +3698,8 @@ getter、setter就是给 **class的属性读值、传值用的**。
 
 ```javascript
 static classMethod(){
-		console.log('123456');
-	}
+	console.log('123456')
+}
 ```
 
 - 静态方法**不会被子类继承，子类不能调用**
@@ -2903,206 +3716,274 @@ p.classMethod();  // 报错
 static prop = 1 ;  // 静态属性
 ```
 
+注意：使用`static`关键字的属性和方法，是**静态成员**，**只供类本身使用**，**<span style="color:red">子类不能继承，实例不能使用</span>**
+
 - 静态属性**不能被子类继承，子类不能调用**
-- 静态属性**只能通过 类名 来调用，不能通过类的实例来调**
+- 静态属性**只能通过 类名 来调用，不能通过 类的实例 来调**
 
-
-
-#### 注意事项
+**注意事项**
 
 1、在**类中定义方法**时候，**不可以给方法加上function关键字**，因为JS中构造函数是用function定义的，两个隔开。
 
 2、所有方法**不要用逗号隔**开，否则会报错。
 
+```html
+  <script>
+    /* 
+	  总结：
+		1.类中的构造器不是必须要写的，要对实例进行一些初始化的操作，如添加指定属性时才写。
+		2.如果A类继承了B类，且A类中写了构造器，那么A类构造器中的super是必须要调用的。
+		3.类中所定义的方法，都放在了类的原型对象上，供实例去使用。
+        4.使用static关键字的属性和方法，是静态成员，只供类本身使用，子类不能继承，实例不能使用
+		*/
+
+    //创建一个Person类
+    class Person {
+      //构造器方法
+      constructor(name, age) {
+        //构造器中的this是谁？—— 类的实例对象
+        this.name = name
+        this.age = age
+      }
+      //一般方法
+      speak() {
+        //speak方法放在了哪里？——类的原型对象上，供实例使用
+        //通过Person实例调用speak时，speak中的this就是Person实例
+        console.log(`我叫${this.name}，我年龄是${this.age}`);
+      }
+    }
+    //创建一个Student类，继承于Person类
+    class Student extends Person {
+      constructor(name, age, grade) {
+        super(name, age)
+        this.grade = grade
+        this.school = '尚硅谷'
+      }
+      //重写从父类继承过来的方法
+      speak() {
+        console.log(`我叫${this.name}，我年龄是${this.age},我读的是${this.grade}年级`);
+        this.study()
+      }
+      study() {
+        //study方法放在了哪里？——类的原型对象上，供实例使用
+        //通过Student实例调用study时，study中的this就是Student实例
+        console.log('我很努力的学习');
+      }
+    }
+    const p = new Person('zyk', 18)
+    console.log(p) // Person {name: 'zyk', age: 18}  Person是该实例属于哪个类，后面{...}才是实例
+    p.speak() // 我叫zyk，我年龄是18
+    const s = new Student('lqh', 18, 6)
+    console.log(s)
+    s.speak()
+
+
+    class Car {
+      constructor(name, price) {
+        this.name = name
+        this.price = price
+        // this.wheel = 4
+      }
+      //类中可以直接写赋值语句,如下代码的含义是：给Car的实例对象添加一个属性，名为a，值为1
+      a = 1
+      wheel = 4
+      static demo = 100 // 静态成员（静态属性和方法，static关键字定义，只供类访问）
+    }
+    const c1 = new Car('奔驰c63', 199)
+    console.log(c1)
+    console.log(Car.demo) // 100
+  </script>
+```
 
 
 
+### 2、继承
 
-### 继承
-
-#### 构造函数继承
+#### 1）构造函数继承
 
 构造函数继承——**继承其属性**
 
 ```javascript
-        //构造函数Person
-        function Person(name,age){
-            this.name = name;
-            this.age = age;
-        }
-        //在Person()的原型中添加方法say()
-        Person.prototype.say = function (){
-            console.log(this.name,'hello');
-        }
+    // 构造函数Person
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+    }
+    // 在Person()的原型中添加方法say()
+    Person.prototype.say = function () {
+      console.log(this.name, 'hello')
+    }
 ```
 
-```javascript
-    function Student(name,age,grade){
-    //执行Person()，里面this =（this）Student，后面两个参数name和age是赋值:this.name=name; this.age=age;
-            //Person.call(this,name,age);
-            Person.apply(this,[name,age]);
-            this.grade = grade;
-        }
+```js
+    // 1. 构造函数继承
+    function Student(name, age, grade) {
+      // 执行Person()，里面this =（this）Student，后面两个参数name和age是赋值:this.name=name; this.age=age;
+      // Person.call(this,name,age);
+      Person.apply(this, [name, age])
+      this.grade = grade
+    }
+    const obj = new Student('zyk', 18, 100)
+    console.log(obj) // Student {name: 'zyk', age: 18, grade: 100}
 
-    var obj = new Student('zyk',18,100);
-    console.log(obj);//Student {name: 'zyk', age: 18, grade: 100}
-
-    var obj2 = {
-            grade:100;
-        }
-    //执行Person(),里面的this 指向= obj，obj.name='zyk'; obj.age=18
-    Person.call(obj2,'zyk',18);
-    console.log(obj2);//{grade: 100, name: 'zyk', age: 18}
-```
-
-
-
-#### 原型继承
-
-原型继承——**继承其原型上的方法**
-
-```javascript
-       //2. 原型继承——继承其原型的方法
-     Student.prototype = new Person();//函数.prototype = new 构造函数();
-
-        //依然可以在自己原型上添加方法
-        Student.prototype.print = function (){
-            console.log(this.name,this.grade);
-        }
-        //可以覆盖继承过来的方法
-        // Student.prototype.say = function(){
-        //     console.log(this.name,'你好');
-        // }
-        //在别的方法里调用继承的方法,增强
-        Student.prototype.say2 = function (){
-            this.say();
-            console.log(this.name,'你好');
-        }
-
-        var obj = new Student('zyk',18,100);
-        console.log(obj);
-        obj.say();
-        obj.print();
-        obj.say2();
+    const obj2 = {
+      grade: 100
+    }
+    // 执行Person()，里面的this 指向= obj，obj.name='zyk'; obj.age=18
+    Person.call(obj2, 'zyk', 18)
+    console.log(obj2) // {grade: 100, name: 'zyk', age: 18}
 ```
 
 
 
-#### 组合继承
+#### 2）原型继承
+
+原型继承
+
+```js
+    // 2. 原型继承
+    Student.prototype = new Person() // 函数.prototype = new 构造函数() 
+
+    // 依然可以在自己原型上添加方法
+    Student.prototype.print = function () {
+      console.log(this.name, this.grade)
+    }
+    // 可以覆盖继承过来的方法
+    // Student.prototype.say = function () {
+    //   console.log(this.name, '你好')
+    // }
+    // 在别的方法里调用继承的方法,增强
+    Student.prototype.say2 = function () {
+      this.say()
+      console.log(this.name, '你好')
+    }
+
+    const obj3 = new Student('zyk', 18, 100) 
+    console.log(obj3) // Student {name: 'zyk', age: 18, grade: 100}
+    obj3.say() // zyk hello  原型继承 Person的say方法
+    obj3.print() // zyk 100
+    obj3.say2() // zyk hello  zyk 你好
+```
+
+
+
+#### 3）组合继承
 
 **构造函数继承+原型继承**
 
 ```js
-        //构造函数Person
-        function Person(name,age){
-            this.name = name;
-            this.age = age;
-        }
-        //在Person()的原型中添加方法say()
-        Person.prototype.say = function (){
-            console.log(this.name,'hello');
-        }
+    //构造函数Person
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+    }
+    // 在Person()的原型中添加方法say()
+    Person.prototype.say = function () {
+      console.log(this.name, 'hello')
+    }
 
-        function Student(name,age,grade){
-            //1.构造函数继承————继承其属性
-            Person.call(this,name,age);
-            this.grade = grade;
-        }
-        //2. 原型继承——继承其原型的方法
-     Student.prototype = new Person();//函数.prototype = new 构造函数();
+    function Student(name, age, grade) {
+      // 1.构造函数继承————继承其属性
+      Person.call(this, name, age)
+      this.grade = grade
+    }
+    // 2. 原型继承——继承其原型的方法
+    Student.prototype = new Person() // 函数.prototype = new 构造函数()
 
-        var obj = new Student('zyk',18,100);
-        console.log(obj);
-        obj.say();
+    var obj = new Student('zyk', 18, 100)
+    console.log(obj) // Student {name: 'zyk', age: 18, grade: 100}
+    obj.say() // zyk hello
 ```
 
 
 
-#### ES6—继承
+#### 4）ES6—继承
 
-+ ES6标准中类的继承：通过**extends关键字**实现
++ ES6标准中类的继承：通过**`extends`关键字**实现
 
-+ 在**子类构造函数**中  **必须使用super()**。因为ES6继承是**先将父类实例对象的属性和方法，加到this上面**，然后**再调用子类的构造函数修改这个this**
++ 在**子类构造函数**中  **必须使用`super()`**。因为ES6继承是**先将父类实例对象的属性和方法，加到this上面**，然后**再调用子类的构造函数修改这个this**
 
-  注意：继承中需要**调用super()方法继承父类的构造函数**。super()在使用过程中需要注意以下两点
+  注意：继承中需要**调用`super()`方法继承父类的构造函数**。`super()`在使用过程中需要注意以下两点
 
-  （1）在**访问this之前**一定要调用super()
+  （1）在**访问`this`之前**一定要调用`super()`
 
-  （2）如果不调用super(),可以让子类构造函数返还一个对象
+  （2）如果不调用`super()`，可以让子类构造函数返还一个对象
 
-- 如果子类没有定义constructor()方法，super()会**默认**添加上
-- 子类会继承父类的方法和属性，但是**静态方法和属性**必须通过**子类的类名**来调用
+- 如果**子类没有定义自己的构造函数**，则会**自动继承父类的构造函数**。当子类没有显式地定义构造函数时，JavaScript会默认为子类**创建一个空的构造函数，并自动调用父类的构造函数**。
 
-```javascript
-//父类
-class Father{
-    constructor(name){//构造函数
-        this.name = name;
-    }
-    display(){
+  ```js
+      class Parent {
+        constructor(name) {
+          this.name = name
+        }
+      }
+      // 继承
+      class Child extends Parent {}
+      
+      const child = new Child('John')
+      console.log(child.name) // John
+  ```
+
+- 子类会继承父类的方法和属性，但是**静态成员（静态属性和静态方法）**不会继承
+
+```js
+    // 父类
+    class Father {
+      constructor(name) { // 构造函数
+        this.name = name
+      }
+      display() {
         console.log(`姓名：${this.name}`)
+      }
     }
-}
-//子类
-class Son extends Father{
-    constructor(name,heigth){//子类构造函数
-        super(name); //调用super()来继承父类的构造函数
-        this.heigth = heigth;
-    }
-    display(){
-        super.display();
+    // 子类
+    class Son extends Father {
+      constructor(name, heigth) { // 子类构造函数
+        super(name) // 调用super()来继承父类的构造函数
+        this.heigth = heigth
+      }
+      display() {
+        super.display()
         console.log(`身高：${this.heigth}`)
+      }
     }
-}
- 
-let s1 = new Son('张三','175com')
-s1.display()
-/*输出：
-姓名：张三
-身高：175com
-*/
+    
+    let s1 = new Son('张三', '175com')
+    s1.display()
+    /*
+    姓名：张三
+    身高：175com
+    */
 ```
 
-```javascript
-    <script>
-        //父类
-        class Person{
-            constructor(name,age){//构造器函数
-                this.name = name;
-                this.age = age;
-            }
-            say(){
-                console.log(this.name,'hello');
-            }
-        }
-        //子类
-        class Student extends Person{
-            constructor(name,age,grade){//子类构造函数
-                super(name,age);//调用super()来继承父类的构造函数,写在this之前，类似 Person.call(this,name,age);
-                this.grade = grade;
-            }
-            say(){
-                super.say();
-                console.log(this.name,'你好');
-            }
-        }
+```js
+    // 父类
+    class Person {
+      constructor(name, age) { // 构造器函数
+        this.name = name
+        this.age = age
+      }
+      say() {
+        console.log(this.name, 'hello')
+      }
+    }
+    // 子类
+    class Student extends Person {
+      constructor(name, age, grade) { // 子类构造函数
+        super(name, age) // 调用super()来继承父类的构造函数,写在this之前，类似 Person.call(this,name,age);
+        this.grade = grade;
+      }
+      say() {
+        super.say();
+        console.log(this.name, '你好')
+      }
+    }
 
-        var s1 = new Student('zyk',18,100);
-        s1.say();
-    </script>
+    var s1 = new Student('zyk', 18, 100)
+    s1.say()
+    // zyk hello
+    // zyk 你好
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 解构赋值的方式从对象中获取成员
+    const obj = {
+      name: 'Jack',
+      age: 18,
+      gender: '男'
+    }
+
+    // 前面的 {} 表示我要从 obj 这个对象中获取成员了
+    // name age gender 都得是 obj 中有的成员
+    // obj 必须是一个对象
+    const {
+      name,
+      age: myage,
+      gender
+    } = obj // age重命名为myage
+    console.log(name, myage, gender) // Jack 18 男
+    // console.log(name, age, gender) // 报错，要用重命名后的名字
+
+
+    //解构复杂对象
+    const obj2 = {
+      name1: 'zyk',
+      age: 100,
+      location: {
+        province: 'jiangxi',
+        city: 'leping'
+      },
+      hobby: [111, 222, 333]
+    }
+
+    const {
+      name1,
+      age,
+      location: {
+        province,
+        city
+      },
+      hobby: [u, v, w]
+    } = obj2
+    console.log(name1, age, province, city, u, v, w) // zyk 100 jiangxi leping 111 222 333
+  </script>
+</body>
+
+</html>

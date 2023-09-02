@@ -12,19 +12,17 @@
   <script>
     // function Objetc() {}
     console.log(Object.prototype)
-    console.log(Object.prototype.__proto__)
+    console.log(Object.prototype.__proto__) // null
 
-    function Person() {
-
-    }
+    function Person() {}
     const ldh = new Person()
     // console.log(ldh.__proto__ === Person.prototype)
     // console.log(Person.prototype.__proto__ === Object.prototype)
-    console.log(ldh instanceof Person)
-    console.log(ldh instanceof Object)
-    console.log(ldh instanceof Array)
-    console.log([1, 2, 3] instanceof Array)
-    console.log(Array instanceof Object)
+    console.log(ldh instanceof Person) // true
+    console.log(ldh instanceof Object) // true
+    console.log(ldh instanceof Array) // flase
+    console.log([1, 2, 3] instanceof Array) // true
+    console.log(Array instanceof Object) // true
   </script>
 </body>
 

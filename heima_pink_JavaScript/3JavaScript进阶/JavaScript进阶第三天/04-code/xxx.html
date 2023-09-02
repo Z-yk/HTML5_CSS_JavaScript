@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 父类
+    class Person {
+      constructor(name, age) { // 构造器函数
+        this.name = name
+        this.age = age
+      }
+      say() {
+        console.log(this.name, 'hello')
+      }
+    }
+    //子类
+    class Student extends Person {
+      constructor(name, age, grade) { // 子类构造函数
+        super(name, age) // 调用super()来继承父类的构造函数,写在this之前，类似 Person.call(this,name,age);
+        this.grade = grade;
+      }
+      say() {
+        super.say();
+        console.log(this.name, '你好')
+      }
+    }
+
+    var s1 = new Student('zyk', 18, 100)
+    s1.say()
+    // zyk hello
+    // zyk 你好
+  </script>
+</body>
+
+</html>

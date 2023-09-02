@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 实例成员&静态成员
+    // 1. 实例成员：通过构造函数创建实例对象， 实例对象的属性和方法 = 实例成员（实例属性和实例方法）
+    function Pig(name) {
+      // this 指向 实例对象
+      this.name = name
+    }
+    const peiqi = new Pig('佩奇')
+    const qiaozhi = new Pig('乔治')
+    peiqi.name = '小猪佩奇' // peiqi的实例属性name
+    peiqi.sayHi = () => {
+      console.log('Hi')
+    }
+    peiqi.sayHi() // 调用peiqi的实例方法sayHi
+    console.log(peiqi === qiaozhi) // false 同一个构造函数创建的实例对象：结构相同但相互独立的
+
+    // 2. 静态成员：构造函数的属性和方法 = 静态成员（静态属性和静态方法）
+    function Person(name,age) {
+      // 实例成员
+      this.name = name
+      this.age = age
+    }
+    // 静态属性
+    Person.eyes = 2
+    Person.arms = 2
+    // 静态方法
+    Person.walk = function() {
+      console.log('人都会走路....')
+      // this 指向 构造函数Person
+      console.log(this.eyes)
+    }
+    console.log(Person.arms) // 使用Person的静态属性
+    Person.walk() // 调用Person的静态方法
+    
+  </script>
+</body>
+</html>

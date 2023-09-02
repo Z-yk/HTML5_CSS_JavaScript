@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //构造函数Star
+    function Star(u_name, age, sex) {
+      // this指向的是下面实例化的对象（谁调用指向谁），ldh
+      this.name = u_name // 左边是抽取的属性，右边是形参
+      this.age = age
+      this.sex = sex
+      this.sing = function (sang) {
+        console.log(sang)
+      }
+    }
+    //对象
+    var ldh = new Star('刘德华', '18', '男') // new调用，创建对象并实例化
+    console.log(typeof ldh) // object (null也是object)
+    console.log(ldh.name) // 刘德华
+    console.log(ldh['sex']) // 男
+    ldh.sing('冰雨') // 冰雨
+  </script>
+</body>
+
+</html>

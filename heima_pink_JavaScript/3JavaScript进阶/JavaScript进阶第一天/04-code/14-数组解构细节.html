@@ -37,28 +37,30 @@
     // const [max, min] = getValue()
     // console.log(max)
     // console.log(min)
-    // 1. 变量多， 单元值少 ， undefined
+
+
+    // 1. 变量多，单元值少 ， 多余变量默认undefined（形参过多）
     // const [a, b, c, d] = [1, 2, 3]
     // console.log(a) // 1
     // console.log(b) // 2
     // console.log(c) // 3
     // console.log(d) // undefined
-    // 2. 变量少， 单元值多
+    // 2. 变量少，单元值多  ，从前往后取单元值（实参过多）
     // const [a, b] = [1, 2, 3]
     // console.log(a) // 1
     // console.log(b) // 2
-    // 3.  剩余参数 变量少， 单元值多
+    // 3. 剩余参数 变量少， 单元值多
     // const [a, b, ...c] = [1, 2, 3, 4]
     // console.log(a) // 1
     // console.log(b) // 2
     // console.log(c) // [3, 4]  真数组
-    // 4.  防止 undefined 传递
+    // 4. 防止 undefined 传递
     // const [a = 0, b = 0] = [1, 2]
     // const [a = 0, b = 0] = []
-    // console.log(a) // 1
-    // console.log(b) // 2
-    // 5.  按需导入赋值
-    // const [a, b, , d] = [1, 2, 3, 4]
+    // console.log(a) // 1  0
+    // console.log(b) // 2  0
+    // 5. 按需导入赋值
+    // const [a, b,  , d] = [1, 2, 3, 4]
     // console.log(a) // 1
     // console.log(b) // 2
     // console.log(d) // 4
@@ -69,15 +71,15 @@
     // console.log(arr[2])  // [3,4]
     // console.log(arr[2][0])  // 3
 
-    // 多维数组解构
-    // const arr = [1, 2, [3, 4]]
-    // const [a, b, c] = [1, 2, [3, 4]]
+    // 6. 多维数组解构
+    const arr = [1, 2, [3, 4]]
+    // const [a, b, c] = arr
     // console.log(a) // 1
     // console.log(b) // 2
     // console.log(c) // [3,4]
 
-
-    const [a, b, [c, d]] = [1, 2, [3, 4]]
+    // const [a, b, [c, d]] = arr
+    // const [a, b, [c, d]] = [1, 2, [3, 4]]
     console.log(a) // 1
     console.log(b) // 2
     console.log(c) // 3

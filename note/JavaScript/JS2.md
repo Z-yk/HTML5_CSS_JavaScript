@@ -95,7 +95,7 @@ W3C已经定义了一系列的DOM接口，通过这些**DOM接口**可以对**�
 
 **getElementById( )**方法——获取**带有该ID的 元素对象**。
 
-`Document`的方法 `getElementById()`**返回一个匹配特定 ID的元素**。由于元素的 **ID** 在大部分情况下要求是**独一无二的**，这个方法自然而然地成为了一个高效**查找特定元素的方法**。
+`Document`的方法 `getElementById()`**返回<span style="color:red">一个匹配特定 ID的元素</span>**。由于元素的 **ID** 在大部分情况下要求是**独一无二的**，这个方法自然而然地成为了一个高效**查找特定元素的方法**。
 
 语法：
 
@@ -724,7 +724,7 @@ JavaScript的**DOM操作**可以**改变网页内容、结构和样式**，我�
 
 
 
-#### 4）自定义属性
+#### 4）自定义属性`data-`
 
 <img src="JS2.assets/image-20230712165026174.png" alt="image-20230712165026174" style="zoom:67%;float:Left" />
 
@@ -741,7 +741,7 @@ console.log(div.dataset['index']);
 console.log(div.dataset.index); //获取自定义属性data-index
 ```
 
-**dataset 是一个集合**，里面存放了所有以**data开头**的自定义属性
+**`dataset` 是一个集合**，里面存放了所有以**data开头**的自定义属性
 
 注意：获取很长的自定义属性：里面**有多个 - 链接的单词**，我们采取**小驼峰命名法**
 
@@ -1435,7 +1435,7 @@ JavaScript使我们有能力创建动态页面，而**事件**是可以被JavaSc
     // 需求： 点击了按钮，弹出一个对话框
     // 1. 事件源   按钮  
     // 2.事件类型 点击鼠标   click 字符串
-    // 3. 事件处理程序 弹出对话框
+    // 3. 事件处理程序 弹出对话框          
     const btn = document.querySelector('button')
     btn.addEventListener('click', function () {
       alert('你早呀~')
@@ -1452,6 +1452,29 @@ JavaScript使我们有能力创建动态页面，而**事件**是可以被JavaSc
             alert('点秋香');
         }
     </script>
+```
+
+```html
+  <button id="btn1">按钮1</button>
+  <button id="btn2">按钮2</button>
+  <button onclick="demo()">按钮3</button>
+
+  <script type="text/javascript">
+    // 事件绑定三种方式：
+    const btn1 = document.getElementById('btn1')
+    btn1.addEventListener('click', () => {
+      alert('按钮1被点击了')
+    })
+
+    const btn2 = document.getElementById('btn2')
+    btn2.onclick = () => {
+      alert('按钮2被点击了')
+    }
+
+    function demo() {
+      alert('按钮3被点击了')
+    }
+  </script>
 ```
 
 案例：广告的关闭：点击X元素，即可关闭整个广告。给X元素绑定一个点击事件，函数功能可以隐藏掉整个广告
@@ -2069,7 +2092,7 @@ note：利用js**自动调用点击事件click()**  一定加小括号调用函�
 
 #### `type`属性
 
-type 返回要**触发的事件类型**，但是注意事件类型是不加 on。比如 ： click mouseover …
+`e.type` 返回要**触发的事件类型**，但是注意事件类型是不加 on。比如 ： click mouseover …
 
 #### `key`属性
 

@@ -20,15 +20,16 @@
     // const uname = 'red老师'
     // 解构的语法
     // const { uname, age } = {age: 18, uname: 'pink老师' }
-    // // 等价于 const uname =  obj.uname
-    // // 要求属性名和变量名必须一直才可以
-    // console.log(uname)
-    // console.log(age)
-    // 1. 对象解构的变量名 可以重新改名  旧变量名: 新变量名
-    // const { uname: username, age } = { uname: 'pink老师', age: 18 }
+    // 等价于 const uname =  obj.uname
+    // 要求属性名和变量名必须一直才可以
+    // console.log(uname) // pink老师
+    // console.log(age) // 18
 
-    // console.log(username)
-    // console.log(age)
+
+    // 1. 对象解构的变量名 可以重新改名  旧变量名 : 新变量名
+    // const { uname: username, age } = { uname: 'pink老师', age: 18 }
+    // console.log(username) // pinl老师
+    // console.log(age) // 18
     // 2. 解构数组对象
     const pig = [
       {
@@ -36,9 +37,9 @@
         age: 6
       }
     ]
-    const [{ uname, age }] = pig
-    console.log(uname)
-    console.log(age)
+    const [{ age, uname }] = pig // 顺序不一样也可以，匹配变量名和对象的属性名or方法名相同的
+    console.log(uname) // 佩奇
+    console.log(age) // 6
   </script>
 </body>
 

@@ -10,22 +10,25 @@
 
 <body>
   <script>
-    let that
+    let that1
+    let that2
+
     function Star(uname) {
-      // that = this
-      // console.log(this)
+      that1 = this
+      console.log(this)
       this.uname = uname
     }
-    // 原型对象里面的函数this指向的还是 实例对象 ldh
+    // 2. 原型对象里面的函数的this 也指向 实例对象 ldh
     Star.prototype.sing = function () {
-      that = this
+      that2 = this
       console.log('唱歌')
     }
     // 实例对象 ldh   
-    // 构造函数里面的 this 就是  实例对象  ldh
+    // 1. 构造函数里的this 指向 实例对象 ldh
     const ldh = new Star('刘德华')
     ldh.sing()
-    console.log(that === ldh)
+    console.log(that1 === ldh) // true 构造函数里的this 指向 实例对象 ldh
+    console.log(that2 === ldh) // true 原型对象里面的函数的this 也指向 实例对象 ldh
   </script>
 </body>
 
