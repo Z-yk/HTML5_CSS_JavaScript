@@ -390,15 +390,13 @@ case2：非a 标签——**书写在行为属性上：**
 
 <img src="JS1.assets/10.png" style="zoom: 80%;float:left" />
 
-引用数据类型也称**复杂数据类型**
+JS变量的数据类型只有**在程序运行过程**中，根据  **<span style="color:red">等号=右边的值</span> 来确定的**。变量的数据类型：就看**给变量赋值是什么**
 
-JS变量的数据类型只有**在程序运行过程**中，根据  **等号右边  的值来确定的**。变量的数据类型：就看**给变量赋值是什么**
-
-<img src="JS1.assets/27.png" style="zoom:200%;" />
+<img src="JS1.assets/27.png" style="zoom:200%;float:left" />
 
 
 
-### 1、基本（简单）数据类型
+### 1、基本数据类型（原始类型）
 
 #### 1）数字型Number
 
@@ -514,15 +512,13 @@ var str = **abc** ；这样会报错，**没使用引号**
 
 
 
-#### 4）空类型null undefined
-
-##### 未定义类型undefined
+#### 4）未定义类型undefined
 
 <img src="JS1.assets/image-20230629105417089.png" alt="image-20230629105417089" style="zoom:67%;float:left" />
 
 
 
-##### 空类型null
+#### 5）空类型null
 
 <img src="JS1.assets/image-20230629105852316.png" alt="image-20230629105852316" style="zoom:67%;float:left" />
 
@@ -540,7 +536,7 @@ var str = **abc** ；这样会报错，**没使用引号**
 
 ### 2、检测数据类型typeof
 
-#### （1）typeof
+#### （1）`typeof`
 
 <img src="JS1.assets/image-20230629115542294.png" alt="image-20230629115542294" style="zoom:67%;float:left" />
 
@@ -649,7 +645,7 @@ null返回的是object，返回的是一个空的对象
 
 把其他数据类型转换成 布尔类型
 
-+ **Boolean(转换的内容)**
++ **`Boolean(转换的内容)`**
 
 转换的值是true 还是 false？？**除了以下五个是false，其余都是true**
 
@@ -832,6 +828,72 @@ console.log(Boolean(2)) // true
 ```
 
 
+
+### 6、引用数据类型
+
+引用数据类型也称**复杂数据类型**：
+
+1. **对象（Object）**：对象是一种复合数据类型，可存储多个键值对。对象可以通过字面量、构造函数或对象创建方法创建，例如：
+
+   ```js
+   let person = { name: 'John', age: 30 };  // 通过字面量创建对象
+   
+   let obj = new Object({name:'zyk'});  // 通过构造函数创建对象
+   
+   let car = Object.create(null);  // 通过对象创建方法创建对象
+   ```
+
+2. **数组（Array）**：数组用于存储一组有序的值，可以通过下标访问和修改数组中的元素。数组可以使用字面量或构造函数创建，例如：
+
+   ```js
+   let fruits = ['apple', 'banana', 'orange'];  // 通过字面量创建数组
+   
+   let arr = new Array();  // 通过构造函数创建数组
+   
+   let numbers = Array.of(1, 2, 3);  // 使用静态方法创建数组
+   ```
+
+3. **函数（Function）**：函数是一段可重复执行的代码块，可以接收参数并返回值。函数可以通过函数声明或函数表达式创建，例如：
+
+   ```js
+   function sayHello() {
+     console.log('Hello!');
+   }
+   
+   let addNumbers = function(a, b) {
+     return a + b;
+   };
+   ```
+
+4. **日期（Date）**：日期用于表示时间和日期，可以执行各种日期操作和格式化。日期可以使用 `new Date()` 构造函数创建，例如：
+
+   ```js
+   let currentDate = new Date();
+   ```
+
+5. **正则表达式（RegExp）**：正则表达式用于对字符串进行模式匹配和搜索。正则表达式可以使用字面量或构造函数创建，例如：
+
+   ```js
+   let regex = /abc/;  // 通过字面量创建正则表达式
+   
+   let regex2 = new RegExp('xyz');  // 通过构造函数创建正则表达式
+   ```
+
+6. **Map（Map）**：Map 是一种键值对的集合，其中键和值可以是任意类型。Map 提供了更好的键值对管理和操作能力，例如：
+
+   ```js
+   let map = new Map();
+   map.set('name', 'John');
+   map.set('age', 30);
+   ```
+
+7. **Set（Set）**：Set 是一组唯一值的集合，可以用于存储任意类型的值。Set 确保集合中的每个值都是唯一的，例如：
+
+   ```js
+   let set = new Set();
+   set.add(1);
+   set.add(2);
+   ```
 
 
 
@@ -1522,17 +1584,17 @@ do...while语句其实是while语句的一个变体。该循环会**先执行一
 
 JS中**创建数组**有两种方式：
 
-+ 利用 **new Array( )**创建数组
-+ 利用**数组字面量——中括号[ ]** 创建数组 （常用）
++ 利用 **`new Array(元素)`**创建数组
++ 利用**数组字面量——中括号`[ ]`** 创建数组 （常用）
 
-```js
+```html
   <script>
     // 1. 字面量声明数组
     let arr = [1, 2, 'pink', true]
     console.log(arr)
     // 2. 使用new Array 构造函数声明   了解
     let arr1 = new Array(1, 2, 3, 4)
-    console.log(arr1)
+    console.log(arr1) // [1, 2, 3, 4]
   </script>
 ```
 
@@ -2549,9 +2611,56 @@ num = 10;
 
 <img src="JS1.assets/image-20230710091020481.png" alt="image-20230710091020481" style="zoom:67%;float:left" />
 
+```js
+let obj = {
+      'goods-name': '小米10青春版', // 如果属性名有特殊符号（空格、-），属性名可以用''或""包裹
+      num: '100012816024',
+      weight: '0.55kg',
+      address: '中国大陆'
+    }
+    // console.log(obj.goods - name)  // 不可以,当属姓名使用了' '或者" "，则不能用 对象.属性，一定要使用 对象['属性']
+    // 查的另外一种属性：
+    // 对象名['属性名']
+    console.log(obj['goods-name'])
+```
+
 <img src="JS1.assets/image-20230710092731960.png" alt="image-20230710092731960" style="zoom:67%;float:left" />
 
+对象中的方法**有三种写法**：
+
++ 普通函数写法
+
+  ```js
+  const obj = {
+    methodName: function() {
+      // 方法的具体实现
+    }
+  };
+  ```
+
++ ES6箭头函数写法
+
+  ```js
+  const obj = {
+    methodName: () => {
+      // 方法的具体实现
+    }
+  };
+  ```
+
++ 简单写法（ES6+）
+
+  ```js
+  const obj = {
+    methodName() {
+      // 方法的具体实现
+    }
+  };
+  ```
+
 <img src="JS1.assets/image-20230710093342803.png" alt="image-20230710093342803" style="zoom:67%;float:left" />
+
+对象中的**方法里面的this指向该对象**，因为是 对象.方法名() 调用（谁调用就指向谁）
 
 ```js
   let obj = {
@@ -2578,7 +2687,7 @@ num = 10;
 
 <img src="JS1.assets/image-20230710092504110.png" alt="image-20230710092504110" style="zoom:67%;float:left" />
 
-当属姓名使用了' '或者" "，则不能用**对象.属性**，一定要使用**对象['属性']**
+注意：<span style="color:red">当属姓名使用了' '或者" "，则不能用**对象.属性**，一定要使用**对象['属性']**</span>
 
 ```js
     // 1.声明对象
@@ -2621,48 +2730,9 @@ num = 10;
 
 
 
-### 3、创建对象的三种方式
-
-<img src="JS1.assets/93.png" style="zoom:120%;float:left" />
-
-#### 1）字面量{}创建对象
-
-**对象字面量**：就是**花括号{ }**里面包含了表达这个具体事物（对象）的**属性**和**方法**。
-
-```js
-//1.利用字面量————花括号{}创建对象
-        var obj1 = {}; //创建了一个空的对象
-        var obj = {
-            u_name: '张三疯', //逗号
-            age: 18,
-            sex: '男',
-            //方法
-            sayHi:function (){
-                console.log('hi~');
-            }
-            sayHi2() {
-                console.log('hi2~')
-            }
-        }
-```
-
-说明：
-
-1）里面的属性或者方法采取**键:值对的形式**——
-
-​      **`属性(键): 属性值(值)`**      
-
-​      **`方法名: function() {函数体}`**
-
- 2） 多个属性或者方法用 **逗号,** 隔开
-
- 3）方法冒号后面跟的是一个**匿名函数**
-
-
-
 #### 对象的调用
 
-<img src="JS1.assets/94.png" style="zoom:150%;" />
+<img src="JS1.assets/94.png" style="zoom:150%;float:left" />
 
 ```js
         //2.使用对象
@@ -2674,7 +2744,7 @@ num = 10;
         obj.sayHi();
 ```
 
-**变量、属性、函数、方法的区别**
+**变量和属性、函数和方法的区别**
 
 **1、变量和属性**
 
@@ -2691,7 +2761,7 @@ var obj = {
 
 变量——单独**声明并赋值**，使用时**直接写变量名**，单独存在
 
-属性——在对象里面的属性不需要声明，直接 **属性: 属性值**，使用的时候是 **对象名.属性**
+属性——在对象里面的属性不需要声明，直接 **属性: 属性值**，使用的时候是 **对象名.属性**  或者 **对象名['属性名']**
 
 **2、函数和方法**
 
@@ -2713,35 +2783,59 @@ var obj = {
 
 函数——单独声明（两种方式），调用时 **函数名( )**，单独存在
 
-方法——在对象里，**方法名: function( ) {方法体}**，调用时 **对象名. 方法名( )**
+方法——在对象里，**`方法名: function( ) {方法体}`**，调用时 **对象名. 方法名( )**
 
 
 
-#### 2）new Object( )创建对象
+### 3、创建对象的三种方式
+
+<img src="JS1.assets/image-20230810144519535.png" alt="image-20230810144519535" style="zoom:67%;float:left" />
+
+
+
+#### 1）字面量`{}`创建对象
+
+**对象字面量**：就是**花括号{ }**里面包含了表达这个具体事物（对象）的**属性**和**方法**。
+
+```js
+//1.利用字面量————花括号{}创建对象
+    const obj1 = {}; //创建了一个空的对象
+    const obj = {
+      u_name: '张三疯', //逗号
+      age: 18,
+      sex: '男',
+      //方法
+      sayHi: function () {
+        console.log('hi~')
+      },
+      sayHi2() { // 简写写法（ES6+）
+        console.log('hi2~')
+      }
+    }
+```
+
+
+
+#### 2）`new Object()`创建对象
 
 跟前面创建数组 new Array( )差不多。
 
 ```js
 //利用new Object() 创建对象
-        var obj = new Object(); //创建了一个空的对象
-        //添加属性和方法（字面量也可以通过这样添加属性和方法）：
-        obj.u_name = '张三疯'; //分号
-        obj.age = 18;
-        obj.sex = '男';
-        obj.sayHi = function(){
-            console.log('hi~');
-        }
+  const obj = new Object() // 创建一个空对象
+    obj.uname = 'pink老师'
+    obj.age = 18;
+    obj.sex = '男';
+    obj.sayHi = function () {
+      console.log('hi~');
+    }
+    console.log(obj) // {uname: 'pink老师', age: 18, sex: '男', sayHi: ƒ}
+
+    const obj1 = new Object({
+      uname: 'pink'
+    })
+    console.log(obj1) // {uname: 'pink'}
 ```
-
-说明：
-
-1）利用 **等号=赋值** 的方法，**添加对象的属性和方法**--在字面量创建对象中，也可以使用
-
-​      **对象名.属性 =  属性值**
-
-​     **对象名.方法名 = function( ){ 方法体 }**
-
-2）每个属性和方法之间用 **分号**结束
 
 
 
@@ -2751,54 +2845,73 @@ var obj = {
 
   因为**前面两种**创建对象的方式**一次只能创建一个对象**
 
-<img src="JS1.assets/95.png" style="zoom:200%;" />
-
 **构造函数：**是一种**特殊的函数**，主要用来**<span style="color:red">初始化对象</span>**，即**为对象成员变量赋初始值**，**它总与new运算符一起使用**，我们可以把**对象**中一些**公共的属性和方法**抽取出来，然后**封装到这个函数**里面。
+
+<img src="JS1.assets/image-20230810172917330.png" alt="image-20230810172917330" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230810173252350.png" alt="image-20230810173252350" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230810174104013.png" alt="image-20230810174104013" style="zoom:67%;float:left" />
+
+说明：属性和方法前面得加上 **this.**
+
+<img src="JS1.assets/image-20230830102456675.png" alt="image-20230830102456675" style="zoom:67%;float:left" />
 
 语法格式：
 
 ```js
-  //构造函数的语法格式——跟函数差不多
-        function 构造函数名(形参){
-            this.属性 = 属性值（形参）;
-            this.方法 = function(){
-                //方法体
-            }
-        }
-  //调用
-        new 构造函数名(实参); //调用，初始化对象
+    //构造函数的语法格式——跟函数差不多
+    function 构造函数名(形参) {
+      this.属性 = 属性值（ 形参）
+      this.方法 = function () {
+        //方法体
+      }
+    }
+    //调用
+    new 构造函数名(实参); //调用，初始化对象
 ```
 
 ```js
-//构造函数Star
+    //构造函数Star
     function Star(u_name, age, sex) {
-      //this指向的是下面实例化的对象，ldh
-      this.name = u_name; //左边是抽取的属性，右边是形参
-      this.age = age;
-      this.sex = sex;
+      // this指向的是下面实例化的对象（谁调用指向谁），ldh
+      this.name = u_name // 左边是抽取的属性，右边是形参
+      this.age = age
+      this.sex = sex
       this.sing = function (sang) {
-        console.log(sang);
+        console.log(sang)
       }
     }
     //对象
-    var ldh = new Star('刘德华', '18', '男'); //new调用
-    console.log(typeof ldh); //object (null也是object)
-    console.log(ldh.name);
-    console.log(ldh['sex']);
-    ldh.sing('冰雨');
+    var ldh = new Star('刘德华', '18', '男') // new调用，创建对象并实例化
+    console.log(typeof ldh) // object (null也是object)
+    console.log(ldh.name) // 刘德华
+    console.log(ldh['sex']) // 男
+    ldh.sing('冰雨') // 冰雨
 ```
 
-说明：
+<img src="JS1.assets/image-20230810174855818.png" alt="image-20230810174855818" style="zoom:67%;float:left" />
 
-​     1.构造函数名**首字母大写**
+```js
+    // Goods构造函数
+    function Goods(name, price, count) {
+      this.name = name
+      this.price = price
+      this.count = count
+      this.sayhi = function () {}
+    }
+    // 实例化多个对象：mi、hw
+    const mi = new Goods('小米', 1999, 20)
+    console.log(mi)
+    const hw = new Goods('华为', 3999, 59)
+    console.log(hw)
+    console.log(mi === hw) // false
+    mi.name = 'vivo'
+    console.log(mi) // name属性改为 vivo
+    console.log(hw)
+```
 
-​    2.构造函数**不需要return就可以返回结果**
-
-​    3.**调用构造函数**，必须使用**new**
-
-​    4.只要`new 构造函数名(实参)`就**创建一个对象** 
-
-​    5.属性和方法前面得加上 **this.**
+![image-20230810175715479](JS1.assets/image-20230810175715479.png)
 
 **new关键字的执行过程：**
 
@@ -2806,9 +2919,62 @@ var obj = {
 
 #### 构造函数和对象的区别
 
-**构造函数**: Stars(...)，抽象了对象的**公共部分**，**封装**到了函数里面，**泛指某一大类**， 它类似于java语言里面的**类（class）**
+**构造函数**: `Stars(...)`，抽象了对象的**公共部分**，**封装**到了函数里面，**泛指某一大类**， 它类似于java语言里面的**类（class）**
 
-**对象**：new Stars(...)**，特指一个具体的事物**，利用**构造函数创建对象**的过程也称为**对象的实例化**
+**对象**：`new Stars(...)`**，特指一个具体的事物**，利用**构造函数创建对象**的过程也称为**对象的实例化**
+
+
+
+#### 实例成员&静态成员
+
+<img src="JS1.assets/image-20230810181358711.png" alt="image-20230810181358711" style="zoom:67%;float:left" />
+
+**构造函数内部的this** 指向 **实例对象**
+
+<img src="JS1.assets/image-20230810180638119.png" alt="image-20230810180638119" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230810180907016.png" alt="image-20230810180907016" style="zoom:67%;float:left" />
+
+小结：
+
+<img src="JS1.assets/image-20230810181100613.png" alt="image-20230810181100613" style="zoom:67%;float:left" />
+
+```html
+  <script>
+    // 实例成员&静态成员
+    // 1. 实例成员：通过构造函数创建实例对象， 实例对象的属性和方法 = 实例成员（实例属性和实例方法）
+    function Pig(name) {
+      // this 指向 实例对象
+      this.name = name
+    }
+    const peiqi = new Pig('佩奇')
+    const qiaozhi = new Pig('乔治')
+    peiqi.name = '小猪佩奇' // peiqi的实例属性name
+    peiqi.sayHi = () => {
+      console.log('Hi')
+    }
+    peiqi.sayHi() // 调用peiqi的实例方法sayHi
+    console.log(peiqi === qiaozhi) // false 同一个构造函数创建的实例对象：结构相同但相互独立的
+
+    // 2. 静态成员：构造函数的属性和方法 = 静态成员（静态属性和静态方法）
+    function Person(name,age) {
+      // 实例成员
+      this.name = name
+      this.age = age
+    }
+    // 静态属性
+    Person.eyes = 2
+    Person.arms = 2
+    // 静态方法
+    Person.walk = function() {
+      console.log('人都会走路....')
+      // this 指向 构造函数Person
+      console.log(this.eyes)
+    }
+    console.log(Person.arms) // 使用Person的静态属性
+    Person.walk() // 调用Person的静态方法    
+  </script>
+```
 
 
 
@@ -2831,18 +2997,18 @@ var obj = {
 ```
 
 ```js
-    var obj = {
+   const obj = {
       u_name: 'pink老师',
       age: 18,
       sex: '男',
       fn: function () {
-        console.log('haha');
+        console.log('haha')
       }
     }
     //遍历对象
-    for (var k in obj) {
-      console.log(k); //k输出的是：对象obj的属性名
-      console.log(obj[k]); //obj[k]输出的是：obj的属性值
+    for (let k in obj) {
+      console.log(k) // k输出的是：对象obj的属性名
+      console.log(obj[k]) // obj[k]输出的是：obj的属性值
     }
 ```
 
@@ -3017,17 +3183,31 @@ var obj = {
 
 
 
-## JS内置对象
+## JS内置对象\内置构造函数
 
-![](JS1.assets/98.png)
+<img src="JS1.assets/98.png" style="float:left;" />
 
-### 1、什么是内置对象
+
+
+
+
+### 1、什么是内置对象\内置构造函数
+
+**内置对象：**JavaScript内置对象是在JavaScript语言中**<span style="color:red;">预先定义好的对象</span>**，用于执行常见操作和处理各种数据类型。
 
 <img src="JS1.assets/image-20230710111427195.png" alt="image-20230710111427195" style="zoom:67%;float:left" />
 
 <img src="JS1.assets/99.png" style="zoom:200%;float:left" />
 
-JavaScript 提供了多个内置对象：**Math、 Date 、Array、String**等
+JavaScript 提供了多个内置对象：
+
+<img src="JS1.assets/image-20230814153953551.png" alt="image-20230814153953551" style="float:left" />
+
+
+
+**内置构造函数：**用于**创建特定类型的对象**。通过使用内置构造函数并结合特定的语法，可以实例化这些构造函数，创建相应类型的对象实例。
+
+<img src="JS1.assets/image-20230814153847245.png" alt="image-20230814153847245" style="float:left;" />
 
 
 
@@ -3043,7 +3223,26 @@ MDN:   https://developer.mozilla.org/zh-CN/
 
 
 
-### 1）Math对象
+### 3、基本包装类型
+
+<img src="JS1.assets/image-20230814154152686.png" alt="image-20230814154152686" style="zoom:67%;float:left" />
+
+```js
+    const str = 'pink'
+    console.log(str.length) // 4
+    const num = 12
+    console.log(num.toFixed(2)) // 12.00
+
+    const str = 'pink'
+    js 底层完成， 把简单数据类型包装为了引用数据类型
+    const str = new String('pink')
+```
+
+**`toFixed()`** 是 Number 对象的方法，用于将数字格式化为**指定小数位数的字符串**。
+
+
+
+### 1）Math内置对象
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math    
 
@@ -3055,7 +3254,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 
 `Math` 用于 `Number` 类型。它不支持 `BigInt`。
 
-与其他全局对象不同的是，`Math` **不是一个构造器（构造函数）**。`Math` 的所有属性与方法都是**静态的**。`Math` 的常量是使用 JavaScript 中的**全精度浮点数**来定义的。
+与其他全局对象不同的是，`Math` **不是一个构造器（构造函数）**。`Math` 的所有属性与方法都是**静态的（静态成员），只能构造函数Math自己来访问**。`Math` 的常量是使用 JavaScript 中的**全精度浮点数**来定义的。
 
 <img src="JS1.assets/101.png" style="zoom:200%;float:left" />
 
@@ -3114,7 +3313,7 @@ const numbers = [1, 2, 3, 4, 5];
 console.log(Math.max(...numbers)); // 输出: 5
 ```
 
-`Math.min()`同理
+**`Math.min()`**同理
 
 
 
@@ -3381,13 +3580,13 @@ console.log(Math.max(...numbers)); // 输出: 5
 
 
 
-### 2）Date日期对象
+### 2）Date日期
 
 <img src="JS1.assets/image-20230722102413468.png" alt="image-20230722102413468" style="zoom:67%;float:left" />
 
-<img src="JS1.assets/image-20230722105931098.png" alt="image-20230722105931098" style="zoom:55%;" />
+<img src="JS1.assets/image-20230722105931098.png" alt="image-20230722105931098" style="zoom: 67%; float: left;" />
 
-<img src="JS1.assets/image-20230722110222309.png" alt="image-20230722110222309" style="zoom:67%;" />
+<img src="JS1.assets/image-20230722110222309.png" alt="image-20230722110222309" style="zoom:67%;float:left" />
 
 #### （1）实例化`new Date(['time'])`
 
@@ -3806,18 +4005,30 @@ new Date(year, monthIndex [, day [, hours [, minutes [, seconds [, milliseconds]
 
 
 
-### 3）Array数组对象
+### 3）Array数组
 
 - **JavaScript 数组是可调整大小的**，**并且可以包含不同的[数据类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures)**。（当不需要这些特征时，可以使用[类型化数组](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays)）
 - **JavaScript 数组不是关联数组**，因此，[不能使用任意字符串作为索引访问数组元素](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array#备注)，但必须使用**非负整数**（或它们各自的字符串形式）作为索引访问。
 - **JavaScript 数组的[索引从 0 开始](https://zh.wikipedia.org/zh-cn/從零開始的編號)**：数组的第一个元素在索引 `0` 处，第二个在索引 `1` 处，以此类推，最后一个元素是数组的 [`length`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length) 属性减去 `1` 的值。
 
+数组常见的**实例方法**（通过实例对象来使用）：
+
+<img src="JS1.assets/image-20230814165028277.png" alt="image-20230814165028277" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230814165353861.png" alt="image-20230814165353861" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230814174956125.png" alt="image-20230814174956125" style="float:left;" />
+
+
+
 #### 创建数组的两种方式
+
+<img src="JS1.assets/image-20230814163926138.png" alt="image-20230814163926138" style="zoom:67%;float:left" />
 
 JS中**创建数组**有两种方式：
 
-+ 利用 **new Array( )**创建数组
-+ 利用**数组字面量——中括号[ ]** 创建数组
++ 利用 **`new Array( )`**创建数组
++ 利用**数组字面量——中括号`[ ]`** 创建数组
 
 ```js
       //2.利用 new Array( ) 创建数组
@@ -3832,28 +4043,28 @@ JS中**创建数组**有两种方式：
 
 #### 检测是否为数组的两种方式
 
-+ **instanceof 运算符**用来检测是否为数组
++ **`instanceof` 运算符**用来检测是否为数组
 
   **`检测值  instanceof  检测目标`  (数组Array、对象Object)**
 
 ```js
 //1.instanceof 运算符用来检测是否为数组
-        var arr = [];
-        console.log(arr instanceof Array); //true
-        var obj = {};
-        console.log(obj instanceof Array); //false
-        console.log(obj instanceof Object); //true
+        const arr = []
+        console.log(arr instanceof Array) //true
+        const obj = {}
+        console.log(obj instanceof Array) //false
+        console.log(obj instanceof Object) //true
 ```
 
-+ **Array.isArray(检测的值)**，返回值是**布尔值**
++ **`Array.isArray(检测的值)`**，返回值是**布尔值**
 
   如果值是 `Array`，则为 `true`；否则为 `false`。
 
 ```js
 //2.Array.isArray(检测的值)方法，返回值是布尔值
-        console.log(Array.isArray(arr)); //true
-        console.log(Array.isArray([1,2,3])); //true
-        console.log(Array.isArray(1)); //false
+        console.log(Array.isArray(arr)) // true
+        console.log(Array.isArray([1,2,3])) // true
+        console.log(Array.isArray(1)) // false
 ```
 
 
@@ -3893,11 +4104,11 @@ JS中**创建数组**有两种方式：
 
   **deleteCount**：整数，表示**要移除的数组元素的个数**。**从上面start开始，包含start，删除的元素个数**
   
-  删除指定下标`splice(下标，1)`
+  删除指定下标的元素`splice(下标，1)`
 
 
 
-#### 数组排序
+#### 数组排序sort和reverse
 
 ![](JS1.assets/110.png)
 
@@ -3905,7 +4116,7 @@ JS中**创建数组**有两种方式：
 
 语法：
 
-```
+```js
 // 无函数
 sort()
 // 箭头函数
@@ -3930,7 +4141,7 @@ function compareNumbers(a, b) {
 
 
 
-#### 获取数组元素的索引号indexOf
+#### 获取元素的索引号indexOf
 
 <img src="JS1.assets/111.png" style="zoom:150%;" />
 
@@ -3977,7 +4188,7 @@ function compareNumbers(a, b) {
 
 
 
-#### findIndex()方法
+#### findIndex方法
 
 **`findIndex()`** 方法返回数组中**满足提供的测试函数的  第一个元素的索引**。若没有找到对应元素则返回 -1。
 
@@ -3993,7 +4204,64 @@ array
 
 
 
-#### 数组转换为字符串toString、join方法
+#### find方法—查找某个元素
+
+**`find()`** 方法返回数组中**满足提供的测试函数的** **第一个元素的值**。否则返回`undefined`
+
+```js
+find(callbackFn[, thisArg])
+```
+
+<img src="JS1.assets/image-20230829164709558.png" alt="image-20230829164709558" style="zoom:80%;float:left" />
+
+
+
+#### every方法—检测元素是否都符合测试函数
+
+**`every()`** 方法测试一个数组内的**所有元素是否都能通过指定函数的测试**。它**返回一个布尔值**。
+
+```js
+every(callbackFn[, thisArg])
+// 参数和find一样
+```
+
+```html
+  <script>
+    const arr = ['red', 'blue', 'green']
+    const re = arr.find(function (item) {
+      return item === 'blue'
+    })
+    console.log(re) // blue
+
+    const arr1 = [{
+        name: '小米',
+        price: 1999
+      },
+      {
+        name: '华为',
+        price: 3999
+      },
+    ]
+    // 找小米 这个对象，并且返回这个对象
+    // const mi = arr1.find(function (item) {
+    //   console.log(item) // 每个元素逗号执行这个函数
+    //   console.log(item.name) 
+    //   console.log(111)
+    //   return item.name === '华为'
+    // })
+    // 1. find 查找：用处就是根据条件找数组中某一条数据
+    const mi = arr1.find(item => item.name === '小米')
+    console.log(mi) // {name: '小米', price: 1999}
+    // 2. every 数组中每一个元素是否都符合条件，如果都符合返回 true ，否则返回false
+    const arr2 = [10, 20, 30]
+    const flag = arr2.every(item => item >= 20)
+    console.log(flag) // false
+  </script>
+```
+
+
+
+#### toString、join方法—数组转换为字符串
 
 ![](JS1.assets/113.png)
 
@@ -4027,28 +4295,44 @@ array
 
 
 
-#### 数组合并concat方法
+#### concat—数组合并、slice—提取子数组
 
 + **`数组1.concat(数组2)`**
 
-```javascript
-    // concat方法
-    const a = [1, 2, 3]
-    const b = [4, 5, 6]
-    console.log(a.concat(b)) // [1, 2, 3, 4, 5, 6]
-    console.log(b.concat(a)) // [4, 5, 6, 1, 2, 3]
-    // 展开运算符...
-    const c = [...a, ...b] 
-    console.log(c) // [1, 2, 3, 4, 5, 6]
-```
+  ```js
+      // concat方法
+      const a = [1, 2, 3]
+      const b = [4, 5, 6]
+      console.log(a.concat(b)) // [1, 2, 3, 4, 5, 6]
+      console.log(b.concat(a)) // [4, 5, 6, 1, 2, 3]
+      // 展开运算符...
+      const c = [...a, ...b] 
+      console.log(c) // [1, 2, 3, 4, 5, 6]
+  ```
 
++ **`数组.slice(start,end)`**
 
+  `slice`方法接受两个参数：开始索引和结束索引（可选）。它返回一个新数组，其中包含从开始索引到结束索引（不包括结束索引）之间的元素。
+
+  如果**省略第二个参数**，则`slice`方法会提取**从开始索引到数组结尾的元素**。如果提供的参数是负数，则它会从数组的末尾开始计数。
+
+  ```js
+  const arr = [1, 2, 3, 4, 5];
+  const subset = arr.slice(1, 4);
+  console.log(subset); // 输出: [2, 3, 4]
+  
+  const arr = [1, 2, 3, 4, 5];
+  const subset = arr.slice(2);
+  console.log(subset); // 输出: [3, 4, 5]
+  ```
+
+  
 
 #### splice方法
 
 [Array.prototype.splice() - JavaScript | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
-splice方法通过**删除或替换现有元素或者原地添加新的元素来修改数组**，并**以数组形式返回被修改的内容**。此方法会改变原数组。
+`splice`方法通过**删除或替换现有元素或者原地添加新的元素来修改数组**，并**以数组形式返回被修改的内容**。此方法**会改变原数组**。
 
 ```
 splice(start)
@@ -4081,13 +4365,13 @@ var removed = myFish.splice(2, 1, "trumpet");
 
 
 
-#### forEach方法
+#### forEach方法—遍历数组
 
 [Array.prototype.forEach() - JavaScript | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
-**`forEach()`** 方法对**数组的<span style="color:red">每个元素执行一次给定的函数（只是用来遍历数组）</span>**。
+**`forEach()`** 方法对**数组的<span style="color:red">每个元素执行一次给定的函数（只是用来遍历数组）</span>**，适合于遍历**数组对象**。
 
-<img src="JS1.assets/137.png" style="zoom:100%;float:left" />
+<img src="JS1.assets/image-20230810102634219.png" alt="image-20230810102634219" style="zoom:67%;float:left" />
 
 语法：
 
@@ -4114,9 +4398,21 @@ forEach(function(element, index, array) { /* … */ }, thisArg)
 2. **数组当前项的索引**
 3. **数组对象本身**
 
-返回值：undefined（没有返回值的话，就默认返回undefined）
+返回值：`undefined`（没有返回值的话，就默认返回undefined）
 
-注意：需要注意的是，**`forEach` 方法没有返回值**，它**只是用来遍历数组**。如果你想要对数组中的每个元素进行某种计算或操作，并返回一个新的数组，可以考虑使用 `map` 方法。
+注意：需要注意的是，**`forEach` 方法没有返回值**，它**只是用来遍历数组**。如果你想要对数组中的每个元素进行某种计算或操作，并返回一个新的数组，可以考虑使用 **`map` 方法**。
+
+```html
+  <script>
+    // forEach 就是遍历  加强版的for循环  适合于遍历 数组对象
+    const arr = ['red', 'green', 'pink']
+    const result = arr.forEach(function (item, index) {
+      console.log(item) // 数组元素 red  green pink
+      console.log(index) // 索引号 0  1  2
+    })
+    console.log(result) // undefined
+  </script>
+```
 
 
 
@@ -4124,7 +4420,7 @@ forEach(function(element, index, array) { /* … */ }, thisArg)
 
 <img src="JS1.assets/image-20230731151329354.png" alt="image-20230731151329354" style="zoom:67%;float:left" />
 
-**map()** 方法定义在JavaScript的Array中，它**<span style="color:red">返回一个新的数组</span>**，数组中的元素为**原始数组调用函数处理后的值**。
+**map()** 方法定义在JavaScript的Array中，它**<span style="color:red">返回一个新的数组</span>**，数组中的元素为**原始数组调用函数 处理后的值**。
 
 值得注意的是：**1、map()函数不会对空数组进行检测；2、map()函数不会改变原始数组，它形成的是 一个新的数组**
 
@@ -4139,7 +4435,7 @@ forEach(function(element, index, array) { /* … */ }, thisArg)
 ```js
 let array = [1, 2, 3, 4, 5];
 let newArray = array.map((item) => {
-    return item * item;
+    return item * item // 处理数据
 })
 console.log(newArray)  // [1, 4, 9, 16, 25]
 ```
@@ -4178,7 +4474,107 @@ const filteredNumbers = numbers.map((num, index) => {
 
 
 
-### 4）String字符串对象
+#### filter方法—筛选数组
+
+<img src="JS1.assets/image-20230810140619720.png" alt="image-20230810140619720" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230810140800728.png" alt="image-20230810140800728" style="zoom:67%;float:left" />
+
+`filter`方法接受一个**回调函数**作为参数，该回调函数用于定义**筛选条件**。
+
+**回调函数应返回一个布尔值**，**决定元素是否被包含在新数组中**。如果返回值为 `true`，则元素将被保留，如果返回值为 `false`，则元素将被过滤掉。
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6]
+const evenNumbers = numbers.filter((num) => {
+  return num % 2 === 0
+})
+console.log(evenNumbers) // 输出 [2, 4, 6]
+```
+
+
+
+#### reduce方法—数组求和
+
+<img src="JS1.assets/image-20230814171354276.png" alt="image-20230814171354276" style="zoom:67%;float:Left" />
+
+<img src="JS1.assets/image-20230814173019406.png" alt="image-20230814173019406" style="zoom:67%;float:left" />
+
+```html
+  <script>
+    // 数组reduce方法
+    // arr.reduce(function(上一次值, 当前元素){}, 初始值)
+    const arr = [1, 5, 8]
+
+    // 1. 没有初始值
+    const total = arr.reduce(function (prev, current) {
+      return prev + current
+    })
+    console.log(total) // 14  1+5+8
+
+    // 执行过程：
+    // 上一次值      当前值      返回值    （第一次循环）
+    //   1=第一个元素   5          6
+    // 上一次值      当前值      返回值    （第二次循环）
+    //    6            8          14
+
+
+
+    // 2. 有初始值
+    const total1 = arr.reduce(function (prev, current) {
+      return prev + current
+    }, 10)
+    console.log(total1) // 24  10 + 1+5+8
+    // 箭头函数写法
+    console.log(arr.reduce((prev, current) => prev + current, 10)) // 24
+
+    // 执行过程：
+    // 上一次值      当前值      返回值    （第一次循环）
+    //   10=起始值     1          11
+    // 上一次值      当前值      返回值    （第二次循环）
+    //   11            5          16
+    // 上一次值      当前值      返回值    （第三次循环）
+    //   16            8          24
+  </script>
+```
+
+```html
+  <script>
+    // 数组对象 [{...},{...}...]
+    const arr = [{
+      name: '张三',
+      salary: 10000
+    }, {
+      name: '李四',
+      salary: 10000
+    }, {
+      name: '王五',
+      salary: 20000
+    }, ]
+
+    // 计算薪资
+    const totalSalary = arr.reduce((prev, item) => {
+      // console.log(prev,item) // item是对象
+      return prev + item.salary
+    }, 0)
+    console.log(totalSalary) // 40000
+    // 执行过程：
+    // 上一次值      当前值      返回值    （第一次循环）
+    //   0=起始值    10000       10000
+    // 上一次值      当前值      返回值    （第二次循环）
+    //   10000      10000       20000
+    // 上一次值      当前值      返回值    （第三次循环）
+    //   20000      20000       40000
+
+    // 需求：每个人涨薪30%，当月的薪资
+    const totalSalary1 = arr.reduce((prev, item) => prev + item.salary * 1.3, 0)
+    console.log(totalSalary1) // 52000
+  </script>
+```
+
+
+
+### 4）String字符串
 
 #### 基本包装类型
 
@@ -4312,7 +4708,7 @@ const filteredNumbers = numbers.map((num, index) => {
 
 
 
-#### 拼接、截取字符串
+#### 拼接concat、截取字符串substr、slice、substring
 
 <img src="JS1.assets/119.png" style="zoom:200%;" />
 
@@ -4332,7 +4728,7 @@ const filteredNumbers = numbers.map((num, index) => {
 
   
 
-+ **`substr()`** 方法返回一个字符串中从**指定位置开始到指定字符数的字符**。
++ **`substr()`** 方法**返回一个字符串**中从**指定位置开始到指定字符数的字符**。
 
   语法：
 
@@ -4349,15 +4745,21 @@ const filteredNumbers = numbers.map((num, index) => {
 
   `start` 是一个字符的索引，从0开始。`substr()` 从 `start` 位置开始提取字符，提取 `length` 个字符（或直到字符串的末尾）。
 
-  
++ **`slice(start,end)`** 方法**从start开始，截取到end位置，end取不到**（start和end**都是索引号**）
 
-+ **slice(start,end)** 方法**从start开始，截取到end位置，end取不到**（start和end**都是索引号**）
+  也可以**提取数组的子数组**
 
-+ **substring(start,end)** 方法和slice(start,end)差不多，但是**不接受负值**
+  ```js
+  const arr = [1, 2, 3, 4, 5]
+  const subArr = arr.slice(2, 4)
+  console.log(subArr) // [3, 4]
+  ```
+
++ **`substring(start,end)`** 方法和slice(start,end)差不多，但是**不接受负值**
 
 
 
-#### replace替换字符串
+#### replace方法—替换字符串
 
 **替换字符串**——**`replace('被替换的字符','替换为的字符')`**
 
@@ -4385,38 +4787,76 @@ const filteredNumbers = numbers.map((num, index) => {
 
 
 
-#### split分割为数组
+#### split方法—分割为数组
 
 **字符串分割为数组——`split('分隔符')`**。分隔符也叫分割符
 
-case1:在字符串中，**遇到该分割符就分割成如干个数组元素**。如一把刀砍断这个字符串。
+case1：在字符串中，**遇到该分割符就分割成若干个数组元素**。如一把刀砍断这个字符串。
 
-case2:如果在 str 中省略或**不出现分隔符**，则返回的数组包含**一个**由整个字符串组成的**元素**。
+case2：如果在 str 中省略或**不出现分隔符**，则返回的数组包含**一个由整个字符串组成的元素**。
 
-case3:如果分隔符为**空字符串''（不是空格）**，则将 str 原字符串中**每个字符**都成为一个数组元素
+case3：如果分隔符为**空字符串''（不是空格）**，则将 str 原字符串中**每个字符**都成为**一个数组元素**
 
 ```js
-        var str3 = 'red, blue, pink';
-        console.log(str3.split(',')); 
-        var str5 = 'red& blue& pink';
-        console.log(str5.split('&'));
-        //case1 ['red','blue','pink']
+    const str = 'red, blue, pink'
+    console.log(str.split(','))
+    const str1 = 'red& blue& pink'
+    console.log(str1.split('&'))
+    // case1 ['red','blue','pink']
+    
+    // case2 分隔符在字符串里面找不到，转换后的数组只有一个元素，就是该字符串['red& blue& pink']
+    const str2 = 'red& blue& pink'
+    console.log(str2.split('-')) 
+    
+    // case3 分割符为空字符串，将每一个字符都分割 ['1', '2', '3', '4', '5', '6', '7']
+    const str3 = '1234567'
+    console.log(str3.split(''))         
+```
 
-        var str4 = 'red& blue& pink';
-        console.log(str3.split('-')); //case2分隔符在字符串里面找不到，转换后的数组只有一个元素，就是该字符串['red& blue& pink']
 
-        var str6 = '1234567';
-        console.log(str6.split(''));//case3分割符为空字符串，将每一个字符都分割 [1,2,3,4,5,6,7]
-        
+
+### 5）Number
+
+#### toFixed方法—让数字指定保留的小数位数
+
+<img src="JS1.assets/image-20230829172922070.png" alt="image-20230829172922070" style="zoom:67%;float:left" />
+
+返回值：使用定点表示法表示给定数字的**字符串**
+
+```html
+  <script>
+    // toFixed 方法可以让数字指定保留的小数位数
+    // 四舍五入：根据保留几位的后一位进行四舍五入
+    const num = 10.921
+    console.log(num.toFixed()) // 11 
+    console.log(num.toFixed(1)) // 10.9
+    console.log(num.toFixed(2)) // 10.92
+    console.log(10.925.toFixed(2)) // 10.93 四舍五入
+    console.log(typeof num.toFixed(3)) // 会将数字转换为字符串
+    const num1 = 10
+    console.log(num1.toFixed(2)) // 10.00
+  </script>
 ```
 
 
 
 
 
-### 5）Object对象
+### 6）Object
 
-#### Object.keys(obj)的用法
+#### 创建普通对象`new Object()`
+
+<img src="JS1.assets/image-20230814154736591.png" alt="image-20230814154736591" style="zoom:67%;float:left" />
+
+
+
+以下是属于**Object的静态方法**（静态成员（静态属性和方法）**只有构造函数Object自己可以使用**）
+
+#### `Object.keys(obj)`获取属性名
+
+<img src="JS1.assets/image-20230814160909582.png" alt="image-20230814160909582" style="zoom:67%;float:left" />
+
+扩展：
 
 参数：要返回其枚举自身属性的**对象**
 
@@ -4424,9 +4864,75 @@ case3:如果分隔符为**空字符串''（不是空格）**，则将 str 原字
 
 ![image-20230415100549920](JS1.assets/image-20230415100549920.png)
 
+#### `Object.values(obj)`获取属性值
+
+<img src="JS1.assets/image-20230814160629263.png" alt="image-20230814160629263" style="zoom:67%;float:left" />
+
+对比：之前的for in 语句
+
+```js
+    const obj = {
+      u_name: 'pink老师',
+      age: 18,
+      sex: '男',
+      fn: function () {
+        console.log('haha')
+      }
+    }
+    // for in 语句遍历对象
+    for (let k in obj) {
+      console.log(k) // k输出的是：对象obj的属性名
+      console.log(obj[k]) // obj[k]输出的是：obj的属性值
+    }
+
+    const obj1 = {
+      uname: 'pink',
+      age: 18
+    }
+    // 1. 获得所有的属性名
+    console.log(Object.keys(obj1)) // 返回属性名数组['uname', 'age']
+    // 2. 获得所有的属性值
+    console.log(Object.values(obj1)) // ['pink', 18]
+```
 
 
-#### Object.defineProperty()方法
+
+#### `Object.assign(obj1,obj2)`对象浅拷贝
+
+<img src="JS1.assets/image-20230814162046239.png" alt="image-20230814162046239" style="zoom:67%;float:left" />
+
+<img src="JS1.assets/image-20230814162405429.png" alt="image-20230814162405429" style="zoom:67%;float:left" />
+
+```js
+let target = { a: 1, b: 2 };
+let source = { b: 3, c: 4 };
+let result = Object.assign(target, source);
+
+console.log(target); // 输出 { a: 1, b: 3, c: 4 }
+console.log(result); // 输出 { a: 1, b: 3, c: 4 }
+// source 对象的属性被复制到了 target 对象中。a 属性的值保持不变，而 b 属性的值被源对象覆盖，c 属性则是源对象新增的属性。Object.assign() 的返回值即为最终的目标对象 target。
+```
+
+```js
+    // 3. 对象的拷贝
+    const obj3 = {
+      uname: 'pink',
+      age: 20
+    }
+    const oo = {}
+    Object.assign(oo, obj3) // 将对象obj3 合并给 对象oo
+    console.log(oo) // {uname: 'pink', age: 20}
+    Object.assign(obj3, {
+      gender: '女'
+    }) // 这种就相当于合并，给obj3 添加属性 gender
+    console.log(obj3) // {uname: 'pink', age: 20, gender: '女'}
+```
+
+注意：`Object.assign()` 是**<span style="color:red">浅拷贝</span>**（拷贝的是地址，对象里的**简单数据类型拷贝值**，但是如果是**引用类型（对象、数组），也只是拷贝其地址**。**只拷贝第一层**，多层就不行了）
+
+
+
+#### `Object.defineProperty()`方法
 
 define 定义   property属性
 

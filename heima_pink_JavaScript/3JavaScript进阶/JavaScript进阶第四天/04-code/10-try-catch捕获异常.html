@@ -13,23 +13,26 @@
   <script>
     function fn() {
       try {
-        // 可能发送错误的代码 要写到 try
-        const p = document.querySelector('.p')
+        debugger
+        // 可能发生错误的代码，要写到 try 里面
+        const p = document.querySelector('p')
         p.style.color = 'red'
-      } catch (err) {
-        // 拦截错误，提示浏览器提供的错误信息，但是不中断程序的执行
-        console.log(err.message)
-        throw new Error('你看看，选择器错误了吧')
-        // 需要加return 中断程序
-        // return
-      }
-      finally {
-        // 不管你程序对不对，一定会执行的代码
+      } catch (err) { // err保存了浏览器提供的信息
+        // 拦截错误，提示浏览器提供的错误信息，但是不中断程序的执行（如果没有错误，不执行catch(){}里的代码）
+        console.log(err.message) // message属性
+        // 抛出异常，中断程序
+        throw new Error('选择器错误')
+        // 需要加return，中断程序，这里可以结合throw抛异常
+        // return 
+      } finally {
+        // 不管程序有没有错误，最终都会执行finally里的代码
         alert('弹出对话框')
       }
-      console.log(11)
+
+      console.log('没被中断')
     }
-    fn()
+
+    fn() // 调用
   </script>
 </body>
 

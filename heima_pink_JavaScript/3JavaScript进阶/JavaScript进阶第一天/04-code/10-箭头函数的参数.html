@@ -10,8 +10,19 @@
 
 <body>
   <script>
+    // const obj = {
+    //   fn: function () {
+    //     console.log(arguments)
+    //   },
+    //   fun: () => {
+    //     console.log(arguments)
+    //   }
+    // }
+    // obj.fn(1, 2, 3) // 会打印一个伪数组 [1, 2, 3]
+    // obj.fun(1, 2, 3) // 会直接报错，arguments is not defined
+
     // 1. 利用箭头函数来求和
-    const getSum = (...arr) => {
+    const getSum = (...arr) => { // 剩余数组
       let sum = 0
       for (let i = 0; i < arr.length; i++) {
         sum += arr[i]

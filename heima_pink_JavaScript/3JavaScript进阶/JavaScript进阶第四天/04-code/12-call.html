@@ -10,16 +10,23 @@
 
 <body>
   <script>
+    // function fn() {
+    //   console.log(this) // window
+    // }
+    // fn() // this指向window
+
+
     const obj = {
       uname: 'pink'
     }
+
     function fn(x, y) {
       console.log(this) // window
       console.log(x + y)
     }
     // 1. 调用函数  
     // 2. 改变 this 指向
-    fn.call(obj, 1, 2)
+    fn.call(obj, 1, 2) // 第一个参数是this指向的值，后面就是函数的参数
   </script>
 </body>
 
